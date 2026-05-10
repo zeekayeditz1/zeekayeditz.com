@@ -1,957 +1,570 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-theme">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Zeekay Editz – Professional Motion Designer & Video Editor. Cinematic edits, motion graphics, and content creation."/>
-  <title>Zeekay Editz | Motion Designer & Video Editor</title>
-  <link rel="icon" type="image/png" href="assets/images/fav.png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0A090D" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)" />
+  <meta name="description" content="ZeeKay Editz — Professional Motion Designer & Video Editor. Cinematic edits, motion graphics, After Effects, and content creation for YouTube, Instagram, and brands worldwide." />
+  <meta name="keywords" content="video editor, motion designer, after effects, premiere pro, youtube editor, reels, motion graphics, ZeeKay Editz, cinematic editing" />
+  <meta name="author" content="ZeeKay Editz" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ZeeKay Editz | Motion Designer & Video Editor" />
+  <meta property="og:description" content="Cinematic video edits, motion graphics, and visual storytelling. Available worldwide." />
+  <meta property="og:url" content="https://zeekayeditz.com" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>ZeeKay Editz — Motion Designer & Video Editor</title>
 
-  <!-- Theme CSS -->
-  <link rel="stylesheet" href="assets/css/plugins/animate.css"/>
-  <link rel="stylesheet" href="assets/css/plugins/aos.css"/>
-  <link rel="stylesheet" href="assets/css/plugins/swiper.min.css"/>
-  <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css"/>
-  <link rel="stylesheet" href="assets/css/dark.css"/>
-  <link rel="stylesheet" href="assets/css/common.css"/>
-  <link rel="stylesheet" href="assets/css/bentox-unit.css"/>
-  <link rel="stylesheet" href="assets/css/spacing.css"/>
-  <link rel="stylesheet" href="assets/css/responsive.css"/>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/images/favicon.png" />
 
-  <style>
-    /* ─── Base Overrides ─────────────────────────────────────────── */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Kanit',sans-serif;background:var(--bg1);color:var(--n0);overflow-x:hidden;}
-    :root{--transition:all 0.4s ease-in-out;--radius:16px;--radius-lg:24px;}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    /* ─── Custom Cursor ──────────────────────────────────────────── */
-    .mouse-follower{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;}
-    .cursor-outline{position:fixed;width:36px;height:36px;border:1.5px solid var(--s1);border-radius:50%;transform:translate(-50%,-50%);transition:0.12s ease-out;pointer-events:none;z-index:9999;}
-    .cursor-dot{position:fixed;width:7px;height:7px;background:var(--s1);border-radius:50%;transform:translate(-50%,-50%);transition:0.04s ease-out;pointer-events:none;z-index:9999;}
-    @media(max-width:991px){.mouse-follower,.cursor-outline,.cursor-dot{display:none!important;}}
-
-    /* ─── Preloader ──────────────────────────────────────────────── */
-    #preloader{position:fixed;inset:0;background:var(--bg1);z-index:99999;display:flex;align-items:center;justify-content:center;}
-    .preloader-inner{display:flex;flex-direction:column;align-items:center;gap:16px;}
-    .preloader-logo{font-size:32px;font-weight:700;color:var(--n0);}
-    .preloader-logo span{color:var(--s1);}
-    .preloader-bar{width:160px;height:2px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
-    .preloader-bar::after{content:'';display:block;width:40%;height:100%;background:var(--s1);border-radius:2px;animation:loading 0.8s ease-in-out infinite alternate;}
-    @keyframes loading{from{transform:translateX(0);}to{transform:translateX(240%);};}
-
-    /* ─── Header ─────────────────────────────────────────────────── */
-    .header-section{position:relative;z-index:100;padding:24px 0;}
-    .one__header{transition:var(--transition);}
-    .one__header.header-fixed{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:12px 0;animation:fadeInDown 0.4s ease;}
-    .header-section .main-navbar{padding:12px 40px;border-radius:20px;border:1px solid rgba(151,71,255,0.2);background:rgba(28,29,32,0.85);backdrop-filter:blur(16px);}
-    .navbar-brand img{height:38px;}
-    .custom-nav{display:flex;align-items:center;gap:0;list-style:none;}
-    .custom-nav .menu-item a{color:var(--n0);font-size:15px;font-weight:500;padding:8px 18px;display:block;transition:var(--transition);text-decoration:none;}
-    .custom-nav .menu-item a:hover{color:var(--s1);}
-    .kewta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--s1);color:#fff!important;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;transition:var(--transition);}
-    .kewta-btn:hover{background:var(--p1);transform:translateY(-2px);}
-    .navbar-toggle-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-    .navbar-toggle-btn span{display:block;width:26px;height:2px;background:var(--n0);border-radius:2px;transition:var(--transition);}
-    .navbar-toggle-btn.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-    .navbar-toggle-btn.open span:nth-child(2){opacity:0;}
-    .navbar-toggle-btn.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-    .navbar-toggle-item{display:flex!important;align-items:center;justify-content:space-between;gap:24px;width:100%;}
-    @media(max-width:991px){
-      .navbar-toggle-btn{display:flex;}
-      .navbar-toggle-item{display:none!important;flex-direction:column;align-items:flex-start;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);margin-top:12px;}
-      .navbar-toggle-item.d-block{display:flex!important;}
-      .custom-nav{flex-direction:column;align-items:flex-start;gap:0;}
-      .header-section .main-navbar{padding:14px 20px;}
-    }
-
-    /* ─── Section Common ─────────────────────────────────────────── */
-    section{padding:80px 0;}
-    .section-tag{display:inline-block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--s1);margin-bottom:12px;}
-    .section-title{font-size:42px;font-weight:700;line-height:1.15;margin-bottom:16px;}
-    .section-title span{color:var(--s1);}
-    .section-desc{color:var(--n06);font-size:16px;line-height:1.7;max-width:560px;}
-    @media(max-width:767px){.section-title{font-size:28px;}.section{padding:60px 0;}}
-
-    /* ─── Ticker ─────────────────────────────────────────────────── */
-    .ticker-wrap{background:var(--s1);padding:14px 0;overflow:hidden;}
-    .ticker-swiper .swiper-wrapper{transition-timing-function:linear!important;}
-    .ticker-item{display:flex;align-items:center;gap:20px;white-space:nowrap;padding-right:40px;font-weight:600;font-size:15px;color:#fff;text-transform:uppercase;letter-spacing:1px;}
-    .ticker-star{color:#fff;font-size:18px;}
-
-    /* ─── Hero / Bento ───────────────────────────────────────────── */
-    .hero-section{padding:0 0 80px;}
-    .bento-grid{display:grid;gap:20px;grid-template-columns:repeat(12,1fr);}
-    .bento-card{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.06);overflow:hidden;position:relative;transition:transform 0.3s ease,border-color 0.3s ease;}
-    .bento-card:hover{border-color:rgba(151,71,255,0.3);transform:translateY(-3px);}
-
-    /* card spans */
-    .card-profile{grid-column:span 3;}
-    .card-hero{grid-column:span 5;}
-    .card-stats-v{grid-column:span 2;}
-    .card-social{grid-column:span 2;}
-    .card-services{grid-column:span 4;}
-    .card-works{grid-column:span 5;}
-    .card-contact{grid-column:span 3;}
-
-    @media(max-width:1199px){
-      .card-profile{grid-column:span 4;}
-      .card-hero{grid-column:span 8;}
-      .card-stats-v{grid-column:span 3;}
-      .card-social{grid-column:span 3;}
-      .card-services{grid-column:span 6;}
-      .card-works{grid-column:span 6;}
-      .card-contact{grid-column:span 6;}
-    }
-    @media(max-width:767px){
-      .bento-grid{grid-template-columns:1fr;}
-      .bento-card,[class*="card-"]{grid-column:span 1!important;}
-    }
-
-    /* Profile Card */
-    .profile-card{padding:32px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;min-height:380px;justify-content:center;}
-    .profile-img-wrap{position:relative;width:140px;height:140px;margin:0 auto;}
-    .profile-img-wrap::before{content:'';position:absolute;inset:-6px;border:1.5px dashed rgba(151,71,255,0.5);border-radius:50%;animation:spin 12s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg);}}
-    .profile-img{width:140px;height:140px;border-radius:50%;object-fit:cover;border:3px solid var(--s1);background:linear-gradient(135deg,var(--bg1),var(--bg2));}
-    .profile-placeholder{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:48px;}
-    .profile-name{font-size:20px;font-weight:700;color:var(--n0);}
-    .profile-role{font-size:13px;color:var(--s1);font-weight:600;letter-spacing:2px;text-transform:uppercase;}
-    .profile-bio{font-size:14px;color:var(--n06);line-height:1.6;}
-    .profile-cta{display:inline-flex;align-items:center;gap:8px;background:var(--s1);color:#fff;padding:10px 24px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;transition:var(--transition);}
-    .profile-cta:hover{background:var(--p1);color:#fff;transform:translateY(-2px);}
-
-    /* Hero Text Card */
-    .hero-card{padding:48px 40px;display:flex;flex-direction:column;justify-content:center;min-height:380px;background:linear-gradient(135deg,rgba(151,71,255,0.08) 0%,rgba(255,105,0,0.04) 100%);}
-    .hero-eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--s1);margin-bottom:12px;}
-    .hero-name{font-size:60px;font-weight:800;line-height:1.05;margin-bottom:16px;color:var(--n0);}
-    .hero-name span{color:var(--s1);}
-    .hero-type-wrap{font-size:24px;font-weight:600;color:var(--n0);margin-bottom:20px;min-height:36px;}
-    .typewriter-cursor{color:var(--s1);animation:blink 1s infinite;}
-    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-    .hero-desc{font-size:16px;color:var(--n06);line-height:1.7;max-width:500px;margin-bottom:28px;}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-    .btn-primary-cta{display:inline-flex;align-items:center;gap:8px;background:var(--s1);color:#fff;padding:14px 30px;border-radius:50px;font-weight:600;font-size:15px;text-decoration:none;transition:var(--transition);}
-    .btn-primary-cta:hover{background:var(--p1);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(151,71,255,0.3);}
-    .btn-outline-cta{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(151,71,255,0.5);color:var(--n0);padding:14px 30px;border-radius:50px;font-weight:600;font-size:15px;text-decoration:none;transition:var(--transition);}
-    .btn-outline-cta:hover{background:rgba(151,71,255,0.1);border-color:var(--s1);color:var(--n0);}
-    @media(max-width:767px){.hero-name{font-size:36px;}.hero-card{padding:32px 24px;}}
-
-    /* Stats Card */
-    .stats-card{padding:28px;display:flex;flex-direction:column;gap:16px;}
-    .stat-item{background:var(--bg1);border-radius:var(--radius);padding:20px;text-align:center;border:1px solid rgba(255,255,255,0.05);transition:var(--transition);}
-    .stat-item:hover{border-color:rgba(151,71,255,0.3);}
-    .stat-number{font-size:42px;font-weight:800;color:var(--n0);line-height:1;}
-    .stat-number span{color:var(--s1);}
-    .stat-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--n06);margin-top:4px;}
-
-    /* Social Card */
-    .social-card{padding:28px;display:flex;flex-direction:column;gap:14px;justify-content:center;}
-    .social-link{display:flex;align-items:center;gap:14px;background:var(--bg1);border-radius:var(--radius);padding:14px 18px;text-decoration:none;border:1px solid rgba(255,255,255,0.05);transition:var(--transition);}
-    .social-link:hover{border-color:rgba(151,71,255,0.4);background:rgba(151,71,255,0.06);}
-    .social-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0;}
-    .social-icon.yt{background:#FF0000;}
-    .social-icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
-    .social-icon.fb{background:#1877F2;}
-    .social-name{font-size:14px;font-weight:600;color:var(--n0);}
-    .social-handle{font-size:12px;color:var(--n06);}
-
-    /* Services Card */
-    .services-card{padding:32px;min-height:260px;}
-    .services-card .card-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--s1);font-weight:600;margin-bottom:10px;}
-    .services-card h3{font-size:26px;font-weight:700;color:var(--n0);margin-bottom:20px;}
-    .services-list{list-style:none;display:flex;flex-wrap:wrap;gap:10px;}
-    .services-list li{background:rgba(151,71,255,0.08);border:1px solid rgba(151,71,255,0.2);color:var(--n0);font-size:13px;padding:7px 16px;border-radius:50px;font-weight:500;transition:var(--transition);}
-    .services-list li:hover{background:var(--s1);color:#fff;border-color:var(--s1);}
-
-    /* Works Preview Card */
-    .works-card{padding:28px;min-height:260px;}
-    .works-card .card-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--s1);font-weight:600;margin-bottom:10px;}
-    .works-card h3{font-size:22px;font-weight:700;color:var(--n0);margin-bottom:16px;}
-    .works-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-    .work-thumb{aspect-ratio:16/10;border-radius:10px;background:linear-gradient(135deg,var(--bg1),rgba(151,71,255,0.15));overflow:hidden;position:relative;cursor:pointer;}
-    .work-thumb::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;color:rgba(255,255,255,0.7);background:rgba(0,0,0,0.2);opacity:0;transition:0.3s;}
-    .work-thumb:hover::after{opacity:1;}
-    .work-thumb img{width:100%;height:100%;object-fit:cover;}
-    .work-thumb-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e 0%,rgba(151,71,255,0.2) 100%);display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,0.2);}
-    .works-link{display:inline-flex;align-items:center;gap:8px;color:var(--s1);font-size:14px;font-weight:600;text-decoration:none;margin-top:16px;transition:var(--transition);}
-    .works-link:hover{gap:12px;color:var(--p1);}
-
-    /* Contact CTA Card */
-    .contact-card{padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;background:linear-gradient(135deg,rgba(151,71,255,0.12),rgba(255,105,0,0.06));}
-    .contact-card h3{font-size:22px;font-weight:700;color:var(--n0);margin-bottom:8px;}
-    .contact-card p{font-size:14px;color:var(--n06);}
-    .contact-arrow{width:50px;height:50px;background:var(--s1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;text-decoration:none;transition:var(--transition);align-self:flex-end;}
-    .contact-arrow:hover{background:var(--p1);transform:rotate(-45deg);}
-
-    /* ─── Ticker Strip ───────────────────────────────────────────── */
-    .ticker-section{padding:0;margin:0 0 0;}
-    .ticker-wrap{background:var(--s1);padding:16px 0;overflow:hidden;position:relative;}
-
-    /* ─── About Section ──────────────────────────────────────────── */
-    .about-section{background:var(--bg2);}
-    .about-img-wrap{position:relative;}
-    .about-img{width:100%;border-radius:var(--radius-lg);object-fit:cover;background:linear-gradient(135deg,var(--bg1),rgba(151,71,255,0.2));}
-    .about-img-placeholder{width:100%;aspect-ratio:4/5;border-radius:var(--radius-lg);background:linear-gradient(135deg,#0f0f1a,rgba(151,71,255,0.15));display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid rgba(255,255,255,0.06);}
-    .experience-badge{position:absolute;bottom:24px;left:-20px;background:var(--s1);border-radius:var(--radius);padding:16px 20px;text-align:center;}
-    .exp-num{font-size:32px;font-weight:800;color:#fff;}
-    .exp-text{font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:1px;}
-    .about-features{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;}
-    .feature-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(151,71,255,0.08);border:1px solid rgba(151,71,255,0.2);padding:10px 18px;border-radius:50px;font-size:14px;font-weight:500;color:var(--n0);}
-    .feature-tag .dot{width:8px;height:8px;background:var(--s1);border-radius:50%;}
-
-    /* ─── Services Section ───────────────────────────────────────── */
-    .service-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-lg);padding:32px;transition:var(--transition);height:100%;}
-    .service-card:hover{border-color:var(--s1);transform:translateY(-4px);box-shadow:0 16px 40px rgba(151,71,255,0.12);}
-    .service-icon{width:60px;height:60px;background:rgba(151,71,255,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;border:1px solid rgba(151,71,255,0.2);}
-    .service-card h4{font-size:20px;font-weight:700;color:var(--n0);margin-bottom:10px;}
-    .service-card p{font-size:15px;color:var(--n06);line-height:1.6;}
-
-    /* ─── Portfolio Section ──────────────────────────────────────── */
-    .portfolio-section{background:var(--bg1);}
-    .filter-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
-    .filter-btn{background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--n06);padding:8px 20px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;transition:var(--transition);}
-    .filter-btn.active,.filter-btn:hover{background:var(--s1);border-color:var(--s1);color:#fff;}
-    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    @media(max-width:991px){.portfolio-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:575px){.portfolio-grid{grid-template-columns:1fr;}}
-    .port-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:var(--bg2);border:1px solid rgba(255,255,255,0.06);transition:var(--transition);}
-    .port-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
-    .port-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:linear-gradient(135deg,var(--bg1),rgba(151,71,255,0.1));}
-    .port-thumb-placeholder{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#0d0d1a,rgba(151,71,255,0.15));display:flex;align-items:center;justify-content:center;font-size:40px;}
-    .port-info{padding:20px;}
-    .port-cat{font-size:11px;color:var(--s1);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
-    .port-title{font-size:17px;font-weight:700;color:var(--n0);}
-    .port-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;opacity:0;transition:0.3s;}
-    .port-card:hover .port-overlay{opacity:1;}
-    .port-play{width:56px;height:56px;background:var(--s1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;text-decoration:none;}
-
-    /* ─── Skills Section ─────────────────────────────────────────── */
-    .skills-section{background:var(--bg2);}
-    .skill-item{margin-bottom:24px;}
-    .skill-top{display:flex;justify-content:space-between;margin-bottom:8px;}
-    .skill-name{font-size:15px;font-weight:600;color:var(--n0);}
-    .skill-pct{font-size:14px;color:var(--s1);font-weight:700;}
-    .skill-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;}
-    .skill-fill{height:100%;background:linear-gradient(90deg,var(--s1),var(--p1));border-radius:10px;width:0;transition:width 1.2s ease;}
-    .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;}
-    .tool-item{background:var(--bg1);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:18px 14px;text-align:center;transition:var(--transition);}
-    .tool-item:hover{border-color:var(--s1);background:rgba(151,71,255,0.06);}
-    .tool-icon{font-size:28px;margin-bottom:8px;}
-    .tool-name{font-size:12px;font-weight:600;color:var(--n06);}
-
-    /* ─── Stats Section ──────────────────────────────────────────── */
-    .stats-section-full{background:linear-gradient(135deg,rgba(151,71,255,0.08),rgba(255,105,0,0.04));border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);}
-    .stat-box{text-align:center;padding:40px 20px;}
-    .stat-big{font-size:64px;font-weight:800;color:var(--n0);line-height:1;}
-    .stat-big span.plus{color:var(--s1);}
-    .stat-desc{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--n06);margin-top:8px;}
-
-    /* ─── Contact Section ────────────────────────────────────────── */
-    .contact-section{background:var(--bg1);}
-    .contact-form-wrap{background:var(--bg2);border-radius:var(--radius-lg);padding:40px;border:1px solid rgba(255,255,255,0.06);}
-    .form-group{margin-bottom:20px;}
-    .form-label{font-size:13px;font-weight:600;color:var(--n06);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:block;}
-    .form-control{width:100%;background:var(--bg1);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 18px;font-size:15px;color:var(--n0);font-family:'Kanit',sans-serif;outline:none;transition:var(--transition);}
-    .form-control:focus{border-color:var(--s1);background:rgba(151,71,255,0.04);}
-    .form-control::placeholder{color:rgba(255,255,255,0.25);}
-    textarea.form-control{resize:none;min-height:140px;}
-    .submit-btn{width:100%;background:var(--s1);color:#fff;border:none;padding:16px;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;transition:var(--transition);font-family:'Kanit',sans-serif;}
-    .submit-btn:hover{background:var(--p1);transform:translateY(-2px);box-shadow:0 8px 24px rgba(151,71,255,0.3);}
-    .form-msg{display:none;padding:12px 18px;border-radius:10px;font-size:14px;margin-top:14px;}
-    .form-msg.success{background:rgba(47,167,95,0.1);border:1px solid rgba(47,167,95,0.3);color:#2FA75F;}
-    .form-msg.error{background:rgba(240,93,93,0.1);border:1px solid rgba(240,93,93,0.3);color:#F05D5D;}
-    .contact-info-card{background:var(--bg2);border-radius:var(--radius-lg);padding:36px;border:1px solid rgba(255,255,255,0.06);height:100%;}
-    .contact-info-item{display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
-    .contact-info-item:last-child{border-bottom:none;}
-    .ci-icon{width:46px;height:46px;background:rgba(151,71,255,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-    .ci-label{font-size:12px;color:var(--n06);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
-    .ci-val{font-size:16px;font-weight:600;color:var(--n0);}
-    .contact-socials{display:flex;gap:12px;margin-top:28px;}
-    .cs-link{width:44px;height:44px;border:1.5px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--n0);text-decoration:none;transition:var(--transition);}
-    .cs-link:hover{background:var(--s1);border-color:var(--s1);color:#fff;}
-
-    /* ─── Footer ─────────────────────────────────────────────────── */
-    footer{background:var(--bg2);border-top:1px solid rgba(255,255,255,0.06);padding:32px 0;}
-    .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-    .footer-copy{font-size:14px;color:var(--n06);}
-    .footer-copy a{color:var(--s1);text-decoration:none;}
-    .footer-nav{display:flex;gap:24px;list-style:none;}
-    .footer-nav a{font-size:14px;color:var(--n06);text-decoration:none;transition:var(--transition);}
-    .footer-nav a:hover{color:var(--s1);}
-
-    /* ─── Scroll To Top Button ───────────────────────────────────── */
-    .scrollToTop{position:fixed;bottom:30px;right:30px;width:46px;height:46px;background:var(--s1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer;z-index:999;opacity:0;transform:translateY(20px);transition:var(--transition);text-decoration:none;}
-    .scrollToTop.active{opacity:1;transform:translateY(0);}
-    .scrollToTop:hover{background:var(--p1);}
-
-    /* ─── Skill bar trigger ──────────────────────────────────────── */
-    .skills-section.in-view .skill-fill{width:var(--pct);}
-
-    /* ─── Misc ───────────────────────────────────────────────────── */
-    .text-gradient{background:linear-gradient(135deg,var(--s1),var(--p1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(151,71,255,0.3),transparent);margin:0;}
-  </style>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
 
-<!-- ░░ CUSTOM CURSOR ░░ -->
-<div class="mouse-follower">
-  <span class="cursor-outline"></span>
-  <span class="cursor-dot"></span>
-</div>
-
 <!-- ░░ PRELOADER ░░ -->
-<div id="preloader">
-  <div class="preloader-inner">
-    <div class="preloader-logo">Zeekay<span>Editz</span></div>
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader-content">
+    <div class="preloader-logo">ZeeKay Editz</div>
     <div class="preloader-bar"></div>
   </div>
 </div>
 
-<!-- ░░ MAIN WRAPPER ░░ -->
-<main class="main overflow-hidden body-bg">
+<!-- ░░ CUSTOM CURSOR ░░ -->
+<div class="cursor-outline" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
 
-  <!-- ════════ HEADER ════════ -->
-  <div class="one__header">
-    <header class="header-section">
-      <div class="container">
-        <div class="main-navbar">
-          <nav class="navbar-custom">
-            <div class="d-flex align-items-center justify-content-between">
+<!-- ░░ BACKGROUND BLOBS ░░ -->
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
 
-              <!-- Mobile Logo -->
-              <div class="nav-brand d-block d-lg-none">
-                <a href="#home" class="d-flex align-items-center text-decoration-none gap-2">
-                  <span style="font-size:20px;font-weight:800;color:var(--n0);">Zeekay<span style="color:var(--s1);">Editz</span></span>
-                </a>
-              </div>
+<!-- ════════════════════════════════════════════════════════════════
+     NAVIGATION
+     ════════════════════════════════════════════════════════════════ -->
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#home" class="brand" aria-label="ZeeKay Editz home">
+      <span class="brand-mark">Z</span>
+      <span>ZeeKay<span style="color: var(--accent);">.</span></span>
+    </a>
 
-              <!-- Mobile Toggle -->
-              <button class="navbar-toggle-btn d-block d-lg-none" type="button" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-              </button>
-
-              <!-- Nav Items -->
-              <div class="navbar-toggle-item">
-                <!-- Desktop Logo -->
-                <div class="navbar-brand logo d-none d-lg-block">
-                  <a href="#home" class="d-flex align-items-center text-decoration-none gap-2">
-                    <span style="font-size:22px;font-weight:800;color:var(--n0);">Zeekay<span style="color:var(--s1);">Editz</span></span>
-                  </a>
-                </div>
-
-                <!-- Menu Links -->
-                <ul class="custom-nav d-flex gap-1 flex-lg-row flex-column list-unstyled mb-0">
-                  <li class="menu-item"><a href="#home">Home</a></li>
-                  <li class="menu-item"><a href="#about">About</a></li>
-                  <li class="menu-item"><a href="#services">Services</a></li>
-                  <li class="menu-item"><a href="#portfolio">Works</a></li>
-                  <li class="menu-item"><a href="#skills">Skills</a></li>
-                  <li class="menu-item"><a href="#contact">Contact</a></li>
-                </ul>
-
-                <!-- CTA + Theme Toggle -->
-                <div class="d-flex align-items-center gap-3">
-                  <button class="mode--toggle" aria-label="Toggle theme" style="background:none;border:1.5px solid rgba(255,255,255,0.15);width:38px;height:38px;border-radius:50%;color:var(--n0);cursor:pointer;font-size:16px;transition:var(--transition);" title="Toggle Theme">☀</button>
-                  <a href="#contact" class="kewta-btn d-none d-lg-inline-flex">Let's Talk →</a>
-                </div>
-              </div>
-
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-  </div>
-  <!-- ════════ END HEADER ════════ -->
-
-
-  <!-- ════════ HERO / BENTO GRID ════════ -->
-  <section class="hero-section" id="home">
-    <div class="container">
-      <div class="bento-grid" data-aos="fade-up">
-
-        <!-- ── Profile Card ── -->
-        <div class="bento-card card-profile" data-aos="fade-right" data-aos-delay="100">
-          <div class="profile-card">
-            <div class="profile-img-wrap">
-              <div class="profile-placeholder">🎬</div>
-            </div>
-            <div>
-              <div class="profile-name">Zeekay</div>
-              <div class="profile-role">Motion Designer</div>
-            </div>
-            <p class="profile-bio">Passionate video editor & motion designer crafting cinematic content that tells stories.</p>
-            <a href="#about" class="profile-cta">My Story →</a>
-          </div>
-        </div>
-
-        <!-- ── Hero Text Card ── -->
-        <div class="bento-card card-hero" data-aos="fade-up" data-aos-delay="150">
-          <div class="hero-card">
-            <div class="hero-eyebrow">Welcome to my portfolio</div>
-            <h1 class="hero-name">Hi, I'm <span>Zeekay</span></h1>
-            <div class="hero-type-wrap">
-              <span id="typewriter"></span><span class="typewriter-cursor">|</span>
-            </div>
-            <p class="hero-desc">I create cinematic video edits, stunning motion graphics, and compelling visual content. Based in Pakistan — working with clients worldwide.</p>
-            <div class="hero-actions">
-              <a href="#portfolio" class="btn-primary-cta">🎥 View My Work</a>
-              <a href="#contact" class="btn-outline-cta">📩 Get In Touch</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Stats Card ── -->
-        <div class="bento-card card-stats-v" data-aos="fade-left" data-aos-delay="200">
-          <div class="stats-card counters-section">
-            <div class="stat-item">
-              <div class="stat-number"><span data-count="50" data-suffix="+">0+</span></div>
-              <div class="stat-label">Projects Done</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number"><span data-count="3" data-suffix="+">0+</span></div>
-              <div class="stat-label">Years Exp.</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number"><span data-count="30" data-suffix="+">0+</span></div>
-              <div class="stat-label">Happy Clients</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Social Card ── -->
-        <div class="bento-card card-social" data-aos="fade-left" data-aos-delay="250">
-          <div class="social-card">
-            <a href="#" target="_blank" rel="noopener" class="social-link">
-              <div class="social-icon yt">▶</div>
-              <div><div class="social-name">YouTube</div><div class="social-handle">@ZeekayEditz</div></div>
-            </a>
-            <a href="#" target="_blank" rel="noopener" class="social-link">
-              <div class="social-icon ig">📷</div>
-              <div><div class="social-name">Instagram</div><div class="social-handle">@ZeekayEditz</div></div>
-            </a>
-            <a href="#" target="_blank" rel="noopener" class="social-link">
-              <div class="social-icon fb" style="background:#1877F2;">f</div>
-              <div><div class="social-name">Facebook</div><div class="social-handle">ZeekayEditz</div></div>
-            </a>
-          </div>
-        </div>
-
-        <!-- ── Services Bento Card ── -->
-        <div class="bento-card card-services" data-aos="fade-up" data-aos-delay="300">
-          <div class="services-card">
-            <div class="card-label">What I Do</div>
-            <h3>Services</h3>
-            <ul class="services-list">
-              <li>🎬 Video Editing</li>
-              <li>✨ Motion Graphics</li>
-              <li>🎭 After Effects</li>
-              <li>🎵 Audio Sync</li>
-              <li>📱 Reels / Shorts</li>
-              <li>🎨 Color Grading</li>
-              <li>📺 YouTube Videos</li>
-              <li>💥 VFX</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- ── Works Preview Card ── -->
-        <div class="bento-card card-works" data-aos="fade-up" data-aos-delay="350">
-          <div class="works-card">
-            <div class="card-label">Portfolio</div>
-            <h3>Latest Works</h3>
-            <div class="works-preview-grid">
-              <div class="work-thumb"><div class="work-thumb-placeholder">🎬</div></div>
-              <div class="work-thumb"><div class="work-thumb-placeholder">🎭</div></div>
-              <div class="work-thumb"><div class="work-thumb-placeholder">🎥</div></div>
-            </div>
-            <a href="#portfolio" class="works-link">View All Projects →</a>
-          </div>
-        </div>
-
-        <!-- ── Contact CTA Card ── -->
-        <div class="bento-card card-contact" data-aos="fade-left" data-aos-delay="400">
-          <div class="contact-card">
-            <div>
-              <h3>Let's Work Together</h3>
-              <p>Have a project in mind? I'd love to hear about it.</p>
-            </div>
-            <a href="#contact" class="contact-arrow">→</a>
-          </div>
-        </div>
-
-      </div><!-- /bento-grid -->
+    <div class="nav-links" id="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Works</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
     </div>
-  </section>
-  <!-- ════════ END HERO ════════ -->
 
-
-  <!-- ════════ TICKER ════════ -->
-  <div class="ticker-section">
-    <div class="ticker-wrap">
-      <div class="swiper ticker-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" style="width:auto;">
-            <div class="ticker-item">
-              <span>Video Editing</span><span class="ticker-star">✦</span>
-              <span>Motion Graphics</span><span class="ticker-star">✦</span>
-              <span>After Effects</span><span class="ticker-star">✦</span>
-              <span>Color Grading</span><span class="ticker-star">✦</span>
-              <span>Premiere Pro</span><span class="ticker-star">✦</span>
-              <span>Content Creation</span><span class="ticker-star">✦</span>
-              <span>VFX</span><span class="ticker-star">✦</span>
-              <span>Reels & Shorts</span><span class="ticker-star">✦</span>
-            </div>
-          </div>
-          <div class="swiper-slide" style="width:auto;">
-            <div class="ticker-item">
-              <span>Video Editing</span><span class="ticker-star">✦</span>
-              <span>Motion Graphics</span><span class="ticker-star">✦</span>
-              <span>After Effects</span><span class="ticker-star">✦</span>
-              <span>Color Grading</span><span class="ticker-star">✦</span>
-              <span>Premiere Pro</span><span class="ticker-star">✦</span>
-              <span>Content Creation</span><span class="ticker-star">✦</span>
-              <span>VFX</span><span class="ticker-star">✦</span>
-              <span>Reels & Shorts</span><span class="ticker-star">✦</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle light / dark">
+        <span class="icon sun">☀</span>
+        <span class="icon moon">☾</span>
+      </button>
+      <a href="#contact" class="cta-btn">
+        <span>Let's Talk</span>
+        <span class="arrow">↗</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </div>
-  <!-- ════════ END TICKER ════════ -->
+  </nav>
+</div>
 
+<!-- ════════════════════════════════════════════════════════════════
+     HERO BENTO
+     ════════════════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="bento">
 
-  <!-- ════════ ABOUT SECTION ════════ -->
-  <section class="about-section" id="about">
-    <div class="container">
-      <div class="row align-items-center g-5">
-
-        <div class="col-lg-5" data-aos="fade-right">
-          <div class="about-img-wrap">
-            <div class="about-img-placeholder">🎬</div>
-            <div class="experience-badge">
-              <div class="exp-num">3+</div>
-              <div class="exp-text">Years of<br>Experience</div>
-            </div>
-          </div>
+      <!-- Profile Card -->
+      <div class="card cell-profile reveal">
+        <div class="avatar-frame">
+          <div class="avatar-ring"></div>
+          <div class="avatar-img">🎬</div>
         </div>
-
-        <div class="col-lg-7" data-aos="fade-left">
-          <div class="section-tag">About Me</div>
-          <h2 class="section-title">Passionate About <span>Cinematic</span> Storytelling</h2>
-          <p class="section-desc mb-4">
-            I'm a motion designer and video editor operating under the brand <strong style="color:var(--n0);">ZeeKay Editz</strong>. I specialize in creating visually stunning content — from cinematic video edits and motion graphics to custom After Effects animations and full-scale YouTube productions.
-          </p>
-          <p class="section-desc mb-4" style="max-width:none;">
-            With a deep passion for the craft and a keen eye for detail, I work to bring creative visions to life. Whether you're a content creator, brand, or agency — I'm here to make your content stand out.
-          </p>
-
-          <div class="about-features">
-            <div class="feature-tag"><span class="dot"></span>Adobe After Effects</div>
-            <div class="feature-tag"><span class="dot"></span>Adobe Premiere Pro</div>
-            <div class="feature-tag"><span class="dot"></span>Motion Graphics</div>
-            <div class="feature-tag"><span class="dot"></span>Color Grading</div>
-            <div class="feature-tag"><span class="dot"></span>VFX & Visual Effects</div>
-            <div class="feature-tag"><span class="dot"></span>YouTube Production</div>
-          </div>
-
-          <div class="mt-4 d-flex gap-3 flex-wrap">
-            <a href="#portfolio" class="btn-primary-cta">See My Work →</a>
-            <a href="#contact" class="btn-outline-cta">Hire Me</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <!-- ════════ END ABOUT ════════ -->
-
-
-  <div class="divider"></div>
-
-
-  <!-- ════════ SERVICES SECTION ════════ -->
-  <section id="services" style="background:var(--bg1);padding:80px 0;">
-    <div class="container">
-
-      <div class="text-center mb-5" data-aos="fade-up">
-        <div class="section-tag">What I Offer</div>
-        <h2 class="section-title mb-3">My <span>Services</span></h2>
-        <p class="section-desc mx-auto text-center">Professional video production services tailored to elevate your brand and content.</p>
-      </div>
-
-      <div class="row g-4">
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="service-card">
-            <div class="service-icon">🎬</div>
-            <h4>Video Editing</h4>
-            <p>Professional editing with smooth cuts, transitions, and pacing. From raw footage to polished final video that keeps viewers hooked.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
-          <div class="service-card">
-            <div class="service-icon">✨</div>
-            <h4>Motion Graphics</h4>
-            <p>Eye-catching animations, titles, lower thirds, and visual effects using After Effects. Custom motion graphics that elevate any video.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="service-card">
-            <div class="service-icon">🎨</div>
-            <h4>Color Grading</h4>
-            <p>Cinematic color grading and correction to set the perfect mood. From warm tones to cold cinematic looks — every frame enhanced.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
-          <div class="service-card">
-            <div class="service-icon">📱</div>
-            <h4>Reels & Short-Form</h4>
-            <p>High-energy Instagram Reels, YouTube Shorts, and TikTok edits optimized for maximum engagement and algorithmic reach.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <div class="service-card">
-            <div class="service-icon">📺</div>
-            <h4>YouTube Production</h4>
-            <p>End-to-end YouTube video production including editing, thumbnails, intros/outros, and chapter markers for better retention.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
-          <div class="service-card">
-            <div class="service-icon">💥</div>
-            <h4>VFX & Compositing</h4>
-            <p>Visual effects, green screen compositing, particle effects, and advanced After Effects animations to make your content cinematic.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <!-- ════════ END SERVICES ════════ -->
-
-
-  <!-- ════════ STATS STRIP ════════ -->
-  <section class="stats-section-full counters-section" style="padding:0;">
-    <div class="container">
-      <div class="row g-0">
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="stat-box" style="border-right:1px solid rgba(255,255,255,0.06);">
-            <div class="stat-big"><span data-count="50" data-suffix="+">0</span></div>
-            <div class="stat-desc">Projects Completed</div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="150">
-          <div class="stat-box" style="border-right:1px solid rgba(255,255,255,0.06);">
-            <div class="stat-big"><span data-count="30" data-suffix="+">0</span></div>
-            <div class="stat-desc">Happy Clients</div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="stat-box" style="border-right:1px solid rgba(255,255,255,0.06);">
-            <div class="stat-big"><span data-count="3" data-suffix="+">0</span></div>
-            <div class="stat-desc">Years Experience</div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="250">
-          <div class="stat-box">
-            <div class="stat-big"><span data-count="100" data-suffix="%">0</span></div>
-            <div class="stat-desc">Client Satisfaction</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ════════ END STATS ════════ -->
-
-
-  <!-- ════════ PORTFOLIO SECTION ════════ -->
-  <section class="portfolio-section" id="portfolio">
-    <div class="container">
-
-      <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5" data-aos="fade-up">
         <div>
-          <div class="section-tag">My Work</div>
-          <h2 class="section-title mb-0">Featured <span>Projects</span></h2>
+          <div class="profile-tag">Motion Designer</div>
+          <div class="profile-name">Zahid Khan</div>
         </div>
-        <div class="filter-wrap mb-0">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="motion">Motion</button>
-          <button class="filter-btn" data-filter="edit">Editing</button>
-          <button class="filter-btn" data-filter="reel">Reels</button>
+        <p class="profile-bio">Crafting cinematic video edits and motion graphics that tell stories worth watching.</p>
+        <a href="#about" class="profile-link">Read my story <span>→</span></a>
+      </div>
+
+      <!-- Hero Card -->
+      <div class="card cell-hero reveal" data-delay="1">
+        <div class="hero-eyebrow">Available for new projects</div>
+        <h1 class="hero-title">Hi, I'm <span class="grad">ZeeKay</span></h1>
+        <div class="hero-typewriter">I'm a <span id="typewriter" data-words="Motion Designer, Video Editor, Content Creator, AE Artist"></span><span class="tw-cursor">|</span></div>
+        <p class="hero-desc">I create cinematic video edits, stunning motion graphics, and compelling visual content for YouTube, brands, and content creators worldwide.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary"><span>🎥</span> View My Work</a>
+          <a href="#contact" class="btn btn-outline"><span>📩</span> Hire Me</a>
         </div>
       </div>
 
-      <div class="portfolio-grid" data-aos="fade-up" data-aos-delay="100">
+      <!-- Stats Card -->
+      <div class="card cell-stats reveal" data-delay="2">
+        <div class="card-label">Experience</div>
+        <div class="stats-num"><span data-count="3" data-suffix="+">3+</span></div>
+        <div class="stats-label">Years</div>
+        <p class="stats-desc">Crafting visual stories.</p>
+      </div>
 
-        <div class="port-card portfolio-item motion">
-          <div class="port-thumb-placeholder">✨</div>
-          <div class="port-info">
-            <div class="port-cat">Motion Graphics</div>
-            <div class="port-title">Cinematic Intro Sequence</div>
-          </div>
-          <div class="port-overlay">
-            <a href="#" class="port-play popup-video">▶</a>
-          </div>
+      <!-- CTA Card -->
+      <div class="card cell-cta reveal" data-delay="3">
+        <div>
+          <h4>Got a project?</h4>
+          <p>Let's bring your vision to life.</p>
         </div>
+        <a href="#contact" class="cta-arrow" aria-label="Get in touch">↗</a>
+      </div>
 
-        <div class="port-card portfolio-item edit">
-          <div class="port-thumb-placeholder">🎬</div>
-          <div class="port-info">
-            <div class="port-cat">Video Editing</div>
-            <div class="port-title">Brand Story Commercial</div>
-          </div>
-          <div class="port-overlay">
-            <a href="#" class="port-play popup-video">▶</a>
-          </div>
+      <!-- Services Card -->
+      <div class="card cell-services reveal" data-delay="4">
+        <div class="card-label">What I Do</div>
+        <h4>Services</h4>
+        <div class="skill-chips">
+          <span class="chip">🎬 Video Editing</span>
+          <span class="chip">✨ Motion Graphics</span>
+          <span class="chip">🎭 After Effects</span>
+          <span class="chip">📱 Reels / Shorts</span>
+          <span class="chip">🎨 Color Grading</span>
+          <span class="chip">💥 VFX</span>
         </div>
+      </div>
 
-        <div class="port-card portfolio-item reel">
-          <div class="port-thumb-placeholder">📱</div>
-          <div class="port-info">
-            <div class="port-cat">Reels / Shorts</div>
-            <div class="port-title">Viral Instagram Reel</div>
-          </div>
-          <div class="port-overlay">
-            <a href="#" class="port-play popup-video">▶</a>
-          </div>
+      <!-- Works Card -->
+      <div class="card cell-works reveal" data-delay="5">
+        <div class="card-label">Recent</div>
+        <h4>Latest Works</h4>
+        <div class="works-mini-grid">
+          <div class="mini-thumb">🎬</div>
+          <div class="mini-thumb">🎭</div>
+          <div class="mini-thumb">📱</div>
         </div>
+        <a href="#portfolio" class="works-link">View all projects <span>→</span></a>
+      </div>
 
-        <div class="port-card portfolio-item motion">
-          <div class="port-thumb-placeholder">💥</div>
-          <div class="port-info">
-            <div class="port-cat">VFX</div>
-            <div class="port-title">Action VFX Breakdown</div>
-          </div>
-          <div class="port-overlay">
-            <a href="#" class="port-play popup-video">▶</a>
-          </div>
+      <!-- Social Card -->
+      <div class="card cell-social reveal" data-delay="3">
+        <div class="card-label">Follow</div>
+        <h4>Stay Connected</h4>
+        <div class="social-grid">
+          <a href="#" target="_blank" rel="noopener" class="social-bubble yt" aria-label="YouTube">▶</a>
+          <a href="#" target="_blank" rel="noopener" class="social-bubble ig" aria-label="Instagram">📷</a>
+          <a href="#" target="_blank" rel="noopener" class="social-bubble fb" aria-label="Facebook">f</a>
+          <a href="#" target="_blank" rel="noopener" class="social-bubble tt" aria-label="TikTok">♪</a>
         </div>
-
-        <div class="port-card portfolio-item edit">
-          <div class="port-thumb-placeholder">📺</div>
-          <div class="port-info">
-            <div class="port-cat">YouTube Production</div>
-            <div class="port-title">YouTube Documentary Edit</div>
-          </div>
-          <div class="port-overlay">
-            <a href="#" class="port-play popup-video">▶</a>
-          </div>
-        </div>
-
-        <div class="port-card portfolio-item reel">
-          <div class="port-thumb-placeholder">🎨</div>
-          <div class="port-info">
-            <div class="port-cat">Color Grading</div>
-            <div class="port-title">Cinematic Color Grade</div>
-          </div>
-          <div class="port-overlay">
-            <a href="#" class="port-play popup-video">▶</a>
-          </div>
-        </div>
-
-      </div><!-- /portfolio-grid -->
+      </div>
 
     </div>
-  </section>
-  <!-- ════════ END PORTFOLIO ════════ -->
+  </div>
+</section>
 
+<!-- ════════════════════════════════════════════════════════════════
+     MARQUEE TICKER
+     ════════════════════════════════════════════════════════════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-content">
+      <span>Video Editing</span>
+      <span>Motion Graphics</span>
+      <span>After Effects</span>
+      <span>Cinematic Cuts</span>
+      <span>Color Grading</span>
+      <span>Visual Effects</span>
+      <span>YouTube Production</span>
+      <span>Reels &amp; Shorts</span>
+      <!-- duplicate for seamless loop -->
+      <span>Video Editing</span>
+      <span>Motion Graphics</span>
+      <span>After Effects</span>
+      <span>Cinematic Cuts</span>
+      <span>Color Grading</span>
+      <span>Visual Effects</span>
+      <span>YouTube Production</span>
+      <span>Reels &amp; Shorts</span>
+    </div>
+  </div>
+</div>
 
-  <!-- ════════ SKILLS SECTION ════════ -->
-  <section class="skills-section" id="skills">
-    <div class="container">
-
-      <div class="text-center mb-5" data-aos="fade-up">
-        <div class="section-tag">Expertise</div>
-        <h2 class="section-title">Skills & <span>Tools</span></h2>
+<!-- ════════════════════════════════════════════════════════════════
+     ABOUT
+     ════════════════════════════════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-l">
+        <div class="about-img">🎬</div>
+        <div class="about-badge">
+          <div class="num">3<sup style="font-size: 18px;">+</sup></div>
+          <div class="lbl">Years of<br>Experience</div>
+        </div>
       </div>
 
-      <div class="row g-5">
+      <div class="reveal-r">
+        <div class="card-label">About Me</div>
+        <h2 style="margin: 12px 0 20px;">Crafting <span class="grad" style="background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Cinematic</span> Stories Through Motion</h2>
+        <p style="font-size: 16px; line-height: 1.75; margin-bottom: 16px;">
+          I'm <strong style="color: var(--text-primary);">Zahid</strong>, a motion designer and video editor operating under the brand <strong style="color: var(--accent);">ZeeKay Editz</strong>. I specialize in transforming raw footage into visually stunning content — from cinematic video edits and motion graphics to custom After Effects animations and full-scale YouTube productions.
+        </p>
+        <p style="font-size: 16px; line-height: 1.75; margin-bottom: 0;">
+          With a deep passion for the craft and a keen eye for detail, I work closely with content creators, brands, and agencies to bring creative visions to life. Based in Pakistan — working with clients worldwide.
+        </p>
 
-        <!-- Skill Bars -->
-        <div class="col-lg-6" data-aos="fade-right">
-          <div class="skill-item">
-            <div class="skill-top"><span class="skill-name">Adobe After Effects</span><span class="skill-pct">95%</span></div>
-            <div class="skill-bar"><div class="skill-fill" style="--pct:95%;width:95%;"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-top"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-pct">92%</span></div>
-            <div class="skill-bar"><div class="skill-fill" style="--pct:92%;width:92%;"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-top"><span class="skill-name">Motion Graphics</span><span class="skill-pct">90%</span></div>
-            <div class="skill-bar"><div class="skill-fill" style="--pct:90%;width:90%;"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-top"><span class="skill-name">Color Grading / DaVinci</span><span class="skill-pct">85%</span></div>
-            <div class="skill-bar"><div class="skill-fill" style="--pct:85%;width:85%;"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-top"><span class="skill-name">VFX & Compositing</span><span class="skill-pct">80%</span></div>
-            <div class="skill-bar"><div class="skill-fill" style="--pct:80%;width:80%;"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-top"><span class="skill-name">Adobe Photoshop</span><span class="skill-pct">88%</span></div>
-            <div class="skill-bar"><div class="skill-fill" style="--pct:88%;width:88%;"></div></div>
-          </div>
+        <div class="about-features">
+          <span class="feature">After Effects</span>
+          <span class="feature">Premiere Pro</span>
+          <span class="feature">Motion Graphics</span>
+          <span class="feature">Color Grading</span>
+          <span class="feature">VFX</span>
+          <span class="feature">YouTube Production</span>
         </div>
 
-        <!-- Tools Grid -->
-        <div class="col-lg-6" data-aos="fade-left">
-          <div class="tool-grid">
-            <div class="tool-item"><div class="tool-icon">🎭</div><div class="tool-name">After Effects</div></div>
-            <div class="tool-item"><div class="tool-icon">🎬</div><div class="tool-name">Premiere Pro</div></div>
-            <div class="tool-item"><div class="tool-icon">🎨</div><div class="tool-name">Photoshop</div></div>
-            <div class="tool-item"><div class="tool-icon">🎵</div><div class="tool-name">Audition</div></div>
-            <div class="tool-item"><div class="tool-icon">🌈</div><div class="tool-name">DaVinci Resolve</div></div>
-            <div class="tool-item"><div class="tool-icon">💻</div><div class="tool-name">Media Encoder</div></div>
-            <div class="tool-item"><div class="tool-icon">🐍</div><div class="tool-name">Python / Scripts</div></div>
-            <div class="tool-item"><div class="tool-icon">📦</div><div class="tool-name">Illustrator</div></div>
-          </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="#portfolio" class="btn btn-primary">See My Work →</a>
+          <a href="#contact" class="btn btn-outline">Hire Me</a>
         </div>
-
       </div>
     </div>
-  </section>
-  <!-- ════════ END SKILLS ════════ -->
+  </div>
+</section>
 
+<!-- ════════════════════════════════════════════════════════════════
+     SERVICES
+     ════════════════════════════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="card-label">What I Offer</span>
+      <h2>My <span class="grad">Services</span></h2>
+      <p>Professional video production services tailored to elevate your brand and content.</p>
+    </div>
 
-  <!-- ════════ CONTACT SECTION ════════ -->
-  <section class="contact-section" id="contact">
-    <div class="container">
+    <div class="services-grid">
+      <div class="service-card reveal" data-delay="1">
+        <div class="service-icon">🎬</div>
+        <h4>Video Editing</h4>
+        <p>Professional editing with smooth cuts, seamless transitions, and pacing that keeps viewers hooked from start to finish.</p>
+      </div>
+      <div class="service-card reveal" data-delay="2">
+        <div class="service-icon">✨</div>
+        <h4>Motion Graphics</h4>
+        <p>Eye-catching animations, custom titles, lower thirds, and visual elements crafted in After Effects to elevate any video.</p>
+      </div>
+      <div class="service-card reveal" data-delay="3">
+        <div class="service-icon">🎨</div>
+        <h4>Color Grading</h4>
+        <p>Cinematic color grading and correction to set the perfect mood — from warm intimate tones to bold cinematic looks.</p>
+      </div>
+      <div class="service-card reveal" data-delay="1">
+        <div class="service-icon">📱</div>
+        <h4>Reels &amp; Shorts</h4>
+        <p>High-energy Instagram Reels, YouTube Shorts, and TikTok edits optimized for maximum engagement and reach.</p>
+      </div>
+      <div class="service-card reveal" data-delay="2">
+        <div class="service-icon">📺</div>
+        <h4>YouTube Production</h4>
+        <p>End-to-end YouTube production: editing, thumbnails, intros, outros, and chapter markers for better retention.</p>
+      </div>
+      <div class="service-card reveal" data-delay="3">
+        <div class="service-icon">💥</div>
+        <h4>VFX &amp; Compositing</h4>
+        <p>Visual effects, green screen compositing, particle effects, and advanced animations to make your content cinematic.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="text-center mb-5" data-aos="fade-up">
-        <div class="section-tag">Get In Touch</div>
-        <h2 class="section-title">Let's Work <span>Together</span></h2>
-        <p class="section-desc mx-auto">Have a project in mind? Let's talk about it. I'm always open to new opportunities and creative collaborations.</p>
+<!-- ════════════════════════════════════════════════════════════════
+     STATS STRIP
+     ════════════════════════════════════════════════════════════════ -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal-s">
+        <div class="stat-num"><span data-count="50" data-suffix="+">0</span></div>
+        <div class="stat-lbl">Projects</div>
+      </div>
+      <div class="stat-item reveal-s" data-delay="1">
+        <div class="stat-num"><span data-count="30" data-suffix="+">0</span></div>
+        <div class="stat-lbl">Happy Clients</div>
+      </div>
+      <div class="stat-item reveal-s" data-delay="2">
+        <div class="stat-num"><span data-count="3" data-suffix="+">0</span></div>
+        <div class="stat-lbl">Years Exp.</div>
+      </div>
+      <div class="stat-item reveal-s" data-delay="3">
+        <div class="stat-num"><span data-count="100" data-suffix="%">0</span></div>
+        <div class="stat-lbl">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PORTFOLIO
+     ════════════════════════════════════════════════════════════════ -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-head reveal">
+      <div>
+        <span class="card-label">My Work</span>
+        <h2 style="margin-top: 12px;">Featured <span class="grad">Projects</span></h2>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="motion">Motion</button>
+        <button class="filter-btn" data-filter="edit">Editing</button>
+        <button class="filter-btn" data-filter="reel">Reels</button>
+        <button class="filter-btn" data-filter="vfx">VFX</button>
+      </div>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="port-card portfolio-item motion reveal" data-delay="1">
+        <div class="port-thumb">✨
+          <div class="port-play"><div class="port-play-btn">▶</div></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Motion Graphics</div>
+          <div class="port-title">Cinematic Intro Sequence</div>
+          <div class="port-desc">Dynamic title animation with custom kinetic typography.</div>
+        </div>
       </div>
 
-      <div class="row g-4">
+      <div class="port-card portfolio-item edit reveal" data-delay="2">
+        <div class="port-thumb">🎬
+          <div class="port-play"><div class="port-play-btn">▶</div></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Video Editing</div>
+          <div class="port-title">Brand Story Commercial</div>
+          <div class="port-desc">Cinematic brand commercial with color grading.</div>
+        </div>
+      </div>
 
-        <!-- Contact Form -->
-        <div class="col-lg-7" data-aos="fade-right">
-          <div class="contact-form-wrap">
-            <!-- 
-              IMPORTANT: Replace YOUR_FORM_ID below with your Formspree form ID.
-              Sign up free at formspree.io → New Form → copy the form action URL.
-            -->
-            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="John Doe" required/>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required/>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label class="form-label">Subject</label>
-                    <input type="text" name="subject" class="form-control" placeholder="Video editing project..."/>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label class="form-label">Message</label>
-                    <textarea name="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="submit-btn"><span>Send Message</span></button>
-                  <div id="form-message" class="form-msg"></div>
-                </div>
-              </div>
-            </form>
+      <div class="port-card portfolio-item reel reveal" data-delay="3">
+        <div class="port-thumb">📱
+          <div class="port-play"><div class="port-play-btn">▶</div></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Reels / Shorts</div>
+          <div class="port-title">Viral Instagram Reel</div>
+          <div class="port-desc">High-energy short-form edit optimized for engagement.</div>
+        </div>
+      </div>
+
+      <div class="port-card portfolio-item vfx reveal" data-delay="1">
+        <div class="port-thumb">💥
+          <div class="port-play"><div class="port-play-btn">▶</div></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">VFX</div>
+          <div class="port-title">Action VFX Breakdown</div>
+          <div class="port-desc">Visual effects, particle systems, and compositing.</div>
+        </div>
+      </div>
+
+      <div class="port-card portfolio-item edit reveal" data-delay="2">
+        <div class="port-thumb">📺
+          <div class="port-play"><div class="port-play-btn">▶</div></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">YouTube Production</div>
+          <div class="port-title">Documentary Edit</div>
+          <div class="port-desc">Long-form storytelling with motion design.</div>
+        </div>
+      </div>
+
+      <div class="port-card portfolio-item motion reveal" data-delay="3">
+        <div class="port-thumb">🎨
+          <div class="port-play"><div class="port-play-btn">▶</div></div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Color Grading</div>
+          <div class="port-title">Cinematic Color Grade</div>
+          <div class="port-desc">Mood-driven color work for short film.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SKILLS
+     ════════════════════════════════════════════════════════════════ -->
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="card-label">Expertise</span>
+      <h2>Skills &amp; <span class="grad">Tools</span></h2>
+      <p>Years of hands-on experience with industry-standard creative software.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="reveal-l">
+        <div class="skill-row">
+          <div class="skill-info"><span class="skill-name">Adobe After Effects</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-pct">92%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="92"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span class="skill-name">Motion Graphics</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span class="skill-name">Color Grading / DaVinci</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span class="skill-name">Adobe Photoshop</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div>
+        </div>
+        <div class="skill-row" style="margin-bottom: 0;">
+          <div class="skill-info"><span class="skill-name">VFX &amp; Compositing</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+        </div>
+      </div>
+
+      <div class="reveal-r">
+        <div class="tools-grid">
+          <div class="tool"><div class="tool-icon">🎭</div><div class="tool-name">After Effects</div></div>
+          <div class="tool"><div class="tool-icon">🎬</div><div class="tool-name">Premiere Pro</div></div>
+          <div class="tool"><div class="tool-icon">🎨</div><div class="tool-name">Photoshop</div></div>
+          <div class="tool"><div class="tool-icon">🎵</div><div class="tool-name">Audition</div></div>
+          <div class="tool"><div class="tool-icon">🌈</div><div class="tool-name">DaVinci</div></div>
+          <div class="tool"><div class="tool-icon">📦</div><div class="tool-name">Illustrator</div></div>
+          <div class="tool"><div class="tool-icon">🐍</div><div class="tool-name">Python</div></div>
+          <div class="tool"><div class="tool-icon">💻</div><div class="tool-name">Media Encoder</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     CONTACT
+     ════════════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="card-label">Get In Touch</span>
+      <h2>Let's Work <span class="grad">Together</span></h2>
+      <p>Have a project in mind? I'd love to hear about it. Send a message and I'll get back to you within 24 hours.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-form-card reveal-l">
+        <!--
+          Replace YOUR_FORM_ID below with your Formspree form ID.
+          Sign up free at https://formspree.io → New Form → copy form action URL.
+        -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Your Name</label>
+              <input id="name" type="text" name="name" class="form-control" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input id="email" type="email" name="email" class="form-control" placeholder="john@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input id="subject" type="text" name="subject" class="form-control" placeholder="Video editing project..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span>Send Message</span><span>↗</span>
+          </button>
+          <div id="form-msg" class="form-msg"></div>
+        </form>
+      </div>
+
+      <div class="contact-info-card reveal-r">
+        <h4>Contact Information</h4>
+        <p>Reach out directly via any of these channels.</p>
+
+        <div class="ci-row">
+          <div class="ci-icon">📧</div>
+          <div>
+            <div class="ci-lbl">Email</div>
+            <div class="ci-val">zeekayeditz@gmail.com</div>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-lbl">Location</div>
+            <div class="ci-val">Pakistan — Worldwide</div>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">⏰</div>
+          <div>
+            <div class="ci-lbl">Response Time</div>
+            <div class="ci-val">Within 24 Hours</div>
           </div>
         </div>
 
-        <!-- Contact Info -->
-        <div class="col-lg-5" data-aos="fade-left">
-          <div class="contact-info-card">
-
-            <h4 style="font-size:22px;font-weight:700;margin-bottom:8px;">Contact Information</h4>
-            <p style="color:var(--n06);font-size:14px;margin-bottom:20px;">Fill in the form or reach out directly via any channel below.</p>
-
-            <div class="contact-info-item">
-              <div class="ci-icon">📧</div>
-              <div>
-                <div class="ci-label">Email</div>
-                <div class="ci-val">zeekayeditz@gmail.com</div>
-              </div>
-            </div>
-            <div class="contact-info-item">
-              <div class="ci-icon">📍</div>
-              <div>
-                <div class="ci-label">Location</div>
-                <div class="ci-val">Pakistan — Working Worldwide</div>
-              </div>
-            </div>
-            <div class="contact-info-item">
-              <div class="ci-icon">⏰</div>
-              <div>
-                <div class="ci-label">Response Time</div>
-                <div class="ci-val">Within 24 Hours</div>
-              </div>
-            </div>
-
-            <div class="contact-socials">
-              <a href="#" class="cs-link" title="YouTube">▶</a>
-              <a href="#" class="cs-link" title="Instagram">📷</a>
-              <a href="#" class="cs-link" title="Facebook">f</a>
-              <a href="#" class="cs-link" title="TikTok">♪</a>
-            </div>
-
-          </div>
+        <div class="contact-socials">
+          <a href="#" class="cs-link" aria-label="YouTube">▶</a>
+          <a href="#" class="cs-link" aria-label="Instagram">📷</a>
+          <a href="#" class="cs-link" aria-label="Facebook">f</a>
+          <a href="#" class="cs-link" aria-label="TikTok">♪</a>
         </div>
-
       </div>
     </div>
-  </section>
-  <!-- ════════ END CONTACT ════════ -->
+  </div>
+</section>
 
-
-  <!-- ════════ FOOTER ════════ -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-copy">
-          &copy; 2025 <strong style="color:var(--n0);">Zeekay<span style="color:var(--s1);">Editz</span></strong>. All rights reserved.
-        </div>
-        <ul class="footer-nav">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Works</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+<!-- ════════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div class="foot-copy">
+        &copy; 2025 <strong>ZeeKay Editz</strong> — All rights reserved.
+      </div>
+      <div class="foot-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Works</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-  </footer>
-  <!-- ════════ END FOOTER ════════ -->
-
-</main>
+  </div>
+</footer>
 
 <!-- Scroll To Top -->
-<a class="scrollToTop" aria-label="Scroll to top">↑</a>
+<button class="to-top" aria-label="Scroll to top">↑</button>
 
-<!-- ░░ SCRIPTS ░░ -->
-<script src="assets/js/plugins/jquery.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/plugins/aos.js"></script>
-<script src="assets/js/plugins/swiper.js"></script>
-<script src="assets/js/plugins/magnific-popup.js"></script>
-<script src="assets/js/main.js"></script>
-
+<script src="assets/js/script.js"></script>
 </body>
 </html>
