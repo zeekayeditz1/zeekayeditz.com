@@ -324,6 +324,7 @@
     if (!reduceMotion && window.matchMedia('(hover: hover)').matches && window.innerWidth > 991) {
       $$('.card, .service-card, .port-card').forEach(card => {
         card.addEventListener('mousemove', e => {
+          if (window.innerWidth <= 991) { card.style.transform = ''; return; }
           const rect = card.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width - 0.5;
           const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -334,6 +335,19 @@
         });
       });
     }
+
+    // Defensive cleanup on resize — clears any leftover inline transforms when going to mobile
+    let resizeTO;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTO);
+      resizeTO = setTimeout(() => {
+        if (window.innerWidth <= 991) {
+          $$('.card, .service-card, .port-card, .cta-arrow, .social-bubble, .cs-link, .to-top').forEach(el => {
+            el.style.transform = '';
+          });
+        }
+      }, 100);
+    });
 
   }); // DOMContentLoaded
 })();

@@ -335,53 +335,123 @@ html.dark .theme-toggle .moon { opacity: 0; transform: rotate(-180deg); }
   .cell-works    { grid-column: span 8; }
   .cell-social   { grid-column: span 12; }
 }
+/* ── Tablet (768-991px) ─────────────────────────────────────── */
+@media (max-width: 991px) and (min-width: 768px) {
+  .bento { grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .cell-profile  { grid-column: span 3; grid-row: span 2; }
+  .cell-hero     { grid-column: span 6; grid-row: span 1; order: -1; }
+  .cell-stats    { grid-column: span 3; grid-row: span 1; }
+  .cell-cta      { grid-column: span 3; grid-row: span 1; }
+  .cell-services { grid-column: span 3; grid-row: span 1; }
+  .cell-works    { grid-column: span 6; grid-row: span 1; }
+  .cell-social   { grid-column: span 6; grid-row: span 1; }
+  .hero-title { font-size: clamp(2.25rem, 5vw, 3rem); }
+  .hero-card { padding: 36px 32px; }
+}
+
+/* ── Mobile (≤767px): bulletproof flex stacking ──────────────── */
 @media (max-width: 767px) {
-  .bento { grid-template-columns: 1fr; gap: 14px; }
+  .bento {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    grid-template-columns: none !important;
+  }
+  .bento > .card,
   .cell-profile, .cell-hero, .cell-stats, .cell-cta,
   .cell-services, .cell-works, .cell-social {
-    grid-column: 1 / -1 !important;
-    grid-row: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+    flex: 0 0 auto !important;
   }
-  .card { padding: 22px; }
-  .hero-title { font-size: clamp(1.75rem, 8vw, 2.5rem); letter-spacing: -0.5px; }
+  /* Reorder: hero first, then profile, services, works, stats, cta, social */
+  .cell-hero     { order: 1 !important; }
+  .cell-profile  { order: 2 !important; }
+  .cell-services { order: 3 !important; }
+  .cell-works    { order: 4 !important; }
+  .cell-stats    { order: 5 !important; }
+  .cell-cta      { order: 6 !important; }
+  .cell-social   { order: 7 !important; }
+
+  .card { padding: 22px; min-height: auto; }
+  .hero { padding: 100px 0 40px; min-height: auto; }
+  .hero-title { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; letter-spacing: -0.5px; }
   .hero-typewriter { font-size: 1.05rem; }
   .hero-desc { font-size: 14px; }
+  .hero-buttons { gap: 8px; }
   .profile-bio { font-size: 13px; max-width: 100%; }
+  .profile-card { min-height: auto; padding: 28px 24px; }
   .avatar-frame { width: 110px; height: 110px; }
   .avatar-img { font-size: 38px; }
   .profile-name { font-size: 19px; }
+  .cell-hero { min-height: auto; padding: 28px 24px; }
   .stats-num { font-size: 2.2rem; }
-  .cell-cta { padding: 20px; }
+  .cell-cta { padding: 20px; min-height: auto; }
   .cell-cta h4 { font-size: 18px; }
   .btn { padding: 12px 20px; font-size: 13px; }
   .skill-chips { gap: 6px; }
   .chip { font-size: 11px; padding: 5px 12px; }
+  .works-mini-grid { gap: 6px; }
+  .social-grid { justify-content: flex-start; }
+  .social-bubble { width: 50px; height: 50px; }
+  .social-bubble svg { width: 20px; height: 20px; }
 }
 
+/* ── Small phones (≤480px) ───────────────────────────────────── */
 @media (max-width: 480px) {
   .container { padding: 0 14px; }
-  .nav-wrap { padding: 0 14px; top: 10px; }
-  .nav { padding: 6px 6px 6px 16px; }
-  .brand { font-size: 17px; }
-  .brand-mark { width: 28px; height: 28px; font-size: 14px; margin-right: 6px; }
-  .theme-toggle, .menu-toggle { width: 36px; height: 36px; }
-  .cta-btn { padding: 8px 14px; font-size: 13px; }
-  .hero { padding: 88px 0 30px; }
-  .card { padding: 20px; border-radius: 18px; }
-  .hero-title { font-size: 1.85rem; }
+  .nav-wrap { padding: 0 12px; top: 10px; }
+  .nav { padding: 6px 6px 6px 14px; }
+  .brand { font-size: 16px; }
+  .brand-mark { width: 26px; height: 26px; font-size: 13px; margin-right: 6px; }
+  .nav-actions { gap: 6px; }
+  .theme-toggle, .menu-toggle { width: 34px; height: 34px; }
+  .cta-btn { padding: 8px 12px; font-size: 12px; }
+  .hero { padding: 90px 0 30px; }
+  .card { padding: 18px; border-radius: 18px; }
+  .hero-title { font-size: 1.85rem !important; }
+  .hero-typewriter { font-size: 0.95rem; }
   .marquee-content span { font-size: 14px; gap: 10px; }
   .about-img-wrap { max-width: 320px; margin: 0 auto; }
   .about-features { gap: 6px; }
   .feature { font-size: 12px; padding: 6px 12px; }
   .sec-head { margin-bottom: 40px; }
+  .sec-head h2 { font-size: 1.75rem; }
   .filter-btn { padding: 8px 14px; font-size: 12px; }
   .stats-section { padding: 40px 0; }
   .stat-item { padding: 14px 8px; }
+  .stat-num { font-size: 2.5rem; }
   .contact-form-card, .contact-info-card { padding: 22px; }
-  .form-row { gap: 12px; }
+  .form-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .form-control { font-size: 14px; padding: 12px 16px; }
   .ci-row { gap: 12px; padding: 14px 0; }
   .ci-icon { width: 40px; height: 40px; }
+  .ci-icon svg { width: 18px; height: 18px; }
+  .ci-val { font-size: 14px; }
   .to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+  .marquee-track { margin: 0 -30px; padding: 14px 0; }
+  .services-grid { grid-template-columns: 1fr; gap: 14px; }
+  .service-card { padding: 24px; }
+  .portfolio-grid { gap: 14px; }
+  .skills-grid { gap: 30px; }
+  .tools-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .tool { padding: 14px 8px; }
+  .tool-icon { width: 36px; height: 36px; }
+  .tool-name { font-size: 11px; }
+}
+
+/* ── Very small phones (≤360px) ──────────────────────────────── */
+@media (max-width: 360px) {
+  .hero-title { font-size: 1.6rem !important; }
+  .hero-buttons { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
+  .nav-links { padding: 12px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat-item { border-right: none !important; border-bottom: 1px solid var(--border); padding: 16px !important; }
+  .stat-item:last-child { border-bottom: none; }
+  .tools-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ─── Profile Card ─────────────────────────────────────────────── */
@@ -525,7 +595,15 @@ html.dark .theme-toggle .moon { opacity: 0; transform: rotate(-180deg); }
 /* ─── Services Card ────────────────────────────────────────────── */
 .cell-services h4, .cell-works h4, .cell-social h4 { font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .card-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-.skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.cell-services .skill-chips { justify-content: center; }
+.cell-services .card-label,
+.cell-services h4 { text-align: center; justify-content: center; }
 .chip {
   font-size: 12px; font-weight: 500;
   padding: 6px 14px; border-radius: 50px;
