@@ -1,0 +1,320 @@
+:root {
+  --tp-common-white: #fff;
+  --tp-common-black: #031220;
+  --tp-common-black-2: #120101;
+  --tp-common-black-3: #0c140f;
+  --tp-common-black-4: #000000;
+  --tp-common-black-5: #0e1133;
+  --tp-common-green: #26c089;
+  --tp-common-green-2: #3e8454;
+  --tp-common-green-3: #27aa4d;
+  --tp-common-green-4: #20ad96;
+  --tp-common-blue: #4356ff;
+  --tp-common-blue-2: #4270ff;
+  --tp-common-blue-3: #3c66ed;
+  --tp-common-blue-4: #3083ff;
+  --tp-common-cream: #fff1e0;
+  --tp-common-pink: #ff6470;
+  --tp-common-pink-2: #fc4c56;
+  --tp-common-orange: #f37f43;
+  --tp-common-orange-2: #ee6002;
+  --tp-common-orange-3: #ff9f4b;
+  --tp-common-purple: #e33cff;
+  --tp-common-purple-2: #e64dff;
+  --tp-common-yellow: #f5b455;
+  --tp-common-yellow-2: #f47f42;
+  --tp-common-yellow-3: #f4930e;
+  --tp-common-yellow-4: #ffaa2c;
+  --tp-common-yellow-5: #ff8d00;
+  --tp-common-violet: #6151fb;
+  --tp-common-violet-2: #a794c8;
+  --tp-header-primary: #031220;
+  --tp-header-2: #120101;
+  --tp-grey-1: #f1f1f1;
+  --tp-grey-2: #fff;
+  --tp-grey-3: #f8f8f8;
+  --tp-grey-4: #f7f7f7;
+  --tp-grey-5: #f5f5f5;
+  --tp-grey-6: #dcdcdc;
+  --tp-grey-7: #f9f9f9;
+  --tp-grey-8: #f4fbf9;
+  --tp-grey-9: #f0f8f7;
+  --tp-grey-10: #f3f3f3;
+  --tp-text-body: #49535b;
+  --tp-text-1: #49535b;
+  --tp-text-2: #555c63;
+  --tp-text-3: #777a7c;
+  --tp-text-4: #4b535a;
+  --tp-text-5: #4a545c;
+  --tp-text-6: #6f7377;
+  --tp-text-7: #6b7882;
+  --tp-text-8: #788086;
+  --tp-text-9: #6b737a;
+  --tp-text-10: #828282;
+  --tp-text-11: #5f6160;
+  --tp-text-12: #565958;
+  --tp-text-13: #868d94;
+  --tp-text-14: #56595c;
+  --tp-text-15: #a1a2ab;
+  --tp-theme-1: #9747ff;
+  --tp-theme-2: #258e46;
+  --tp-theme-3: #007a70;
+  --tp-border-1: #dedede;
+}
+
+.custom-container {
+  padding: 0 !important;
+}
+
+.sec-mar {
+  margin: 120px 0 120px 0;
+}
+
+@media screen and (max-width: 991px) {
+  .sec-mar {
+    margin: 80px 0 80px 0;
+  }
+}
+
+/* Blog details image size */
+.postbox__thumb img {
+  width: 100%;
+}
+.rel-title h2 {
+  position: relative;
+  z-index: 2;
+}
+
+/* Elementor  */
+
+
+.admin-bar .header-menu {
+  margin-top: 32px;
+}
+.admin-bar .header__sticky {
+  margin-top: 32px;
+}
+.admin-bar #header-sticky.header__area.header__transparent {
+  margin-top: 32px;
+}
+
+.admin-bar .offcanvas__wrapper {
+  margin-top: 32px;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 767px) {
+  .admin-bar .header__sticky {
+    margin-top: 0px !important;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+  .admin-bar .header__sticky {
+    margin-top: 42px;
+  }
+}
+
+/* Unit test */
+
+h2.wp-block-heading {
+  line-height: 55px;
+}
+h2.wp-block-post-title {
+  font-size: 36px;
+}
+h1.wp-block-site-title a {
+  font-size: 45px;
+}
+.wp-block-comments h2#comments {
+  font-size: 45px;
+  line-height: 60px;
+}
+
+a.wp-block-button__link:hover {
+  color: #ddd;
+}
+.container-box .postbox__content .postbox__title a {
+  display: block;
+}
+
+
+.breadcrumb-area {
+  padding-top: 30px;
+}
+
+.breadcrumb-area .breadcrumb-content p {
+  color: #bcbcbc;
+  margin-bottom: 24px;
+}
+.breadcrumb-area .breadcrumb-content .section-heading {
+  font-size: 56px;
+  position: relative;
+  display: block;
+  margin-bottom: 30px;
+  color: #0f0f0f;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -01px;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+/* Menu */
+
+ul#menu-main-menu li.has-dropdown i{
+  display: inline-block;
+}
+
+ul#menu-main-menu li ul li i{
+  display: none !important;
+  
+}
+ul#menu-main-menu li ul .dropdown> i{
+  display: inline-block !important;
+  color: #fff;
+}
+
+
+ul#menu-main-menu li i {
+  display: none;
+}
+
+ul#menu-main-menu li ul li ul li i{
+  display: none !important
+ 
+}
+.menu-item a:hover{
+  color: var(--s1);
+}
+ul#menu-main-menu li i{
+  transition: .5s;
+}
+ul#menu-main-menu li ul li i{
+  transition: .5s;
+}
+ul#menu-main-menu li:hover i {
+  color: var(--s1);
+}
+ul#menu-main-menu li ul li:hover i {
+  color: var(--s1);
+}
+.footer-copyright a {
+  color: var(--s1);
+  margin-left: 9px;
+  font-size: 18px !important;
+}
+.footer-copyright a:hover {
+  color: var(--p1)
+}
+
+
+/* another menu unit */
+ul#menu-all-pages li.has-dropdown i{
+  display: inline-block;
+}
+
+ul#menu-all-pages li ul li i{
+  display: none !important;
+  
+}
+ul#menu-all-pages li ul .dropdown> i{
+  display: inline-block !important;
+  color: #fff;
+}
+
+
+ul#menu-all-pages li i {
+  display: none;
+}
+
+ul#menu-all-pages li ul li ul li i{
+  display: none !important
+ 
+}
+.menu-item a:hover{
+  color: var(--s1);
+}
+ul#menu-all-pages li i{
+  transition: .5s;
+}
+ul#menu-all-pages li ul li i{
+  transition: .5s;
+}
+ul#menu-all-pages li:hover i {
+  color: var(--s1);
+}
+ul#menu-all-pages li ul li:hover i {
+  color: var(--s1);
+}
+.footer-copyright a {
+  color: var(--s1);
+  margin-left: 9px;
+  font-size: 18px !important;
+}
+.footer-copyright a:hover {
+  color: var(--p1)
+}
+
+/* contact form 7 */
+
+span.wpcf7-form-control-wrap {
+  display: block;
+}
+
+li.n0-color.fs-six.fw_300.mb-3.list-area {
+  list-style: none;
+}
+
+.article-tabingbox button.active {
+  background: var(--s1) !important;
+  color: #fff !important;
+}
+
+ul#menu-main-menu {
+  list-style: none;
+}
+ul#menu-footer-menu {
+  list-style: none;
+}
+.pageontent.blog-search-content.mt-20.mb-10 p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+ul.body-social.body-socialtwo {
+  list-style: none;
+}
+ul.ordering-brand.d-flex.justify-content-between.gap-3.mb-11 {
+  list-style: none;
+}
+
+ul.about-expritext.expertecttt {
+  padding-bottom: 28px;
+}
+
+.articletwo .fs-five {
+  margin-bottom: 65px !important;
+}
+
+.exthree-box span.expri-clr.text-uppercase.n00-color.fw_300.fs-six {
+  font-size: 16px;
+}
+.edu-text-box span.degree.fs20.mb-2.d-block.n0-color {
+  font-size: 18px;
+}
+li.n0-color.fs-six.fw_300.list-area {
+  list-style: none;
+}
+
+
+ul#menu-all-pages,ul#menu-all-pages li ul,ul#menu-all-pages li ul li ul {
+  list-style: none;
+}
+
+div#service-edu {
+  margin-top: -17px !important;
+}
+
+.ab-item span.elementor-edit-link-title {
+  display: inline;
+  color: #fff;
+}
