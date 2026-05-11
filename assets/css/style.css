@@ -1066,3 +1066,361 @@ footer {
   .nav-wrap, .to-top, .bg-blobs, #preloader, .cursor-outline, .cursor-dot { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ADVANCED FEATURES — Particles, Testimonials, Counter, WhatsApp, Sound
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── PARTICLES BACKGROUND ─────────────────────────────────────── */
+.hero { position: relative; overflow: hidden; }
+#particles-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: auto;
+  z-index: 0;
+}
+.hero > .container { position: relative; z-index: 1; }
+@media (max-width: 767px) {
+  #particles-canvas { opacity: 0.5; pointer-events: none; }
+}
+
+/* ─── 3D CARD PARALLAX ENHANCEMENT ─────────────────────────────── */
+.bento, .services-grid, .portfolio-grid {
+  perspective: 1200px;
+}
+.card, .service-card, .port-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s var(--ease),
+              border-color 0.4s var(--ease);
+}
+.card.tilting, .service-card.tilting, .port-card.tilting {
+  transition: transform 0.15s var(--ease), box-shadow 0.4s var(--ease);
+}
+.card-glare {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%),
+              rgba(255, 255, 255, 0.12) 0%,
+              rgba(255, 255, 255, 0.04) 30%,
+              transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+  z-index: 10;
+}
+html.light .card-glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%),
+              rgba(151, 71, 255, 0.10) 0%,
+              rgba(151, 71, 255, 0.04) 30%,
+              transparent 60%);
+}
+.card:hover .card-glare,
+.service-card:hover .card-glare,
+.port-card:hover .card-glare { opacity: 1; }
+.cell-cta .card-glare,
+.cta-card .card-glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%),
+              rgba(255, 255, 255, 0.25) 0%,
+              rgba(255, 255, 255, 0.06) 30%,
+              transparent 60%);
+}
+
+/* ─── TESTIMONIALS SECTION ─────────────────────────────────────── */
+.testimonials { background: var(--bg-card); position: relative; overflow: hidden; }
+.testimonials::before {
+  content: ''; position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.testimonial-wrap {
+  position: relative;
+  max-width: 880px; margin: 0 auto;
+  min-height: 320px;
+}
+.testimonial-track {
+  position: relative;
+}
+.testimonial-card {
+  position: absolute; inset: 0;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 44px 44px 36px;
+  opacity: 0;
+  transform: translateX(40px) scale(0.96);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.testimonial-card.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+.testimonial-quote-icon {
+  font-family: Georgia, serif;
+  font-size: 96px;
+  line-height: 0.8;
+  color: var(--accent);
+  opacity: 0.25;
+  position: absolute;
+  top: 16px; right: 32px;
+}
+.testimonial-stars {
+  display: flex; gap: 2px;
+  color: #FFD700;
+  font-size: 20px;
+}
+.testimonial-text {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-style: italic;
+  margin: 4px 0 8px;
+}
+.testimonial-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+}
+.testimonial-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 18px;
+  flex-shrink: 0;
+  border: 2px solid var(--bg-main);
+  box-shadow: var(--shadow-sm);
+}
+.testimonial-author { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+.testimonial-role { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+.testimonial-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s var(--ease);
+  padding: 0;
+}
+.testimonial-dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+.testimonial-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  padding: 0 -20px;
+}
+.testimonial-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-primary);
+  font-size: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  margin: 0 -20px;
+}
+.testimonial-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: scale(1.1);
+}
+@media (max-width: 767px) {
+  .testimonial-card { padding: 32px 24px 24px; }
+  .testimonial-text { font-size: 15px; }
+  .testimonial-quote-icon { font-size: 64px; top: 8px; right: 20px; }
+  .testimonial-btn { display: none; }
+  .testimonial-wrap { min-height: 380px; }
+}
+
+/* ─── VISITOR COUNTER ──────────────────────────────────────────── */
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(151, 71, 255, 0.08), rgba(255, 105, 0, 0.04));
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+.visitor-counter:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.visitor-counter .vc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.visitor-counter .vc-num {
+  font-weight: 800;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.visitor-counter .vc-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 #22c55e;
+  animation: live-pulse 2s ease-out infinite;
+}
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* ─── WHATSAPP FLOATING BUTTON ─────────────────────────────────── */
+.wa-float {
+  position: fixed;
+  bottom: 90px; right: 24px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  z-index: 99;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  transition: all 0.4s var(--ease);
+  animation: wa-pulse 2.5s ease-out infinite;
+}
+.wa-float::before {
+  content: ''; position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  opacity: 0.6;
+  animation: wa-ring 2.5s ease-out infinite;
+  pointer-events: none;
+}
+.wa-float svg { width: 28px; height: 28px; fill: #fff; transition: transform 0.3s var(--ease); }
+.wa-float:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 12px 32px rgba(37, 211, 102, 0.55); }
+.wa-float:hover svg { transform: scale(1.1); }
+.wa-tooltip {
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: #1A1A2E;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s var(--ease);
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.wa-tooltip::after {
+  content: '';
+  position: absolute;
+  left: 100%; top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: #1A1A2E;
+}
+.wa-float:hover .wa-tooltip {
+  opacity: 1; visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+@keyframes wa-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+@keyframes wa-ring {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+@media (max-width: 480px) {
+  .wa-float { bottom: 80px; right: 16px; width: 50px; height: 50px; }
+  .wa-float svg { width: 24px; height: 24px; }
+  .wa-tooltip { display: none; }
+}
+
+/* ─── SOUND TOGGLE BUTTON ──────────────────────────────────────── */
+.sound-toggle {
+  position: fixed;
+  bottom: 156px; right: 24px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 99;
+  transition: all 0.3s var(--ease);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+.sound-toggle.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.sound-toggle:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: scale(1.05);
+}
+.sound-toggle svg { width: 18px; height: 18px; transition: transform 0.3s var(--ease); }
+.sound-toggle:hover svg { transform: scale(1.1); }
+.sound-toggle.muted svg .sound-wave { opacity: 0.3; }
+.sound-toggle.muted::after {
+  content: '';
+  position: absolute;
+  left: 12px; right: 12px; top: 50%;
+  height: 2px; background: var(--accent-2);
+  transform: rotate(-45deg);
+  border-radius: 2px;
+}
+@media (max-width: 480px) {
+  .sound-toggle { bottom: 140px; right: 16px; width: 40px; height: 40px; }
+  .sound-toggle svg { width: 16px; height: 16px; }
+}

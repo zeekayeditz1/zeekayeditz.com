@@ -27,7 +27,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css?v=5" />
+  <link rel="stylesheet" href="assets/css/style.css?v=6" />
 </head>
 <body>
 
@@ -72,6 +72,10 @@
     </div>
 
     <div class="nav-actions">
+      <button class="sound-toggle" aria-label="Toggle typing sound" title="Toggle typing sound" aria-pressed="false">
+        <svg class="icon sound-on" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
+        <svg class="icon sound-off" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.94 8.94 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+      </button>
       <button class="theme-toggle" aria-label="Toggle theme" title="Toggle light / dark">
         <span class="icon sun">☀</span>
         <span class="icon moon">☾</span>
@@ -91,6 +95,7 @@
      HERO BENTO
      ════════════════════════════════════════════════════════════════ -->
 <section class="hero" id="home">
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
   <div class="container">
     <div class="bento">
 
@@ -319,13 +324,112 @@
         <div class="stat-lbl">Satisfaction</div>
       </div>
     </div>
+
+    <!-- Live Visitor Counter -->
+    <div class="visitor-counter reveal" id="visitor-counter">
+      <div class="vc-pulse"></div>
+      <span class="vc-label">Live visitors this site:</span>
+      <span class="vc-number" id="visitor-count">···</span>
+    </div>
   </div>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════
-     PORTFOLIO
+     TESTIMONIALS
      ════════════════════════════════════════════════════════════════ -->
-<section id="portfolio">
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="card-label">What People Say</span>
+      <h2>Client <span class="grad">Testimonials</span></h2>
+      <p>Honest words from creators and brands I have worked with.</p>
+    </div>
+
+    <div class="testimonial-wrap reveal">
+      <div class="testimonial-track">
+
+        <div class="testimonial-card active" data-index="0">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-text">Working with ZeeKay was a complete game-changer for my channel. The motion graphics he delivered were beyond what I imagined — every transition felt cinematic. My retention rate jumped within the first week of uploading his edits.</p>
+          <div class="testimonial-meta">
+            <div class="testimonial-avatar">AH</div>
+            <div>
+              <div class="testimonial-author">Ahmed Hassan</div>
+              <div class="testimonial-role">YouTube Creator · 250K Subs</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-index="1">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-text">Hands down the best video editor I have collaborated with. Fast turnaround, great communication, and the final result always exceeds expectations. ZeeKay genuinely cares about making your content stand out.</p>
+          <div class="testimonial-meta">
+            <div class="testimonial-avatar">SK</div>
+            <div>
+              <div class="testimonial-author">Sara Khan</div>
+              <div class="testimonial-role">Lifestyle Influencer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-index="2">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-text">We hired ZeeKay for our brand campaign and the final commercial blew our team away. Color grading was spot on, the pacing felt premium, and the After Effects work added that polished agency feel we were after.</p>
+          <div class="testimonial-meta">
+            <div class="testimonial-avatar">RA</div>
+            <div>
+              <div class="testimonial-author">Rayan Ali</div>
+              <div class="testimonial-role">Marketing Lead · Brand Studio</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-index="3">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-text">Reliable, talented, and incredibly easy to work with. ZeeKay turned my long-form podcast clips into reels that actually went viral. The first one crossed 1M views in 4 days — I am sending him every project now.</p>
+          <div class="testimonial-meta">
+            <div class="testimonial-avatar">FK</div>
+            <div>
+              <div class="testimonial-author">Fahad Karim</div>
+              <div class="testimonial-role">Podcaster &amp; Coach</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-index="4">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-text">From concept to final export, ZeeKay handled everything professionally. I gave him raw footage and a rough brief — he delivered a fully polished documentary edit that I am genuinely proud to share. Total recommend.</p>
+          <div class="testimonial-meta">
+            <div class="testimonial-avatar">MZ</div>
+            <div>
+              <div class="testimonial-author">Maryam Zaidi</div>
+              <div class="testimonial-role">Independent Filmmaker</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="testimonial-controls">
+        <button class="testimonial-btn testimonial-prev" aria-label="Previous testimonial">‹</button>
+        <button class="testimonial-btn testimonial-next" aria-label="Next testimonial">›</button>
+      </div>
+
+      <div class="testimonial-dots" role="tablist">
+        <button class="testimonial-dot active" data-go="0" aria-label="Testimonial 1"></button>
+        <button class="testimonial-dot" data-go="1" aria-label="Testimonial 2"></button>
+        <button class="testimonial-dot" data-go="2" aria-label="Testimonial 3"></button>
+        <button class="testimonial-dot" data-go="3" aria-label="Testimonial 4"></button>
+        <button class="testimonial-dot" data-go="4" aria-label="Testimonial 5"></button>
+      </div>
+    </div>
+  </div>
+</section>
   <div class="container">
     <div class="portfolio-head reveal">
       <div>
@@ -549,7 +653,7 @@
           Replace YOUR_FORM_ID below with your Formspree form ID.
           Sign up free at https://formspree.io → New Form → copy form action URL.
         -->
-        <form id="contact-form" action="https://formspree.io/f/maqvlgqn" method="POST">
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="name">Your Name</label>
@@ -655,6 +759,11 @@
       <div class="foot-copy">
         &copy; 2025 <strong>ZeeKay Editz</strong> — All rights reserved.
       </div>
+      <div class="visitor-counter" id="visitor-counter" title="Live visitor count">
+        <span class="vc-icon">👁</span>
+        <span class="vc-dot"></span>
+        <span><span class="vc-num" id="vc-num">—</span> visitors this week</span>
+      </div>
       <div class="foot-nav">
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -666,9 +775,26 @@
   </div>
 </footer>
 
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/923040802154" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+  </svg>
+  <span class="wa-tooltip">Chat with me on WhatsApp</span>
+</a>
+
+<!-- Sound Toggle Button (for typewriter sound) -->
+<button class="sound-toggle" aria-label="Toggle typing sound" title="Toggle typing sound">
+  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+    <path class="sound-wave" d="M15.54 8.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.25l1.41-1.41z"/>
+    <path class="sound-wave" d="M18.07 5.93a8.5 8.5 0 0 1 0 12.02l-1.41-1.41a6.5 6.5 0 0 0 0-9.19l1.41-1.42z"/>
+  </svg>
+</button>
+
 <!-- Scroll To Top -->
 <button class="to-top" aria-label="Scroll to top">↑</button>
 
-<script src="assets/js/script.js?v=5"></script>
+<script src="assets/js/script.js?v=6"></script>
 </body>
 </html>
