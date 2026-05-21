@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0A090D" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)" />
-  <meta name="description" content="ZeeKay Video Downloader — Download from YouTube, Twitter, TikTok, Instagram and 1000+ sites. Free, fast, no sign-up." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="theme-color" content="#0A090D" media="(prefers-color-scheme: dark)"/>
+  <meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)"/>
+  <meta name="description" content="ZeeKay Video Downloader — Download from YouTube, TikTok, Instagram, Twitter and 1000+ sites. Free, fast, no sign-up."/>
   <title>Video Downloader — ZeeKay Editz</title>
-  <link rel="icon" type="image/png" href="My%20Data/Logo.png" />
-  <link rel="apple-touch-icon" href="My%20Data/Logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Reuse main site stylesheet so nav/theme/fonts match exactly -->
-  <link rel="stylesheet" href="assets/css/style.css?v=6" />
+  <link rel="icon" type="image/png" href="My%20Data/Logo.png"/>
+  <link rel="apple-touch-icon" href="My%20Data/Logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/style.css?v=6"/>
 
   <style>
-    /* ── Hidden iframe for cross-origin file download ── */
-    #dl-frame { display: none; }
+    /* ── Downloader-specific styles only ───────────────────────── */
+    .dl-wrap { min-height: 100vh; padding-bottom: 80px; }
 
-    /* ── Page-level overrides for downloader section ── */
-    .dl-page { min-height: 100vh; padding-bottom: 80px; }
-
-    /* ── Hero ── */
+    /* Hero */
     .dl-hero {
       text-align: center;
-      padding: 72px 20px 48px;
-      position: relative;
+      padding: 80px 20px 48px;
     }
-    .dl-hero-eyebrow {
+    .dl-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(var(--accent-rgb, 139,92,246), 0.08);
-      border: 1px solid rgba(var(--accent-rgb, 139,92,246), 0.25);
+      border: 1px solid rgba(76,175,120,0.35);
+      background: rgba(76,175,120,0.07);
       border-radius: 20px;
       padding: 5px 14px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
+      color: #4caf78;
+      margin-bottom: 22px;
     }
-    .dl-online-dot {
+    .dl-live-dot {
       width: 7px; height: 7px;
       background: #4caf78;
       border-radius: 50%;
-      animation: dl-pulse 1.6s ease infinite;
+      animation: dl-blink 1.6s ease infinite;
     }
-    @keyframes dl-pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(76,175,120,0.7); }
-      50%      { box-shadow: 0 0 0 5px rgba(76,175,120,0); }
+    @keyframes dl-blink {
+      0%,100%{ box-shadow:0 0 0 0 rgba(76,175,120,.7); }
+      50%    { box-shadow:0 0 0 5px rgba(76,175,120,0); }
     }
     .dl-hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-size: clamp(2.4rem, 6vw, 4rem);
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 16px;
@@ -63,7 +58,7 @@
     .dl-hero p {
       color: var(--text-secondary, #a0a0c0);
       font-size: 1rem;
-      max-width: 520px;
+      max-width: 500px;
       margin: 0 auto 28px;
       line-height: 1.6;
     }
@@ -72,37 +67,36 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 0;
     }
-    .dl-pill {
+    .dl-site-pill {
       background: var(--card-bg, rgba(255,255,255,0.04));
       border: 1px solid var(--border, rgba(255,255,255,0.08));
       border-radius: 20px;
       padding: 4px 13px;
       font-size: 12px;
-      color: var(--text-secondary, #a0a0c0);
+      color: var(--text-secondary,#a0a0c0);
       font-weight: 500;
-      transition: border-color 0.2s, color 0.2s;
     }
-    .dl-pill:hover { border-color: var(--accent); color: var(--text-primary, #e4e4f0); }
 
-    /* ── Main card ── */
-    .dl-container {
-      max-width: 820px;
+    /* Main area */
+    .dl-main {
+      max-width: 760px;
       margin: 0 auto;
       padding: 0 20px;
     }
+
+    /* Card */
     .dl-card {
       background: var(--card-bg, rgba(255,255,255,0.04));
       border: 1px solid var(--border, rgba(255,255,255,0.08));
       border-radius: 20px;
       padding: 28px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
     }
-    /* ── URL row ── */
+
+    /* URL row */
     .dl-url-row {
       display: flex;
       gap: 10px;
@@ -111,295 +105,260 @@
     .dl-input {
       flex: 1;
       min-width: 0;
-      background: var(--bg, rgba(0,0,0,0.3));
+      background: rgba(0,0,0,0.25);
       border: 1px solid var(--border, rgba(255,255,255,0.08));
       border-radius: 12px;
       padding: 13px 16px;
-      color: var(--text-primary, #e4e4f0);
+      color: var(--text-primary,#e4e4f0);
       font-family: 'Kanit', sans-serif;
       font-size: 14px;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color .2s, box-shadow .2s;
     }
     .dl-input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(var(--accent-rgb,139,92,246),0.12);
+      box-shadow: 0 0 0 3px rgba(139,92,246,.12);
     }
-    .dl-input::placeholder { color: var(--text-secondary, #6e6e90); }
+    .dl-input::placeholder { color: var(--text-secondary,#6e6e90); }
 
-    .dl-btn-paste {
+    .btn-paste {
       background: transparent;
-      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border: 1px solid var(--border,rgba(255,255,255,0.08));
       border-radius: 12px;
       padding: 13px 16px;
       color: var(--accent);
-      font-family: 'Kanit', sans-serif;
+      font-family: 'Kanit',sans-serif;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background .2s, border-color .2s;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .dl-btn-paste:hover {
-      background: rgba(var(--accent-rgb,139,92,246),0.08);
-      border-color: var(--accent);
+    .btn-paste:hover { background: rgba(139,92,246,.08); border-color: var(--accent); }
+
+    /* Options row */
+    .dl-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    .dl-btn-fetch {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2, #f97316));
+    .dl-options label {
+      font-size: 12px;
+      color: var(--text-secondary,#a0a0c0);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .dl-select {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border,rgba(255,255,255,0.1));
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: var(--text-primary,#e4e4f0);
+      font-family: 'Kanit',sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .dl-select:focus { border-color: var(--accent); }
+
+    .dl-mode-btns {
+      display: flex;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--border,rgba(255,255,255,0.08));
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .dl-mode-btn {
+      padding: 8px 18px;
+      font-family: 'Kanit',sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary,#a0a0c0);
+      transition: background .2s, color .2s;
+    }
+    .dl-mode-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Big download button */
+    .btn-download {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2,#f97316));
       border: none;
       border-radius: 12px;
-      padding: 13px 24px;
+      padding: 14px 24px;
       color: #fff;
-      font-family: 'Kanit', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      letter-spacing: 0.02em;
-    }
-    .dl-btn-fetch:hover:not(:disabled) {
-      opacity: 0.9;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(var(--accent-rgb,139,92,246),0.35);
-    }
-    .dl-btn-fetch:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    /* ── Loading ── */
-    #dl-loading { display: none; }
-    .dl-loading-inner {
-      text-align: center;
-      padding: 48px 20px;
-    }
-    .dl-spinner {
-      width: 48px; height: 48px;
-      border: 3px solid rgba(var(--accent-rgb,139,92,246),0.15);
-      border-top: 3px solid var(--accent);
-      border-radius: 50%;
-      animation: dl-spin 0.75s linear infinite;
-      margin: 0 auto 16px;
-    }
-    @keyframes dl-spin { to { transform: rotate(360deg); } }
-    .dl-loading-text { color: var(--text-secondary,#a0a0c0); font-size: 14px; }
-
-    /* ── Error ── */
-    #dl-error { display: none; }
-    .dl-error-inner {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .dl-error-icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .dl-error-text { color: #e07060; margin-bottom: 20px; font-size: 15px; }
-    .dl-btn-retry {
-      background: transparent;
-      border: 1px solid rgba(192,57,43,0.45);
-      border-radius: 12px;
-      padding: 10px 24px;
-      color: #e07060;
-      font-family: 'Kanit', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .dl-btn-retry:hover { background: rgba(192,57,43,0.1); }
-
-    /* ── Results ── */
-    #dl-results { display: none; }
-
-    /* Video info row */
-    .dl-video-info {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      margin-bottom: 28px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
-    }
-    .dl-thumb {
-      width: 160px; height: 90px;
-      object-fit: cover;
-      border-radius: 10px;
-      background: rgba(0,0,0,0.3);
-      flex-shrink: 0;
-    }
-    @media(max-width:520px){ .dl-thumb { width:110px; height:62px; } }
-    .dl-video-meta { flex: 1; min-width: 0; }
-    .dl-video-title {
-      font-weight: 700;
+      font-family: 'Kanit',sans-serif;
       font-size: 15px;
-      line-height: 1.35;
-      margin-bottom: 6px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .dl-video-channel {
-      color: var(--text-secondary,#a0a0c0);
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-    .dl-video-duration {
-      display: inline-block;
-      background: rgba(var(--accent-rgb,139,92,246),0.1);
-      border: 1px solid rgba(var(--accent-rgb,139,92,246),0.25);
-      border-radius: 6px;
-      padding: 2px 10px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    /* Format section labels */
-    .dl-section-label {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-secondary,#a0a0c0);
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    .dl-formats-section { margin-bottom: 24px; }
-
-    /* Format grid */
-    .dl-formats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-      gap: 12px;
-    }
-
-    /* Format card */
-    .dl-fmt-card {
-      background: rgba(var(--accent-rgb,139,92,246),0.04);
-      border: 1px solid var(--border,rgba(255,255,255,0.08));
-      border-left: 3px solid var(--accent);
-      border-radius: 14px;
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.18s, box-shadow 0.18s;
-    }
-    .dl-fmt-card.audio { border-left-color: #5b8dd9; }
-    .dl-fmt-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); border-color: var(--accent); }
-    .dl-fmt-card.audio:hover { border-color: #5b8dd9; }
-
-    .dl-fmt-quality {
-      font-size: 1.4rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    .dl-fmt-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-bottom: 8px;
-    }
-    .dl-badge {
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .dl-badge-ext  { background: rgba(var(--accent-rgb,139,92,246),0.12); color: var(--accent); }
-    .dl-badge-codec{ background: rgba(255,255,255,0.06); color: var(--text-secondary,#a0a0c0); }
-    .dl-badge-merge{ background: rgba(91,141,217,0.12); color:#5b8dd9; }
-    .dl-fmt-size {
-      color: var(--text-secondary,#a0a0c0);
-      font-size: 12px;
-      margin-bottom: 12px;
-      min-height: 16px;
-    }
-
-    /* Download action button */
-    .dl-action-btn {
-      width: 100%;
-      border-radius: 8px;
-      padding: 9px 12px;
-      font-family: 'Kanit', sans-serif;
-      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
+      margin-top: 16px;
+      letter-spacing: .02em;
+      transition: opacity .2s, transform .2s, box-shadow .2s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
+      gap: 8px;
     }
-    .dl-action-btn.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2,#f97316));
-      border: none;
-      color: #fff;
+    .btn-download:hover:not(:disabled) {
+      opacity: .9;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(139,92,246,.4);
     }
-    .dl-action-btn.primary:hover:not(:disabled) { opacity: 0.85; }
-    .dl-action-btn.audio-style {
-      background: rgba(91,141,217,0.12);
-      border: 1px solid rgba(91,141,217,0.4);
-      color: #5b8dd9;
+    .btn-download:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+    /* States */
+    .dl-state { display: none; }
+
+    .dl-spinner {
+      width: 44px; height: 44px;
+      border: 3px solid rgba(139,92,246,.15);
+      border-top: 3px solid var(--accent);
+      border-radius: 50%;
+      animation: dl-spin .75s linear infinite;
+      margin: 0 auto 14px;
     }
-    .dl-action-btn.audio-style:hover:not(:disabled) { background: rgba(91,141,217,0.25); }
-    .dl-action-btn.success {
-      background: rgba(76,175,120,0.12);
-      border: 1px solid rgba(76,175,120,0.45);
-      color: #4caf78;
-      cursor: default;
-    }
-    .dl-action-btn.danger {
-      background: rgba(192,57,43,0.08);
-      border: 1px solid rgba(192,57,43,0.35);
+    @keyframes dl-spin { to { transform: rotate(360deg); } }
+    .state-center { text-align: center; padding: 40px 20px; }
+    .state-sub { color: var(--text-secondary,#a0a0c0); font-size: 13px; margin-top: 4px; }
+
+    /* Error */
+    .dl-error-icon { font-size: 2.2rem; margin-bottom: 10px; }
+    .dl-error-msg  { color: #e07060; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+    .btn-retry {
+      background: transparent;
+      border: 1px solid rgba(192,57,43,.4);
+      border-radius: 12px;
+      padding: 10px 24px;
       color: #e07060;
+      font-family: 'Kanit',sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
     }
-    .dl-action-btn.danger:hover:not(:disabled){ background:rgba(192,57,43,0.18); }
-    .dl-action-btn:disabled { opacity:0.55; cursor:not-allowed; }
+    .btn-retry:hover { background: rgba(192,57,43,.12); }
 
-    /* Progress bar pinned to card bottom */
-    .dl-prog-bar {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: rgba(255,255,255,0.06);
+    /* Success */
+    .dl-success-icon { font-size: 3rem; margin-bottom: 12px; }
+    .dl-success-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .dl-success-sub { color: var(--text-secondary,#a0a0c0); font-size: 13px; margin-bottom: 24px; }
+    .btn-save {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg,#4caf78,#2e7d52);
+      border: none;
+      border-radius: 12px;
+      padding: 13px 32px;
+      color: #fff;
+      font-family: 'Kanit',sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+      margin-bottom: 12px;
     }
-    .dl-prog-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2,#f97316));
-      transition: width 0.4s ease;
-    }
-    .audio .dl-prog-fill { background: linear-gradient(90deg,#5b8dd9,#7aaaf0); }
-    .dl-card-status {
-      text-align: center;
-      font-size: 11px;
+    .btn-save:hover { opacity:.88; transform:translateY(-1px); text-decoration:none; }
+
+    .btn-new {
+      background: transparent;
+      border: 1px solid var(--border,rgba(255,255,255,.1));
+      border-radius: 12px;
+      padding: 10px 24px;
       color: var(--text-secondary,#a0a0c0);
-      margin-top: 6px;
-      min-height: 14px;
+      font-family: 'Kanit',sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
     }
-    .dl-card-status.ok  { color: #4caf78; }
-    .dl-card-status.err { color: #e07060; }
+    .btn-new:hover { border-color: var(--accent); color: var(--text-primary,#e4e4f0); }
 
-    /* ── Fade-up animation ── */
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(14px); }
-      to   { opacity:1; transform:translateY(0); }
+    /* Picker (Instagram carousel, etc.) */
+    .dl-picker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
     }
-    .fade-up { animation: fadeUp 0.35s ease forwards; }
+    .dl-picker-item {
+      border: 1px solid var(--border,rgba(255,255,255,0.08));
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      background: rgba(0,0,0,.2);
+    }
+    .dl-picker-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: rgba(0,0,0,.3);
+    }
+    .dl-picker-btn {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border,rgba(255,255,255,0.06));
+      padding: 10px;
+      color: var(--accent);
+      font-family: 'Kanit',sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      text-decoration: none;
+    }
+    .dl-picker-btn:hover { background: rgba(139,92,246,.1); text-decoration:none; }
 
-    /* ── Responsive ── */
+    /* Supported sites strip */
+    .dl-sites-strip {
+      margin-top: 32px;
+      text-align: center;
+    }
+    .dl-sites-strip-label {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-secondary,#6e6e90);
+      margin-bottom: 12px;
+    }
+    .dl-sites-strip-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+    .dl-site-s {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px;
+      padding: 3px 11px;
+      font-size: 11px;
+      color: var(--text-secondary,#6e6e90);
+    }
+
     @media(max-width:600px){
-      .dl-card { padding: 20px 16px; }
-      .dl-url-row { flex-direction: column; }
-      .dl-btn-paste, .dl-btn-fetch { width: 100%; justify-content: center; }
+      .dl-card { padding:18px 14px; }
+      .dl-url-row { flex-direction:column; }
+      .btn-paste { justify-content:center; }
     }
   </style>
 </head>
 <body>
-
-<!-- Hidden iframe for cross-origin file download -->
-<iframe id="dl-frame" title="download"></iframe>
 
 <!-- ░░ PRELOADER ░░ -->
 <div id="preloader" role="status" aria-label="Loading">
@@ -409,29 +368,24 @@
   </div>
 </div>
 
-<!-- ░░ CUSTOM CURSOR ░░ -->
 <div class="cursor-outline" aria-hidden="true"></div>
 <div class="cursor-dot" aria-hidden="true"></div>
 
-<!-- ░░ BACKGROUND BLOBS ░░ -->
 <div class="bg-blobs" aria-hidden="true">
   <div class="blob b1"></div>
   <div class="blob b2"></div>
   <div class="blob b3"></div>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     SAME NAV AS MAIN SITE
-     ════════════════════════════════════════════════════ -->
+<!-- ════════════════ SAME NAV AS MAIN SITE ════════════════════ -->
 <div class="nav-wrap">
   <nav class="nav" aria-label="Main navigation">
     <a href="/" class="brand" aria-label="ZeeKay Editz home">
       <span class="brand-mark">
-        <img src="My%20Data/Logo.png" alt="ZeeKay Editz Logo" class="brand-logo-img" />
+        <img src="My%20Data/Logo.png" alt="ZeeKay Editz Logo" class="brand-logo-img"/>
       </span>
-      <span>ZeeKay Editz<span style="color: var(--accent);">.</span></span>
+      <span>ZeeKay Editz<span style="color:var(--accent);">.</span></span>
     </a>
-
     <div class="nav-links" id="nav-links">
       <a href="/">Home</a>
       <a href="/#about">About</a>
@@ -441,16 +395,12 @@
       <a href="/#contact">Contact</a>
       <a href="/downloader.html" style="color:var(--accent);font-weight:700;">⬇ Downloader</a>
     </div>
-
     <div class="nav-actions">
       <button class="theme-toggle" aria-label="Toggle theme" title="Toggle light / dark">
         <span class="icon sun">☀</span>
         <span class="icon moon">☾</span>
       </button>
-      <a href="/#contact" class="cta-btn">
-        <span>Let's Talk</span>
-        <span class="arrow">↗</span>
-      </a>
+      <a href="/#contact" class="cta-btn"><span>Let's Talk</span><span class="arrow">↗</span></a>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
@@ -458,105 +408,154 @@
   </nav>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     DOWNLOADER PAGE CONTENT
-     ════════════════════════════════════════════════════ -->
-<div class="dl-page">
-  <!-- Particles canvas matching main site hero -->
-  <canvas id="particles-canvas" aria-hidden="true" style="position:fixed;top:0;left:0;pointer-events:none;z-index:0;opacity:0.4;"></canvas>
+<!-- ════════════════ CONTENT ════════════════════════════════ -->
+<canvas id="particles-canvas" aria-hidden="true"
+  style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;"></canvas>
+
+<div class="dl-wrap" style="position:relative;z-index:1;">
 
   <!-- Hero -->
   <div class="dl-hero">
-    <div class="dl-hero-eyebrow">
-      <span class="dl-online-dot"></span>
+    <div class="dl-eyebrow">
+      <span class="dl-live-dot"></span>
       Free &amp; Online — No Sign-up Required
     </div>
     <h1>Video <span class="grad">Downloader</span></h1>
-    <p>Paste any link — choose your format — download instantly to your device.</p>
+    <p>Paste any video link, pick your format, and download instantly — YouTube, TikTok, Instagram &amp; more.</p>
     <div class="dl-site-pills">
-      <span class="dl-pill">YouTube</span>
-      <span class="dl-pill">Twitter / X</span>
-      <span class="dl-pill">Instagram</span>
-      <span class="dl-pill">TikTok</span>
-      <span class="dl-pill">Facebook</span>
-      <span class="dl-pill">Reddit</span>
-      <span class="dl-pill">Twitch</span>
-      <span class="dl-pill">1000+ sites</span>
+      <span class="dl-site-pill">YouTube</span>
+      <span class="dl-site-pill">TikTok</span>
+      <span class="dl-site-pill">Instagram</span>
+      <span class="dl-site-pill">Twitter / X</span>
+      <span class="dl-site-pill">Facebook</span>
+      <span class="dl-site-pill">Reddit</span>
+      <span class="dl-site-pill">Twitch</span>
+      <span class="dl-site-pill">Pinterest</span>
+      <span class="dl-site-pill">Vimeo</span>
+      <span class="dl-site-pill">1000+ sites</span>
     </div>
   </div>
 
-  <div class="dl-container">
+  <div class="dl-main">
 
-    <!-- URL input card -->
-    <div class="dl-card">
+    <!-- Step 1: URL Input -->
+    <div id="step-input" class="dl-card">
+
       <div class="dl-url-row">
         <input
           id="dl-url"
           type="text"
           class="dl-input"
-          placeholder="https://www.youtube.com/watch?v=..."
+          placeholder="Paste video URL here — YouTube, TikTok, Instagram…"
           autocomplete="off"
           spellcheck="false"
         />
-        <button class="dl-btn-paste" onclick="doPaste()">📋 Paste</button>
-        <button id="dl-fetch-btn" class="dl-btn-fetch" onclick="doFetch()">Fetch Formats</button>
+        <button class="btn-paste" onclick="doPaste()">📋 Paste</button>
+      </div>
+
+      <div class="dl-options">
+        <!-- Mode toggle -->
+        <div class="dl-mode-btns">
+          <button id="mode-video" class="dl-mode-btn active" onclick="setMode('video')">🎬 Video</button>
+          <button id="mode-audio" class="dl-mode-btn" onclick="setMode('audio')">🎵 Audio Only</button>
+        </div>
+
+        <!-- Quality (hidden when audio mode) -->
+        <div id="quality-wrap" style="display:flex;align-items:center;gap:8px;">
+          <label>Quality:</label>
+          <select id="dl-quality" class="dl-select">
+            <option value="max">Best Available</option>
+            <option value="2160">4K (2160p)</option>
+            <option value="1440">1440p</option>
+            <option value="1080" selected>1080p</option>
+            <option value="720">720p</option>
+            <option value="480">480p</option>
+            <option value="360">360p</option>
+          </select>
+        </div>
+
+        <!-- Audio format (hidden when video mode) -->
+        <div id="aformat-wrap" style="display:none;align-items:center;gap:8px;">
+          <label>Format:</label>
+          <select id="dl-aformat" class="dl-select">
+            <option value="mp3" selected>MP3</option>
+            <option value="best">Best Quality</option>
+            <option value="ogg">OGG</option>
+            <option value="wav">WAV</option>
+            <option value="opus">Opus</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="dl-btn" class="btn-download" onclick="doDownload()">
+        ⬇ Download
+      </button>
+    </div>
+
+    <!-- Loading state -->
+    <div id="step-loading" class="dl-card dl-state">
+      <div class="state-center">
+        <div class="dl-spinner"></div>
+        <div style="font-weight:700;font-size:15px;">Processing your link…</div>
+        <div class="state-sub">Fetching download link, please wait</div>
       </div>
     </div>
 
-    <!-- Loading -->
-    <div id="dl-loading">
-      <div class="dl-card fade-up">
-        <div class="dl-loading-inner">
-          <div class="dl-spinner"></div>
-          <div class="dl-loading-text">Fetching video info…</div>
-        </div>
+    <!-- Error state -->
+    <div id="step-error" class="dl-card dl-state">
+      <div class="state-center">
+        <div class="dl-error-icon">⚠️</div>
+        <div id="err-msg" class="dl-error-msg">Something went wrong.</div>
+        <button class="btn-retry" onclick="reset()">← Try Another URL</button>
       </div>
     </div>
 
-    <!-- Error -->
-    <div id="dl-error">
-      <div class="dl-card fade-up">
-        <div class="dl-error-inner">
-          <div class="dl-error-icon">⚠️</div>
-          <div id="dl-error-msg" class="dl-error-text">Something went wrong.</div>
-          <button class="dl-btn-retry" onclick="resetUI()">← Try Another URL</button>
+    <!-- Success state — single file -->
+    <div id="step-success" class="dl-card dl-state">
+      <div class="state-center">
+        <div class="dl-success-icon">✅</div>
+        <div class="dl-success-title">Your file is ready!</div>
+        <div class="dl-success-sub" id="success-filename"></div>
+        <div>
+          <a id="save-link" class="btn-save" href="#" download>
+            💾 Save File
+          </a>
         </div>
+        <button class="btn-new" onclick="reset()">Download Another</button>
       </div>
     </div>
 
-    <!-- Results -->
-    <div id="dl-results">
-      <!-- Video info -->
-      <div class="dl-card fade-up">
-        <div class="dl-video-info">
-          <img id="dl-thumb" src="" alt="Thumbnail" class="dl-thumb" onerror="this.style.display='none'" />
-          <div class="dl-video-meta">
-            <div id="dl-title" class="dl-video-title">—</div>
-            <div id="dl-channel" class="dl-video-channel"></div>
-            <span id="dl-duration" class="dl-video-duration" style="display:none"></span>
-          </div>
-        </div>
-
-        <!-- Video formats -->
-        <div id="dl-video-section" style="display:none">
-          <div class="dl-section-label">🎬 Video Formats</div>
-          <div id="dl-video-grid" class="dl-formats-grid"></div>
-        </div>
-
-        <!-- Audio formats -->
-        <div id="dl-audio-section" style="display:none;margin-top:24px;">
-          <div class="dl-section-label">🎵 Audio Only</div>
-          <div id="dl-audio-grid" class="dl-formats-grid"></div>
-        </div>
+    <!-- Picker state — multiple items (e.g. Instagram carousel) -->
+    <div id="step-picker" class="dl-card dl-state">
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;">Multiple items found</div>
+      <div style="color:var(--text-secondary,#a0a0c0);font-size:13px;margin-bottom:4px;">
+        Click any item below to download it individually.
+      </div>
+      <div id="picker-grid" class="dl-picker-grid"></div>
+      <div style="margin-top:16px;">
+        <button class="btn-new" onclick="reset()">← Back</button>
       </div>
     </div>
 
-  </div><!-- /.dl-container -->
-</div><!-- /.dl-page -->
+    <!-- Supported sites -->
+    <div class="dl-sites-strip">
+      <div class="dl-sites-strip-label">Powered by cobalt • Supports 1000+ sites</div>
+      <div class="dl-sites-strip-pills">
+        <span class="dl-site-s">YouTube</span><span class="dl-site-s">TikTok</span>
+        <span class="dl-site-s">Instagram</span><span class="dl-site-s">Twitter/X</span>
+        <span class="dl-site-s">Facebook</span><span class="dl-site-s">Reddit</span>
+        <span class="dl-site-s">Twitch Clips</span><span class="dl-site-s">Vimeo</span>
+        <span class="dl-site-s">Pinterest</span><span class="dl-site-s">SoundCloud</span>
+        <span class="dl-site-s">Dailymotion</span><span class="dl-site-s">Bilibili</span>
+        <span class="dl-site-s">Tumblr</span><span class="dl-site-s">Streamable</span>
+        <span class="dl-site-s">Bluesky</span><span class="dl-site-s">+ many more</span>
+      </div>
+    </div>
 
-<!-- ════════════════════════════════════════════════════
-     FOOTER (same as main site)
-     ════════════════════════════════════════════════════ -->
+  </div><!-- /.dl-main -->
+</div><!-- /.dl-wrap -->
+
+<!-- Footer -->
 <footer>
   <div class="container">
     <div class="foot">
@@ -573,236 +572,145 @@
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
 <a href="https://wa.me/923040802154" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
   <span class="wa-tooltip">Chat with me on WhatsApp</span>
 </a>
-
 <button class="to-top" aria-label="Scroll to top">↑</button>
 
-<!-- Main site JS — handles nav, theme, particles, scroll-to-top, mobile menu -->
+<!-- Main site JS — nav, theme, particles, mobile menu all work automatically -->
 <script src="assets/js/script.js?v=6"></script>
 
-<!-- ════════════════════════════════════════════════════
-     DOWNLOADER LOGIC
-     ════════════════════════════════════════════════════ -->
 <script>
 'use strict';
+const BACKEND = 'https://zeekayeditz1-zdm-backend.hf.space';
 
-// ── CONFIG — your HF Space URL ──────────────────────────────
-const BACKEND_URL = 'https://zeekayeditz1-zdm-backend.hf.space';
+let audioMode  = false;
+let resultUrl  = null;
+let resultName = null;
 
-// ── State ────────────────────────────────────────────────────
-let videoInfo = null;
-let fmtList   = [];
-const dlState = {};   // safeKey → { status, progress, jobId, error }
+// ── Mode toggle ───────────────────────────────────────────────
+function setMode(m) {
+  audioMode = m === 'audio';
+  document.getElementById('mode-video').classList.toggle('active', !audioMode);
+  document.getElementById('mode-audio').classList.toggle('active', audioMode);
+  document.getElementById('quality-wrap').style.display  = audioMode ? 'none'  : 'flex';
+  document.getElementById('aformat-wrap').style.display  = audioMode ? 'flex'  : 'none';
+}
 
-// ── Init ─────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('dl-url').addEventListener('keydown', e => { if (e.key==='Enter') doFetch(); });
-  const p = new URLSearchParams(window.location.search).get('url');
-  if (p) { document.getElementById('dl-url').value = p; doFetch(); }
-});
-
-// ── Paste ────────────────────────────────────────────────────
+// ── Paste ─────────────────────────────────────────────────────
 async function doPaste() {
   const inp = document.getElementById('dl-url');
   try {
-    if (navigator.clipboard && navigator.clipboard.readText) {
-      inp.value = (await navigator.clipboard.readText()).trim();
-    } else {
-      inp.focus(); document.execCommand('paste');
-    }
+    if (navigator.clipboard?.readText) inp.value = (await navigator.clipboard.readText()).trim();
+    else { inp.focus(); document.execCommand('paste'); }
     inp.focus();
-  } catch { inp.focus(); alert('Paste manually (Ctrl+V)'); }
+  } catch { inp.focus(); }
 }
 
-// ── Fetch formats ────────────────────────────────────────────
-async function doFetch() {
+// ── Main download ─────────────────────────────────────────────
+async function doDownload() {
   const url = document.getElementById('dl-url').value.trim();
-  if (!url) return;
-  videoInfo = null; fmtList = [];
-  Object.keys(dlState).forEach(k => delete dlState[k]);
-  show('loading');
-  const btn = document.getElementById('dl-fetch-btn');
-  btn.disabled = true; btn.textContent = 'Fetching…';
+  if (!url) { document.getElementById('dl-url').focus(); return; }
+
+  const quality     = document.getElementById('dl-quality').value;
+  const audioFormat = document.getElementById('dl-aformat').value;
+
+  showStep('loading');
+
   try {
-    const res  = await fetch(`${BACKEND_URL}/api/info?url=${encodeURIComponent(url)}`);
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Failed to fetch info');
-    if (!data.formats || !data.formats.length) throw new Error('No downloadable formats found');
-    videoInfo = data;
-    fmtList   = data.formats.map((f,i)=>({...f, safeKey:`f${i}`}));
-    renderResults();
-    show('results');
-  } catch(e) {
-    document.getElementById('dl-error-msg').textContent = e.message;
-    show('error');
-  } finally {
-    btn.disabled=false; btn.textContent='Fetch Formats';
-  }
-}
-
-// ── Render ───────────────────────────────────────────────────
-function renderResults() {
-  const info = videoInfo;
-  const thumb = document.getElementById('dl-thumb');
-  if (info.thumbnail) { thumb.src = info.thumbnail; thumb.style.display='block'; }
-  else { thumb.style.display='none'; }
-  document.getElementById('dl-title').textContent   = info.title    || 'Untitled';
-  document.getElementById('dl-channel').textContent = info.uploader || '';
-  const dur = document.getElementById('dl-duration');
-  if (info.duration) { dur.textContent='⏱ '+info.duration; dur.style.display='inline-block'; }
-  else { dur.style.display='none'; }
-
-  const vids = fmtList.filter(f=>f.type==='video');
-  const auds = fmtList.filter(f=>f.type==='audio');
-
-  const vs = document.getElementById('dl-video-section');
-  const as = document.getElementById('dl-audio-section');
-  if (vids.length) { buildGrid('dl-video-grid', vids); vs.style.display='block'; }
-  else              { vs.style.display='none'; }
-  if (auds.length) { buildGrid('dl-audio-grid', auds); as.style.display='block'; }
-  else              { as.style.display='none'; }
-}
-
-function buildGrid(gridId, formats) {
-  const g = document.getElementById(gridId);
-  g.innerHTML = '';
-  formats.forEach(f => g.appendChild(buildCard(f)));
-}
-
-function buildCard(fmt) {
-  const sk    = fmt.safeKey;
-  const state = dlState[sk] || { status:'idle' };
-  const isAud = fmt.type==='audio';
-  const card  = document.createElement('div');
-  card.id     = `card-${sk}`;
-  card.className = `dl-fmt-card${isAud?' audio':''}`;
-
-  let h = `<div class="dl-fmt-quality">${esc(fmt.quality)}</div>`;
-  h += `<div class="dl-fmt-badges">`;
-  h += `<span class="dl-badge dl-badge-ext">${esc((fmt.ext||'?').toUpperCase())}</span>`;
-  if (!isAud && fmt.vcodec && fmt.vcodec!=='none') h+=`<span class="dl-badge dl-badge-codec">${esc(fmt.vcodec)}</span>`;
-  if (isAud && fmt.acodec) h+=`<span class="dl-badge dl-badge-codec">${esc(fmt.acodec)}</span>`;
-  if (!isAud && fmt.acodec==='merged') h+=`<span class="dl-badge dl-badge-merge">+Audio</span>`;
-  h += `</div>`;
-  h += `<div class="dl-fmt-size">${fmt.filesize ? '~'+esc(fmt.filesize) : '&nbsp;'}</div>`;
-
-  const ac = isAud ? 'audio-style' : 'primary';
-  if (state.status==='idle') {
-    h += `<button class="dl-action-btn ${ac}" onclick="startDl('${sk}')">⬇ Download</button>`;
-    h += `<div class="dl-card-status"></div>`;
-  } else if (state.status==='starting') {
-    h += `<button class="dl-action-btn ${ac}" disabled>Starting…</button>`;
-    h += `<div class="dl-card-status">Connecting to server</div>`;
-  } else if (state.status==='downloading') {
-    const pct = (state.progress||0).toFixed(1);
-    h += `<button class="dl-action-btn ${ac}" disabled>${pct}%</button>`;
-    h += `<div class="dl-prog-bar"><div class="dl-prog-fill" style="width:${pct}%"></div></div>`;
-    h += `<div class="dl-card-status">Server downloading…</div>`;
-  } else if (state.status==='ready') {
-    h += `<button class="dl-action-btn success" onclick="triggerSave('${sk}','${esc(state.jobId)}')">💾 Save File</button>`;
-    h += `<div class="dl-prog-bar"><div class="dl-prog-fill" style="width:100%"></div></div>`;
-    h += `<div class="dl-card-status ok">Ready — click to save!</div>`;
-  } else if (state.status==='done') {
-    h += `<button class="dl-action-btn success" disabled>✓ Saved</button>`;
-    h += `<div class="dl-card-status ok">Download complete</div>`;
-  } else if (state.status==='error') {
-    h += `<button class="dl-action-btn danger" onclick="startDl('${sk}')">↺ Retry</button>`;
-    h += `<div class="dl-card-status err">${esc(state.error||'Failed')}</div>`;
-  }
-
-  card.innerHTML = h;
-  return card;
-}
-
-function refreshCard(sk) {
-  const fmt  = fmtList.find(f=>f.safeKey===sk); if(!fmt) return;
-  const el   = document.getElementById(`card-${sk}`); if(!el) return;
-  const next = buildCard(fmt);
-  el.innerHTML  = next.innerHTML;
-  el.className  = next.className;
-}
-
-// ── Start download job ───────────────────────────────────────
-async function startDl(sk) {
-  const fmt = fmtList.find(f=>f.safeKey===sk); if(!fmt) return;
-  const url = document.getElementById('dl-url').value.trim();
-  dlState[sk] = { status:'starting', progress:0 };
-  refreshCard(sk);
-  try {
-    const res  = await fetch(`${BACKEND_URL}/api/download/start`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ url, formatId:fmt.id, title:videoInfo?.title||'video', ext:fmt.ext||'mp4' })
+    const res  = await fetch(`${BACKEND}/api/fetch`, {
+      method : 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body   : JSON.stringify({ url, quality, audioOnly:audioMode, audioFormat }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error||'Server error');
-    const { jobId } = data;
-    dlState[sk].jobId  = jobId;
-    dlState[sk].status = 'downloading';
-    refreshCard(sk);
-    connectSSE(sk, jobId);
-  } catch(e) {
-    dlState[sk] = { status:'error', error:e.message };
-    refreshCard(sk);
+
+    if (!res.ok) {
+      showError(data.error || 'Failed to process this URL');
+      return;
+    }
+
+    if (data.type === 'picker') {
+      showPicker(data.items);
+      return;
+    }
+
+    // Single file — show save button
+    resultUrl  = data.url;
+    resultName = data.filename || (audioMode ? 'audio.mp3' : 'video.mp4');
+    showSuccess(resultUrl, resultName);
+
+  } catch (e) {
+    showError('Could not reach the download service — please try again');
   }
 }
 
-// ── SSE progress stream ──────────────────────────────────────
-function connectSSE(sk, jobId) {
-  const es = new EventSource(`${BACKEND_URL}/api/download/progress/${jobId}`);
-  es.onmessage = e => {
-    let msg; try { msg=JSON.parse(e.data); } catch{return;}
-    if (msg.type==='progress') {
-      dlState[sk] = { ...dlState[sk], status:'downloading', progress:msg.progress };
-      refreshCard(sk);
-    } else if (msg.type==='ready') {
-      es.close();
-      dlState[sk] = { ...dlState[sk], status:'ready', jobId };
-      refreshCard(sk);
-    } else if (msg.type==='error') {
-      es.close();
-      dlState[sk] = { status:'error', error:msg.message||'Server error' };
-      refreshCard(sk);
-    }
-  };
-  es.onerror = () => {
-    const s = dlState[sk];
-    if (!s||s.status==='ready'||s.status==='done'||s.status==='error'){ es.close(); return; }
-    s._errs = (s._errs||0)+1;
-    if (s._errs >= 3) {
-      es.close();
-      dlState[sk] = { status:'error', error:'Lost connection to server' };
-      refreshCard(sk);
-    }
-  };
+// ── UI helpers ────────────────────────────────────────────────
+function showStep(id) {
+  ['step-input','step-loading','step-error','step-success','step-picker']
+    .forEach(s => document.getElementById(s).style.display = s===('step-'+id) ? 'block':'none');
+  // always keep input card visible
+  if (id !== 'input') document.getElementById('step-input').style.display = 'block';
+  // disable button during loading
+  document.getElementById('dl-btn').disabled = (id==='loading');
+  document.getElementById('dl-btn').textContent = id==='loading' ? 'Processing…' : '⬇ Download';
 }
 
-// ── Trigger file save ────────────────────────────────────────
-function triggerSave(sk, jobId) {
-  document.getElementById('dl-frame').src = `${BACKEND_URL}/api/download/file/${jobId}`;
-  dlState[sk].status = 'done';
-  refreshCard(sk);
+function showError(msg) {
+  document.getElementById('err-msg').textContent = msg;
+  showStep('error');
 }
 
-// ── UI helpers ───────────────────────────────────────────────
-function show(section) {
-  ['loading','error','results'].forEach(id => {
-    document.getElementById('dl-'+id).style.display = (id===section) ? 'block' : 'none';
+function showSuccess(url, filename) {
+  document.getElementById('success-filename').textContent = filename;
+  const link = document.getElementById('save-link');
+  link.href     = url;
+  link.download = filename;
+  // Open in new tab as fallback for tunnel URLs
+  link.target   = '_blank';
+  link.rel      = 'noopener';
+  showStep('success');
+}
+
+function showPicker(items) {
+  const grid = document.getElementById('picker-grid');
+  grid.innerHTML = '';
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'dl-picker-item';
+    div.innerHTML = `
+      ${item.thumb ? `<img src="${esc(item.thumb)}" class="dl-picker-thumb" alt="Item ${item.index}" onerror="this.style.display='none'"/>` : ''}
+      <a href="${esc(item.url)}" download="${esc(item.filename)}" target="_blank" rel="noopener" class="dl-picker-btn">⬇ Item ${item.index}</a>
+    `;
+    grid.appendChild(div);
   });
+  showStep('picker');
 }
-function resetUI() {
-  videoInfo=null; fmtList=[];
-  Object.keys(dlState).forEach(k=>delete dlState[k]);
+
+function reset() {
+  resultUrl=null; resultName=null;
   document.getElementById('dl-url').value='';
-  show('');
+  showStep('input');
+  // hide all except input
+  ['step-loading','step-error','step-success','step-picker']
+    .forEach(s=>document.getElementById(s).style.display='none');
+  document.getElementById('dl-btn').disabled=false;
+  document.getElementById('dl-btn').textContent='⬇ Download';
   document.getElementById('dl-url').focus();
 }
-function esc(str) {
-  const d=document.createElement('div'); d.textContent=String(str); return d.innerHTML;
-}
+
+function esc(s) { const d=document.createElement('div');d.textContent=String(s);return d.innerHTML; }
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('dl-url').addEventListener('keydown', e=>{ if(e.key==='Enter') doDownload(); });
+  const p=new URLSearchParams(window.location.search).get('url');
+  if(p){ document.getElementById('dl-url').value=p; doDownload(); }
+  // init all non-input steps hidden
+  ['step-loading','step-error','step-success','step-picker']
+    .forEach(s=>document.getElementById(s).style.display='none');
+});
 </script>
 </body>
 </html>
