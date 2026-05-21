@@ -28,6 +28,81 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css?v=6" />
+
+  <!-- Custom Styles for Top Bar & Nav -->
+  <style>
+    /* Top Announcement Bar */
+    .top-announcement {
+      background-color: #0A090D;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      padding: 10px 16px;
+      font-family: 'Kanit', sans-serif;
+      position: relative;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+    html:not(.dark) .top-announcement {
+      background-color: #FAFAFB;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .ta-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+    .ta-link:hover {
+      opacity: 0.8;
+    }
+    .ta-online {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #10b981; /* Green */
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    .ta-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-green 2s infinite;
+    }
+    .ta-text {
+      color: var(--text-primary);
+    }
+    .ta-badge {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid #10b981;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .nav-highlight {
+      color: #10b981 !important;
+      font-weight: 600;
+    }
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+  </style>
 </head>
 <body>
 
@@ -50,6 +125,15 @@
   <div class="blob b3"></div>
 </div>
 
+<!-- ░░ TOP ANNOUNCEMENT BAR ░░ -->
+<div class="top-announcement">
+  <a href="/downloader.html" class="ta-link">
+    <span class="ta-online"><span class="ta-dot"></span> Online</span>
+    <span class="ta-text">Zeekay Video Downloader</span>
+    <span class="ta-badge">FREE</span>
+  </a>
+</div>
+
 <!-- ════════════════════════════════════════════════════════════════
      NAVIGATION
      ════════════════════════════════════════════════════════════════ -->
@@ -68,6 +152,7 @@
       <a href="#services">Services</a>
       <a href="#portfolio">Works</a>
       <a href="#skills">Skills</a>
+      <a href="/downloader.html" class="nav-highlight">Downloader</a>
       <a href="#contact">Contact</a>
     </div>
 
@@ -326,7 +411,7 @@
     </div>
 
     <!-- Live Visitor Counter -->
-    <div class="visitor-counter reveal" id="visitor-counter">
+    <div class="visitor-counter reveal" id="visitor-counter-live">
       <div class="vc-pulse"></div>
       <span class="vc-label">Live visitors this site:</span>
       <span class="vc-number" id="visitor-count">···</span>
@@ -430,6 +515,11 @@
     </div>
   </div>
 </section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PORTFOLIO
+     ════════════════════════════════════════════════════════════════ -->
+<section id="portfolio">
   <div class="container">
     <div class="portfolio-head reveal">
       <div>
@@ -759,7 +849,7 @@
       <div class="foot-copy">
         &copy; 2025 <strong>ZeeKay Editz</strong> — All rights reserved.
       </div>
-      <div class="visitor-counter" id="visitor-counter" title="Live visitor count">
+      <div class="visitor-counter" id="visitor-counter-footer" title="Live visitor count">
         <span class="vc-icon">👁</span>
         <span class="vc-dot"></span>
         <span><span class="vc-num" id="vc-num">—</span> visitors this week</span>
