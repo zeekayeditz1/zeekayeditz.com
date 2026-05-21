@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZeeKay Editz Video Downloader — download videos from YouTube, Twitter, Instagram, TikTok and 1000+ sites.">
+  <title>Video Downloader — ZeeKay Editz</title>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║  ZDM Cloud — downloader.html                            ║
+    ║  Place this file in your GitHub Pages repo root.        ║
+    ║  Set BACKEND_URL below to your deployed backend URL.    ║
+    ╚══════════════════════════════════════════════════════════╝
+  -->
+
+  <style>
+    /* ── Reset & Variables ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg        : #0b0b12;
+      --bg2       : #111120;
+      --bg3       : #191928;
+      --gold      : #c9a84c;
+      --gold-light: #e8c96b;
+      --red       : #c0392b;
+      --blue      : #5b8dd9;
+      --green     : #4caf78;
+      --text      : #e4e4f0;
+      --muted     : #6e6e90;
+      --border    : rgba(201, 168, 76, 0.18);
+      --border-h  : rgba(201, 168, 76, 0.5);
+      --radius    : 10px;
+      --radius-lg : 14px;
+      --shadow    : 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background   : var(--bg);
+      color        : var(--text);
+      font-family  : system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size    : 15px;
+      line-height  : 1.55;
+      min-height   : 100vh;
+      display      : flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ── Nav ────────────────────────────────────────────────── */
+    .nav {
+      background     : rgba(11,11,18,0.92);
+      border-bottom  : 1px solid var(--border);
+      padding        : 0 1.5rem;
+      height         : 52px;
+      display        : flex;
+      align-items    : center;
+      gap            : 0.6rem;
+      position       : sticky;
+      top            : 0;
+      z-index        : 200;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      font-family : Georgia, serif;
+      font-size   : 1rem;
+      font-weight : bold;
+      color       : var(--gold);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .nav-sep { color: var(--muted); font-size: 0.85rem; }
+
+    .nav-current {
+      color    : var(--text);
+      font-size: 0.9rem;
+      opacity  : 0.7;
+    }
+
+    /* ── Main container ─────────────────────────────────────── */
+    main {
+      flex      : 1;
+      max-width : 900px;
+      width     : 100%;
+      margin    : 0 auto;
+      padding   : 2.5rem 1.25rem 4rem;
+    }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    .hero { text-align: center; margin-bottom: 2.25rem; }
+
+    .hero-title {
+      font-family: Georgia, serif;
+      font-size  : clamp(1.9rem, 5vw, 3rem);
+      font-weight: bold;
+      background : linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      line-height  : 1.2;
+    }
+
+    .hero-sub {
+      color    : var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sites {
+      display       : flex;
+      justify-content: center;
+      flex-wrap     : wrap;
+      gap           : 0.4rem;
+      margin-top    : 0.75rem;
+    }
+
+    .site-pill {
+      background : rgba(201,168,76,0.08);
+      border     : 1px solid var(--border);
+      border-radius: 20px;
+      padding    : 0.2rem 0.65rem;
+      font-size  : 0.72rem;
+      color      : var(--muted);
+    }
+
+    /* ── URL Input Section ──────────────────────────────────── */
+    .url-section {
+      background   : var(--bg2);
+      border       : 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding      : 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow   : var(--shadow);
+    }
+
+    .url-row {
+      display  : flex;
+      gap      : 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .url-input {
+      flex         : 1;
+      min-width    : 0;
+      background   : var(--bg);
+      border       : 1px solid var(--border);
+      border-radius: var(--radius);
+      padding      : 0.7rem 1rem;
+      color        : var(--text);
+      font-size    : 0.92rem;
+      outline      : none;
+      transition   : border-color 0.2s, box-shadow 0.2s;
+    }
+    .url-input:focus {
+      border-color: var(--gold);
+      box-shadow  : 0 0 0 2px rgba(201,168,76,0.15);
+    }
+    .url-input::placeholder { color: var(--muted); }
+
+    .btn-paste {
+      background   : transparent;
+      border       : 1px solid var(--border);
+      border-radius: var(--radius);
+      padding      : 0.7rem 0.9rem;
+      color        : var(--gold);
+      font-size    : 0.85rem;
+      white-space  : nowrap;
+      transition   : all 0.2s;
+      display      : flex;
+      align-items  : center;
+      gap          : 0.35rem;
+    }
+    .btn-paste:hover {
+      background  : rgba(201,168,76,0.1);
+      border-color: var(--gold);
+    }
+
+    .btn-analyze {
+      background   : linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border       : none;
+      border-radius: var(--radius);
+      padding      : 0.7rem 1.4rem;
+      color        : #08080f;
+      font-size    : 0.9rem;
+      font-weight  : 700;
+      white-space  : nowrap;
+      transition   : transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .btn-analyze:hover:not(:disabled) {
+      transform : translateY(-1px);
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+    }
+    .btn-analyze:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    /* ── Loading ────────────────────────────────────────────── */
+    #loadingSection { display: none; }
+
+    .loading-wrap {
+      text-align: center;
+      padding   : 3.5rem 0;
+    }
+
+    .spinner {
+      width         : 48px;
+      height        : 48px;
+      border        : 3px solid rgba(201,168,76,0.15);
+      border-top    : 3px solid var(--gold);
+      border-radius : 50%;
+      animation     : spin 0.75s linear infinite;
+      margin        : 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text { color: var(--muted); font-size: 0.9rem; }
+
+    /* ── Error ──────────────────────────────────────────────── */
+    #errorSection { display: none; }
+
+    .error-box {
+      background   : rgba(192,57,43,0.08);
+      border       : 1px solid rgba(192,57,43,0.35);
+      border-radius: var(--radius-lg);
+      padding      : 2rem;
+      text-align   : center;
+    }
+
+    .error-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .error-text { color: #e07060; margin-bottom: 1rem; font-size: 0.95rem; }
+
+    .btn-retry {
+      background   : transparent;
+      border       : 1px solid rgba(192,57,43,0.5);
+      border-radius: var(--radius);
+      padding      : 0.55rem 1.25rem;
+      color        : #e07060;
+      font-size    : 0.88rem;
+      transition   : all 0.2s;
+    }
+    .btn-retry:hover {
+      background  : rgba(192,57,43,0.15);
+      border-color: var(--red);
+    }
+
+    /* ── Results ────────────────────────────────────────────── */
+    #resultsSection { display: none; }
+
+    /* Video info card */
+    .video-info {
+      display      : flex;
+      gap          : 1.25rem;
+      align-items  : center;
+      background   : var(--bg2);
+      border       : 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding      : 1.1rem;
+      margin-bottom: 1.75rem;
+      box-shadow   : var(--shadow);
+    }
+
+    .video-thumb {
+      width        : 168px;
+      height       : 95px;
+      object-fit   : cover;
+      border-radius: 7px;
+      flex-shrink  : 0;
+      background   : var(--bg3);
+      display      : block;
+    }
+
+    @media (max-width: 520px) { .video-thumb { width: 120px; height: 68px; } }
+
+    .video-meta { flex: 1; min-width: 0; }
+
+    .video-title {
+      font-family  : Georgia, serif;
+      font-size    : 1rem;
+      font-weight  : bold;
+      line-height  : 1.35;
+      margin-bottom: 0.4rem;
+      display      : -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow     : hidden;
+    }
+
+    .video-channel {
+      color        : var(--muted);
+      font-size    : 0.83rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .video-duration {
+      display     : inline-block;
+      background  : rgba(201,168,76,0.12);
+      border      : 1px solid var(--border);
+      border-radius: 5px;
+      padding     : 0.1rem 0.5rem;
+      color       : var(--gold);
+      font-size   : 0.78rem;
+      font-weight : 600;
+    }
+
+    /* Format sections */
+    .formats-section { margin-bottom: 1.5rem; }
+
+    .section-label {
+      font-size     : 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color         : var(--muted);
+      margin-bottom : 0.65rem;
+      font-weight   : 600;
+    }
+
+    .formats-grid {
+      display              : grid;
+      grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+      gap                  : 0.65rem;
+    }
+
+    /* Format card */
+    .format-card {
+      background   : var(--bg2);
+      border       : 1px solid var(--border);
+      border-left  : 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding      : 0.9rem;
+      position     : relative;
+      overflow     : hidden;
+      transition   : border-color 0.2s, transform 0.18s, box-shadow 0.18s;
+    }
+
+    .format-card.audio-card { border-left-color: var(--blue); }
+    .format-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .format-card.audio-card:hover { border-color: var(--blue); }
+
+    .fmt-quality {
+      font-size    : 1.35rem;
+      font-weight  : 800;
+      font-family  : Georgia, serif;
+      color        : var(--text);
+      margin-bottom: 0.3rem;
+      line-height  : 1.1;
+    }
+
+    .fmt-badges {
+      display      : flex;
+      flex-wrap    : wrap;
+      gap          : 0.3rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .badge {
+      font-size    : 0.62rem;
+      padding      : 0.13rem 0.38rem;
+      border-radius: 4px;
+      font-weight  : 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .b-ext   { background: rgba(201,168,76,0.14); color: var(--gold); }
+    .b-codec { background: rgba(255,255,255,0.06); color: var(--muted); }
+    .b-merge { background: rgba(91,141,217,0.14);  color: var(--blue); }
+
+    .fmt-size {
+      color        : var(--muted);
+      font-size    : 0.78rem;
+      margin-bottom: 0.7rem;
+    }
+
+    /* Download button area */
+    .btn-dl {
+      width        : 100%;
+      background   : rgba(201,168,76,0.1);
+      border       : 1px solid rgba(201,168,76,0.4);
+      border-radius: 6px;
+      padding      : 0.48rem 0.5rem;
+      color        : var(--gold);
+      font-size    : 0.83rem;
+      font-weight  : 600;
+      display      : flex;
+      align-items  : center;
+      justify-content: center;
+      gap          : 0.35rem;
+      transition   : all 0.2s;
+    }
+    .btn-dl:hover:not(:disabled) { background: var(--gold); color: #08080f; }
+    .btn-dl:disabled { cursor: not-allowed; opacity: 0.5; }
+
+    .btn-dl.blue   { background: rgba(91,141,217,0.1); border-color: rgba(91,141,217,0.4); color: var(--blue); }
+    .btn-dl.blue:hover:not(:disabled) { background: var(--blue); color: #fff; }
+
+    .btn-dl.green  { background: rgba(76,175,120,0.12); border-color: rgba(76,175,120,0.5); color: var(--green); cursor: default; }
+    .btn-dl.danger { background: rgba(192,57,43,0.1);  border-color: rgba(192,57,43,0.4); color: #e07060; }
+    .btn-dl.danger:hover:not(:disabled) { background: rgba(192,57,43,0.25); }
+
+    /* Progress bar (pinned to bottom of card) */
+    .card-prog-bar {
+      position     : absolute;
+      bottom       : 0; left: 0; right: 0;
+      height       : 3px;
+      background   : rgba(201,168,76,0.15);
+    }
+    .card-prog-fill {
+      height    : 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transition: width 0.4s ease;
+    }
+    .audio-card .card-prog-fill { background: linear-gradient(90deg, var(--blue), #7aaaf0); }
+
+    .card-status {
+      text-align : center;
+      font-size  : 0.7rem;
+      color      : var(--muted);
+      margin-top : 0.3rem;
+      min-height : 1em;
+    }
+    .card-status.err { color: #e07060; }
+    .card-status.ok  { color: var(--green); }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      text-align : center;
+      padding    : 1.25rem;
+      color      : var(--muted);
+      font-size  : 0.78rem;
+      border-top : 1px solid var(--border);
+    }
+
+    /* ── Scrollbar ──────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Fade in animation ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.35s ease forwards; }
+  </style>
+</head>
+
+<body>
+
+<!-- Hidden iframe used to trigger cross-origin file downloads without navigating away -->
+<iframe id="dlFrame" style="display:none" title="download"></iframe>
+
+<!-- ── Navigation ─────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="/" class="nav-brand">ZeeKay Editz</a>
+  <span class="nav-sep">›</span>
+  <span class="nav-current">Video Downloader</span>
+</nav>
+
+<!-- ── Main ──────────────────────────────────────────────── -->
+<main>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1 class="hero-title">Video Downloader</h1>
+    <p class="hero-sub">Paste any link — choose your format — download instantly</p>
+    <div class="hero-sites">
+      <span class="site-pill">YouTube</span>
+      <span class="site-pill">Twitter / X</span>
+      <span class="site-pill">Instagram</span>
+      <span class="site-pill">TikTok</span>
+      <span class="site-pill">Facebook</span>
+      <span class="site-pill">Reddit</span>
+      <span class="site-pill">Twitch</span>
+      <span class="site-pill">1000+ sites</span>
+    </div>
+  </div>
+
+  <!-- URL Input -->
+  <div class="url-section">
+    <div class="url-row">
+      <input
+        id="urlInput"
+        type="text"
+        class="url-input"
+        placeholder="https://www.youtube.com/watch?v=..."
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="btn-paste" onclick="pasteClipboard()" title="Paste from clipboard">
+        📋 Paste
+      </button>
+      <button id="analyzeBtn" class="btn-analyze" onclick="analyze()">
+        Fetch Formats
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loadingSection">
+    <div class="loading-wrap fade-up">
+      <div class="spinner"></div>
+      <div class="loading-text">Fetching video info…</div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="errorSection">
+    <div class="error-box fade-up">
+      <div class="error-icon">⚠️</div>
+      <div id="errorMsg" class="error-text">Something went wrong.</div>
+      <button class="btn-retry" onclick="resetUI()">← Try Another URL</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="resultsSection">
+
+    <!-- Video meta card -->
+    <div class="video-info fade-up">
+      <img id="videoThumb" src="" alt="Thumbnail" class="video-thumb"
+           onerror="this.style.display='none'">
+      <div class="video-meta">
+        <div id="videoTitle" class="video-title">—</div>
+        <div id="videoChannel" class="video-channel"></div>
+        <span id="videoDuration" class="video-duration" style="display:none"></span>
+      </div>
+    </div>
+
+    <!-- Video formats -->
+    <div id="videoSection" class="formats-section" style="display:none">
+      <div class="section-label">🎬 Video</div>
+      <div id="videoGrid" class="formats-grid"></div>
+    </div>
+
+    <!-- Audio formats -->
+    <div id="audioSection" class="formats-section" style="display:none; margin-top:1.25rem">
+      <div class="section-label">🎵 Audio Only</div>
+      <div id="audioGrid" class="formats-grid"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 ZeeKay Editz &nbsp;·&nbsp; For personal use only &nbsp;·&nbsp; Respect copyright laws</p>
+</footer>
+
+<script>
+'use strict';
+
+// ═══════════════════════════════════════════════════════════
+//  CONFIG  ←── ONLY THIS LINE NEEDS TO BE CHANGED
+//  Set this to your Hugging Face Space URL:
+//  Format:  https://YOUR_HF_USERNAME-zdm-backend.hf.space
+//  Example: https://zahidali-zdm-backend.hf.space
+// ═══════════════════════════════════════════════════════════
+const BACKEND_URL = 'https://zeekayeditz1-zdm-backend.hf.space';
+
+// ═══════════════════════════════════════════════════════════
+//  State
+// ═══════════════════════════════════════════════════════════
+let currentInfo = null;     // video info from /api/info
+let fmtList     = [];       // array of format objects (with safeKey added)
+const dlState   = {};       // safeKey → { status, progress, jobId, error }
+
+// ═══════════════════════════════════════════════════════════
+//  Init
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('urlInput');
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') analyze();
+  });
+
+  // Support ?url=... in query string (e.g. from a bookmarklet)
+  const params = new URLSearchParams(window.location.search);
+  const preUrl = params.get('url');
+  if (preUrl) {
+    input.value = preUrl;
+    analyze();
+  }
+});
+
+// ═══════════════════════════════════════════════════════════
+//  Paste from clipboard
+// ═══════════════════════════════════════════════════════════
+async function pasteClipboard() {
+  const input = document.getElementById('urlInput');
+  try {
+    if (navigator.clipboard && navigator.clipboard.readText) {
+      const text = await navigator.clipboard.readText();
+      input.value = text.trim();
+    } else {
+      // Fallback for older browsers / HTTP
+      input.focus();
+      document.execCommand('paste');
+    }
+    input.focus();
+  } catch {
+    input.focus();
+    alert('Could not access clipboard — please paste manually (Ctrl+V).');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  Analyze URL  →  fetch formats from backend
+// ═══════════════════════════════════════════════════════════
+async function analyze() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) return;
+
+  // Reset
+  currentInfo = null;
+  fmtList     = [];
+  Object.keys(dlState).forEach(k => delete dlState[k]);
+
+  setSection('loading');
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Fetching…';
+
+  try {
+    const res  = await fetch(`${BACKEND_URL}/api/info?url=${encodeURIComponent(url)}`);
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Failed to fetch video info');
+    if (!data.formats || data.formats.length === 0) throw new Error('No downloadable formats found for this URL');
+
+    currentInfo = data;
+
+    // Assign stable safe keys (f0, f1, f2 …) — avoids any escaping issues in HTML attrs
+    fmtList = data.formats.map((fmt, i) => ({ ...fmt, safeKey: `f${i}` }));
+
+    renderResults();
+    setSection('results');
+
+  } catch (err) {
+    document.getElementById('errorMsg').textContent = err.message;
+    setSection('error');
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = 'Fetch Formats';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  Render results
+// ═══════════════════════════════════════════════════════════
+function renderResults() {
+  const info = currentInfo;
+
+  // Thumbnail
+  const thumb = document.getElementById('videoThumb');
+  if (info.thumbnail) { thumb.src = info.thumbnail; thumb.style.display = 'block'; }
+  else                { thumb.style.display = 'none'; }
+
+  // Meta
+  document.getElementById('videoTitle').textContent   = info.title    || 'Untitled Video';
+  document.getElementById('videoChannel').textContent = info.uploader || '';
+
+  const durEl = document.getElementById('videoDuration');
+  if (info.duration) { durEl.textContent = '⏱ ' + info.duration; durEl.style.display = 'inline-block'; }
+  else               { durEl.style.display = 'none'; }
+
+  // Separate video and audio formats
+  const videoFmts = fmtList.filter(f => f.type === 'video');
+  const audioFmts = fmtList.filter(f => f.type === 'audio');
+
+  const videoSec = document.getElementById('videoSection');
+  const audioSec = document.getElementById('audioSection');
+
+  if (videoFmts.length > 0) {
+    buildGrid('videoGrid', videoFmts);
+    videoSec.style.display = 'block';
+  } else {
+    videoSec.style.display = 'none';
+  }
+
+  if (audioFmts.length > 0) {
+    buildGrid('audioGrid', audioFmts);
+    audioSec.style.display = 'block';
+  } else {
+    audioSec.style.display = 'none';
+  }
+}
+
+// ─── Build a format grid ──────────────────────────────────
+function buildGrid(gridId, formats) {
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = '';
+  for (const fmt of formats) {
+    grid.appendChild(buildCard(fmt));
+  }
+}
+
+// ─── Build a single format card ───────────────────────────
+function buildCard(fmt) {
+  const sk    = fmt.safeKey;
+  const state = dlState[sk] || { status: 'idle' };
+  const isAud = fmt.type === 'audio';
+
+  const card  = document.createElement('div');
+  card.id     = `card-${sk}`;
+  card.className = `format-card ${isAud ? 'audio-card' : 'video-card'}`;
+
+  // Quality line
+  let html = `<div class="fmt-quality">${esc(fmt.quality)}</div>`;
+
+  // Badges
+  html += `<div class="fmt-badges">`;
+  html += `<span class="badge b-ext">${esc((fmt.ext || '?').toUpperCase())}</span>`;
+  if (fmt.vcodec && fmt.vcodec !== 'none' && !isAud) {
+    html += `<span class="badge b-codec">${esc(fmt.vcodec)}</span>`;
+  }
+  if (isAud && fmt.acodec) {
+    html += `<span class="badge b-codec">${esc(fmt.acodec)}</span>`;
+  } else if (!isAud && fmt.acodec === 'merged') {
+    html += `<span class="badge b-merge">+Audio</span>`;
+  } else if (!isAud && fmt.acodec && fmt.acodec !== 'none') {
+    html += `<span class="badge b-codec">${esc(fmt.acodec)}</span>`;
+  }
+  html += `</div>`;
+
+  // Size estimate
+  if (fmt.filesize) {
+    html += `<div class="fmt-size">~${esc(fmt.filesize)}</div>`;
+  } else {
+    html += `<div class="fmt-size" style="opacity:0">&nbsp;</div>`;
+  }
+
+  // Action area — depends on download state
+  const btnClass = isAud ? 'btn-dl blue' : 'btn-dl';
+
+  if (state.status === 'idle') {
+    html += `<button class="${btnClass}" onclick="startDownload('${sk}')">⬇ Download</button>`;
+    html += `<div class="card-status"></div>`;
+
+  } else if (state.status === 'starting') {
+    html += `<button class="btn-dl" disabled style="justify-content:center">Starting…</button>`;
+    html += `<div class="card-status">Connecting to server</div>`;
+
+  } else if (state.status === 'downloading') {
+    const pct = (state.progress || 0).toFixed(1);
+    html += `<button class="${btnClass}" disabled>${pct}%</button>`;
+    html += `<div class="card-prog-bar"><div class="card-prog-fill" style="width:${pct}%"></div></div>`;
+    html += `<div class="card-status">Server is downloading…</div>`;
+
+  } else if (state.status === 'ready') {
+    html += `<button class="btn-dl green" onclick="triggerFileDownload('${sk}', '${esc(state.jobId)}')">💾 Save File</button>`;
+    html += `<div class="card-prog-bar"><div class="card-prog-fill" style="width:100%"></div></div>`;
+    html += `<div class="card-status ok">Ready — click to save</div>`;
+
+  } else if (state.status === 'done') {
+    html += `<button class="btn-dl green" disabled>✓ Saved</button>`;
+    html += `<div class="card-status ok">Download complete</div>`;
+
+  } else if (state.status === 'error') {
+    html += `<button class="btn-dl danger" onclick="startDownload('${sk}')">↺ Retry</button>`;
+    html += `<div class="card-status err">${esc(state.error || 'Failed')}</div>`;
+  }
+
+  card.innerHTML = html;
+  return card;
+}
+
+// ─── Refresh a single card in-place ──────────────────────
+function refreshCard(sk) {
+  const fmt      = fmtList.find(f => f.safeKey === sk);
+  if (!fmt) return;
+  const existing = document.getElementById(`card-${sk}`);
+  if (!existing) return;
+  const updated  = buildCard(fmt);
+  existing.innerHTML = updated.innerHTML;
+  existing.className = updated.className;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  Start a download job
+// ═══════════════════════════════════════════════════════════
+async function startDownload(sk) {
+  const fmt = fmtList.find(f => f.safeKey === sk);
+  if (!fmt) return;
+
+  const url = document.getElementById('urlInput').value.trim();
+
+  dlState[sk] = { status: 'starting', progress: 0 };
+  refreshCard(sk);
+
+  try {
+    const res  = await fetch(`${BACKEND_URL}/api/download/start`, {
+      method : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body   : JSON.stringify({
+        url,
+        formatId: fmt.id,
+        title   : currentInfo?.title || 'video',
+        ext     : fmt.ext || 'mp4',
+      }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Server returned an error');
+
+    const { jobId } = data;
+    dlState[sk].jobId   = jobId;
+    dlState[sk].status  = 'downloading';
+    refreshCard(sk);
+
+    // Connect SSE progress stream
+    connectSSE(sk, jobId);
+
+  } catch (err) {
+    dlState[sk].status = 'error';
+    dlState[sk].error  = err.message;
+    refreshCard(sk);
+  }
+}
+
+// ─── Connect SSE for job progress ─────────────────────────
+function connectSSE(sk, jobId) {
+  const es = new EventSource(`${BACKEND_URL}/api/download/progress/${jobId}`);
+
+  es.onmessage = (event) => {
+    let msg;
+    try { msg = JSON.parse(event.data); } catch { return; }
+
+    if (msg.type === 'progress') {
+      dlState[sk].status   = 'downloading';
+      dlState[sk].progress = msg.progress;
+      refreshCard(sk);
+
+    } else if (msg.type === 'ready') {
+      es.close();
+      dlState[sk].status = 'ready';
+      dlState[sk].jobId  = jobId;
+      refreshCard(sk);
+
+    } else if (msg.type === 'error') {
+      es.close();
+      dlState[sk].status = 'error';
+      dlState[sk].error  = msg.message || 'Server-side error';
+      refreshCard(sk);
+    }
+  };
+
+  es.onerror = () => {
+    // EventSource auto-reconnects after errors. We only treat it as a real
+    // error if we're not already in a terminal state.
+    const state = dlState[sk];
+    if (!state) { es.close(); return; }
+    if (state.status === 'ready' || state.status === 'done' || state.status === 'error') {
+      es.close();
+      return;
+    }
+    // If still downloading after 3 retries give up
+    if ((state._sseErrors = (state._sseErrors || 0) + 1) >= 3) {
+      es.close();
+      dlState[sk].status = 'error';
+      dlState[sk].error  = 'Lost connection to server';
+      refreshCard(sk);
+    }
+  };
+}
+
+// ═══════════════════════════════════════════════════════════
+//  Trigger the actual browser file download
+// ═══════════════════════════════════════════════════════════
+function triggerFileDownload(sk, jobId) {
+  // Use a hidden iframe so the browser downloads the file without
+  // navigating away — works cross-origin with Content-Disposition: attachment
+  const iframe = document.getElementById('dlFrame');
+  iframe.src   = `${BACKEND_URL}/api/download/file/${jobId}`;
+
+  // Mark as done in UI
+  dlState[sk].status = 'done';
+  refreshCard(sk);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  UI helpers
+// ═══════════════════════════════════════════════════════════
+function setSection(name) {
+  ['loading', 'error', 'results'].forEach(id => {
+    document.getElementById(id + 'Section').style.display = (id === name) ? 'block' : 'none';
+  });
+}
+
+function resetUI() {
+  currentInfo = null;
+  fmtList     = [];
+  Object.keys(dlState).forEach(k => delete dlState[k]);
+  document.getElementById('urlInput').value = '';
+  setSection('');          // hide all panels
+  document.getElementById('urlInput').focus();
+}
+
+// Escape text for safe innerHTML insertion
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = String(str);
+  return d.innerHTML;
+}
+</script>
+
+</body>
+</html>
