@@ -1,0 +1,310 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ZEEKAY CINEMA LAYER v1.0 — "The Edit Session"
+   ───────────────────────────────────────────────────────────────────
+   The whole site behaves like a Premiere Pro editing session:
+   scrolling = scrubbing the timeline.
+
+   • .zk-dock     — fixed editor timeline at the bottom (clips per
+                    section, red playhead, live timecode, FPS badge)
+   • .zk-hud      — camera viewfinder overlay (REC/STBY + brackets)
+   • .zk-shutter  — camera-shutter blink when you cross into a new
+                    section
+   • .zk-slate    — clapperboard scene label that pops in per section
+
+   Pairs with assets/js/cinema.js. Brand colors come from the site's
+   own CSS variables (--accent purple / --accent-2 orange).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* make room for the dock so footer content is never hidden */
+body { padding-bottom: 64px; }
+
+/* lift the floating buttons above the dock */
+.to-top   { bottom: 88px !important; }
+.wa-float { bottom: 154px !important; }
+
+/* ════════ TIMELINE DOCK ════════════════════════════════════════ */
+.zk-dock {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 58px;
+  z-index: 1500;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(12, 11, 16, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  font-family: 'Consolas', 'SF Mono', 'Roboto Mono', monospace;
+  user-select: none;
+}
+html.light .zk-dock {
+  background: rgba(244, 243, 248, 0.94);
+  border-top: 1px solid rgba(10, 9, 13, 0.12);
+}
+
+/* — timecode block (left, like Premiere's program monitor TC) — */
+.zk-dock-tc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  min-width: 132px;
+}
+html.light .zk-dock-tc { border-right-color: rgba(10, 9, 13, 0.10); }
+.zk-tc-time {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #6FE3FF;                       /* Premiere timecode cyan */
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+html.light .zk-tc-time { color: #0E7DA0; }
+.zk-tc-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+html.light .zk-tc-label { color: rgba(10, 9, 13, 0.45); }
+
+/* — clip track — */
+.zk-track {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 9px 10px;
+  overflow: hidden;
+}
+.zk-clip {
+  position: relative;
+  height: 100%;
+  min-width: 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  background: var(--zk-clip, #9747FF);
+  opacity: 0.45;
+  transition: opacity 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 8px;
+}
+.zk-clip::before {                       /* fx-bar like Premiere clips */
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.zk-clip span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.zk-clip:hover { opacity: 0.85; transform: translateY(-1px); }
+.zk-clip.zk-active {
+  opacity: 1;
+  box-shadow: 0 0 14px var(--zk-clip, #9747FF),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+/* — playhead (Premiere red scrub line) — */
+.zk-playhead {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0;
+  width: 2px;
+  background: #FF3B30;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.8);
+}
+.zk-playhead::before {                   /* the grab-handle triangle */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #FF3B30;
+}
+
+/* — fps badge (right) — */
+.zk-dock-fps {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+html.light .zk-dock-fps { border-left-color: rgba(10, 9, 13, 0.10); color: rgba(10, 9, 13, 0.5); }
+
+/* ════════ CAMERA HUD (viewfinder) ══════════════════════════════ */
+.zk-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  pointer-events: none;
+}
+.zk-rec {
+  position: absolute;
+  top: 86px; left: 22px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Consolas', 'SF Mono', 'Roboto Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+html.light .zk-rec { color: rgba(10, 9, 13, 0.7); text-shadow: none; }
+.zk-rec-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: #555;
+  transition: background 0.2s ease;
+}
+.zk-rec.zk-on .zk-rec-dot {
+  background: #FF3B30;
+  box-shadow: 0 0 10px rgba(255, 59, 48, 0.9);
+  animation: zk-blink 1s steps(2, start) infinite;
+}
+@keyframes zk-blink { 50% { opacity: 0.25; } }
+
+/* viewfinder corner brackets */
+.zk-corner {
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+}
+html.light .zk-corner { border-color: rgba(10, 9, 13, 0.22); }
+.zk-corner.tl { top: 80px;  left: 16px;  border-right: 0; border-bottom: 0; }
+.zk-corner.tr { top: 80px;  right: 16px; border-left: 0;  border-bottom: 0; }
+.zk-corner.bl { bottom: 74px; left: 16px;  border-right: 0; border-top: 0; }
+.zk-corner.br { bottom: 74px; right: 16px; border-left: 0;  border-top: 0; }
+
+/* ════════ SHUTTER BLINK ════════════════════════════════════════ */
+.zk-shutter {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  visibility: hidden;
+}
+.zk-shutter .bar {
+  position: absolute;
+  left: 0; right: 0;
+  height: 50.5%;
+  background: #050409;
+  transform: scaleY(0);
+}
+.zk-shutter .bar.top    { top: 0;    transform-origin: 50% 0%;   }
+.zk-shutter .bar.bottom { bottom: 0; transform-origin: 50% 100%; }
+.zk-shutter.zk-snap { visibility: visible; }
+.zk-shutter.zk-snap .bar { animation: zk-shut 0.38s cubic-bezier(0.7, 0, 0.3, 1); }
+@keyframes zk-shut {
+  0%   { transform: scaleY(0); }
+  42%  { transform: scaleY(1); }
+  58%  { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+/* ════════ SCENE SLATE (clapperboard label) ═════════════════════ */
+.zk-slate {
+  position: fixed;
+  top: 96px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-14px);
+  z-index: 1600;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  align-items: stretch;
+  font-family: 'Consolas', 'SF Mono', 'Roboto Mono', monospace;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.zk-slate.zk-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.zk-slate-clap {                          /* striped clapper edge */
+  width: 18px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #0c0b10 0 7px,
+    #e8e6ef 7px 14px
+  );
+}
+.zk-slate-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(12, 11, 16, 0.95);
+  padding: 9px 16px;
+}
+.zk-slate-scene {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--accent-2, #FF6900);
+  font-weight: 700;
+}
+.zk-slate-name {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ════════ MOBILE ═══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  body { padding-bottom: 46px; }
+  .to-top   { bottom: 66px !important; }
+  .wa-float { bottom: 126px !important; }
+
+  .zk-dock { height: 42px; }
+  .zk-dock-tc { min-width: 96px; padding: 0 10px; }
+  .zk-tc-time { font-size: 13px; }
+  .zk-tc-label { display: none; }
+  .zk-dock-fps { display: none; }
+  .zk-track { padding: 6px 8px; gap: 2px; }
+  .zk-clip { min-width: 18px; padding: 0; border-radius: 3px; }
+  .zk-clip span { display: none; }
+
+  .zk-corner { display: none; }
+  .zk-rec { top: 78px; left: 14px; font-size: 10px; }
+  .zk-rec-dot { width: 9px; height: 9px; }
+
+  .zk-slate { top: 80px; }
+  .zk-slate-name { font-size: 11px; letter-spacing: 2px; }
+  .zk-slate-scene { font-size: 9px; }
+}
+
+/* ════════ ACCESSIBILITY + PRINT ════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .zk-dock, .zk-hud, .zk-shutter, .zk-slate { display: none !important; }
+  body { padding-bottom: 0; }
+}
+@media print {
+  .zk-dock, .zk-hud, .zk-shutter, .zk-slate { display: none !important; }
+  body { padding-bottom: 0; }
+}
