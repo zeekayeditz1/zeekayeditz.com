@@ -52,17 +52,17 @@
     var m = isMobile();
     CFG = {
       mobile:     m,
-      rotMax:     m ? 0    : 7,      // max rotateX in degrees (enter)
-      rotExitMax: m ? 0    : 4,      // max rotateX leaving viewport
-      scaleIn:    m ? 0.03 : 0.05,   // scale shrink at full depth
-      fadeIn:     m ? 0.20 : 0.30,   // opacity drop at full depth
-      liftIn:     m ? 14   : 28,     // translateY px at full depth
-      skewMax:    m ? 0    : 1.1,    // velocity skew clamp (deg)
-      heroScale:  m ? 0.05 : 0.08,   // hero camera-pull scale amount
-      heroFade:   0.45,
-      heroLift:   m ? 22   : 38,
-      dustCount:  m ? 26   : 70,
-      blobPar:    0.05                // bg-blobs container parallax rate
+      rotMax:     m ? 0    : 12,     // max rotateX in degrees (enter)
+      rotExitMax: m ? 0    : 7,      // max rotateX leaving viewport
+      scaleIn:    m ? 0.06 : 0.10,   // scale shrink at full depth
+      fadeIn:     m ? 0.35 : 0.45,   // opacity drop at full depth
+      liftIn:     m ? 34   : 60,     // translateY px at full depth
+      skewMax:    m ? 0    : 1.6,    // velocity skew clamp (deg)
+      heroScale:  m ? 0.09 : 0.14,   // hero camera-pull scale amount
+      heroFade:   0.60,
+      heroLift:   m ? 36   : 70,
+      dustCount:  m ? 34   : 90,
+      blobPar:    0.09                // bg-blobs container parallax rate
     };
   }
   buildConfig();
@@ -293,7 +293,7 @@
         if (s.el.style.transform !== '') { s.el.style.transform = ''; s.el.style.opacity = ''; }
       } else {
         s.el.style.transform =
-          'perspective(1100px) translate3d(0,' + c.ty.toFixed(2) + 'px,0)' +
+          'perspective(850px) translate3d(0,' + c.ty.toFixed(2) + 'px,0)' +
           ' rotateX(' + c.rx.toFixed(3) + 'deg)' +
           (CFG.skewMax > 0 ? ' skewY(' + skew.toFixed(3) + 'deg)' : '') +
           ' scale(' + c.sc.toFixed(4) + ')';
