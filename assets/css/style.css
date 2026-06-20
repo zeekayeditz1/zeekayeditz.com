@@ -1457,3 +1457,7 @@ html.light .nav-dropdown-menu { background: rgba(255, 255, 255, 0.96); }
 .cs-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf78; animation: zk-cs-pulse 1.6s ease infinite; }
 @keyframes zk-cs-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 120, 0.7); } 50% { box-shadow: 0 0 0 6px rgba(76, 175, 120, 0); } }
 .page-content { max-width: var(--container); margin: 0 auto; padding: 0 24px 100px; position: relative; z-index: 1; }
+
+/* Prevent stray horizontal scroll on mobile (fixed buttons / decorative layers) */
+html { overflow-x: hidden; }
+html, body { max-width: 100%; }
