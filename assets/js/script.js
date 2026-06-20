@@ -755,7 +755,7 @@
     // ═══ LIVE VISITOR COUNTER ═══════════════════════════════════
     // ════════════════════════════════════════════════════════════
     (function initVisitorCounter() {
-      const el = document.getElementById('vc-num');
+      const el = document.getElementById('vc-num'); const elB = document.getElementById('visitor-count');
       if (!el) return;
 
       const STORAGE_KEY = 'zk-visit-count';
@@ -785,7 +785,7 @@
         function tick(now) {
           const t = Math.min((now - start) / duration, 1);
           const val = Math.round(startVal + (target - startVal) * easeOut(t));
-          el.textContent = format(val);
+          el.textContent = format(val); if (elB) elB.textContent = format(val);
           if (t < 1) requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
