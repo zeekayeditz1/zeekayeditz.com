@@ -755,7 +755,7 @@
     // ═══ LIVE VISITOR COUNTER ═══════════════════════════════════
     // ════════════════════════════════════════════════════════════
     (function initVisitorCounter() {
-      const el = document.getElementById('visitor-count');
+      const el = document.getElementById('vc-num');
       if (!el) return;
 
       const STORAGE_KEY = 'zk-visit-count';
