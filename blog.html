@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0A090D" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)" />
+  <meta name="description" content="The ZeeKay Editz blog — practical video editing tips, After Effects &amp; Premiere Pro tutorials, and YouTube growth advice for creators and editors." />
+  <title>Blog — Video Editing Tips &amp; Tutorials for Creators | ZeeKay Editz</title>
+  <link rel="icon" type="image/png" href="My%20Data/Logo.png" />
+  <link rel="apple-touch-icon" href="My%20Data/Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=9" />
+  <link rel="canonical" href="https://zeekayeditz.com/blog.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ZeeKay Editz" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Blog — Video Editing Tips &amp; Tutorials for Creators | ZeeKay Editz" />
+  <meta property="og:description" content="Practical video editing tips, After Effects &amp; Premiere Pro tutorials, and YouTube growth advice for creators and editors." />
+  <meta property="og:url" content="https://zeekayeditz.com/blog.html" />
+  <meta property="og:image" content="https://zeekayeditz.com/My%20Data/Logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Blog — Video Editing Tips &amp; Tutorials for Creators | ZeeKay Editz" />
+  <meta name="twitter:description" content="Practical video editing tips, After Effects &amp; Premiere Pro tutorials, and YouTube growth advice for creators and editors." />
+  <meta name="twitter:image" content="https://zeekayeditz.com/My%20Data/Logo.png" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://zeekayeditz.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://zeekayeditz.com/blog.html"}]}</script>
+  <style>
+    .blog-hero { text-align: center; padding: 150px 20px 40px; position: relative; z-index: 1; }
+    .blog-hero h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; margin: 14px 0 12px; }
+    .blog-hero p { color: var(--text-secondary); max-width: 620px; margin: 0 auto; font-size: 16px; line-height: 1.65; }
+    .blog-eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
+    .blog-grid { max-width: 1180px; margin: 40px auto 100px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; position: relative; z-index: 1; }
+    .bpost { display: flex; flex-direction: column; background: var(--bg-card, rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+    .bpost:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 14px 40px rgba(0,0,0,.35); }
+    .bpost-img { aspect-ratio: 16/9; overflow: hidden; background: #16161A; }
+    .bpost-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .bpost:hover .bpost-img img { transform: scale(1.04); }
+    .bpost-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .bpost-tag { align-self: flex-start; font-size: 10.5px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); background: rgba(151,71,255,.1); border: 1px solid rgba(151,71,255,.3); padding: 4px 10px; border-radius: 20px; }
+    .bpost h2 { font-size: 19px; font-weight: 700; line-height: 1.35; margin: 2px 0; color: var(--text-primary); }
+    .bpost p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; flex: 1; }
+    .bpost-meta { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; }
+    .bpost-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-secondary); }
+    .bpost-read { color: var(--accent); font-weight: 600; font-size: 13.5px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader-content">
+    <div class="preloader-logo">ZeeKay Editz</div>
+    <div class="preloader-bar"></div>
+  </div>
+</div>
+
+<div class="cursor-outline" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="brand" aria-label="ZeeKay Editz home">
+      <span class="brand-mark">
+        <img src="My%20Data/Logo.png" alt="ZeeKay Editz Logo" class="brand-logo-img" />
+      </span>
+      <span>ZeeKay Editz<span style="color: var(--accent);">.</span></span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="/">Home</a>
+      <a href="/#about">About</a>
+      <a href="/#services">Works</a>
+      <a href="/blog.html" style="color:var(--accent);font-weight:600;">Blog</a>
+      <a href="/#contact">Contact</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Exclusive From Zeekay <span class="nav-dd-caret" aria-hidden="true">&#9662;</span></button>
+        <div class="nav-dropdown-menu">
+          <a href="/apps.html">Zeekay Apps</a>
+          <a href="/plugins.html">Zeekay Plugins</a>
+          <a href="/presets.html">Zeekay Presets</a>
+          <a href="/tutorials.html">Zeekay Tutorials</a>
+        </div>
+      </div>
+      <a href="/downloader.html" style="color:var(--accent);font-weight:700;">&#8595; Downloader</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle light / dark">
+        <span class="icon sun">&#9728;</span>
+        <span class="icon moon">&#9790;</span>
+      </button>
+      <a href="/#contact" class="cta-btn">
+        <span>Let's Talk</span>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<section class="blog-hero">
+  <span class="blog-eyebrow">Zeekay Blog</span>
+  <h1>Editing Tips That <span class="grad">Actually Work</span></h1>
+  <p>Practical video editing advice, After Effects &amp; Premiere Pro insights, and YouTube growth strategies — written by the team that edits for creators and brands every single day.</p>
+</section>
+
+<div class="blog-grid">
+
+  <a href="/blog/video-editing-mistakes-killing-youtube-retention.html" class="bpost">
+    <div class="bpost-img">
+      <img src="https://i.ytimg.com/vi/g1kurEghieE/hqdefault.jpg" alt="Video editing mistakes that kill YouTube retention — ZeeKay Editz breakdown" loading="lazy" />
+    </div>
+    <div class="bpost-body">
+      <span class="bpost-tag">YouTube Growth</span>
+      <h2>7 Video Editing Mistakes That Are Quietly Killing Your YouTube Retention</h2>
+      <p>Your content isn't the problem — your edit might be. The 7 retention killers we fix most often in client footage, and exactly how the pros solve each one.</p>
+      <div class="bpost-meta">
+        <span>Jul 4, 2026</span><span class="dot"></span><span>8 min read</span>
+      </div>
+      <span class="bpost-read">Read the breakdown &rarr;</span>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div class="foot-copy">&copy; 2026 <strong>ZeeKay Editz</strong> &mdash; All rights reserved.</div>
+      <div class="foot-nav">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#services">Works</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#contact">Contact</a>
+        <a href="/downloader.html" class="zdm-foot-link">&#8595; Downloader</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/923040802154" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span class="wa-tooltip">Chat with me on WhatsApp</span>
+</a>
+
+<button class="to-top" aria-label="Scroll to top">&#8593;</button>
+
+<script src="assets/js/script.js?v=8"></script>
+</body>
+</html>
