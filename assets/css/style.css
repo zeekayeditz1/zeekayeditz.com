@@ -1527,3 +1527,9 @@ html, body { max-width: 100%; }
   color: #fff;
 }
 .zdm-foot-link { color: #4caf78 !important; font-weight: 600; }
+
+/* Centered footer on small screens — keeps wrapped links tidy */
+@media (max-width: 620px) {
+  .foot { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .foot-nav { justify-content: center; }
+}
