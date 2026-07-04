@@ -51,6 +51,11 @@
     .art-body strong { color: var(--text-primary); }
     .art-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(151,71,255,.35); }
     .art-body a:hover { border-bottom-color: var(--accent); }
+    /* Buttons inside the article must keep their own colors — never inherit link styling */
+    .art-body a.btn { border-bottom: none; }
+    .art-body a.btn-primary, .art-body a.btn-primary:hover { color: #fff; }
+    .art-body a.btn-outline { color: var(--text-primary); }
+    .art-body a.btn-outline:hover { color: #fff; }
     .art-body h2 { display: flex; align-items: center; gap: 14px; font-size: clamp(1.25rem, 3vw, 1.6rem); font-weight: 700; color: var(--text-primary); margin: 46px 0 16px; line-height: 1.3; }
     .mnum { flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800; color: #fff; }
     .fixbox { background: rgba(47,167,95,.07); border: 1px solid rgba(47,167,95,.3); border-left: 3px solid #2FA75F; border-radius: 12px; padding: 16px 20px; margin: 20px 0 26px; font-size: 15.5px; }
