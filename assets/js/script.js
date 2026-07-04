@@ -295,7 +295,7 @@
           } else {
             const data = await res.json().catch(() => ({}));
             msg.className = 'form-msg show error';
-            msg.textContent = (data.errors && data.errors[0] && data.errors[0].message) || 'Something went wrong. Please try again.';
+            msg.textContent = (data.errors && data.errors[0] && data.errors[0].message) || data.message || 'Something went wrong. Please try again.';
           }
         } catch (err) {
           msg.className = 'form-msg show error';
@@ -631,24 +631,29 @@
       return { click, setEnabled, isEnabled, setFade };
     })();
 
-    // Wire the sound toggle button
-    const soundBtn = $('.sound-toggle');
-    if (soundBtn) {
-      function updateBtn() {
-        soundBtn.classList.toggle('on', TypingSound.isEnabled());
-        soundBtn.setAttribute('aria-pressed', TypingSound.isEnabled() ? 'true' : 'false');
+    // Wire the sound toggle button(s) — there may be one in the nav and/or a floating one
+    const soundBtns = $$('.sound-toggle');
+    if (soundBtns.length) {
+      function updateBtns() {
+        const on = TypingSound.isEnabled();
+        soundBtns.forEach(b => {
+          b.classList.toggle('on', on);
+          b.classList.toggle('muted', !on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
       }
-      updateBtn();
-      soundBtn.addEventListener('click', () => {
+      updateBtns();
+      soundBtns.forEach(btn => btn.addEventListener('click', () => {
         TypingSound.setEnabled(!TypingSound.isEnabled());
-        updateBtn();
+        updateBtns();
         // Play a single test click so user hears it
         if (TypingSound.isEnabled()) setTimeout(() => TypingSound.click(), 80);
-      });
+      }));
     }
 
-    // Hook into typewriter: patch tw element to emit click on character change
-    const twEl = document.getElementById('typewriter');
+    // Hook into typewriter: emit a click sound on each character change.
+    // The hero typewriter element is #ab-tw (legacy pages used #typewriter).
+    const twEl = document.getElementById('ab-tw') || document.getElementById('typewriter');
     if (twEl) {
       let lastLen = twEl.textContent.length;
       // Use MutationObserver to detect text changes from typewriter loop
@@ -821,4 +826,3 @@
 
   }); // DOMContentLoaded
 })();
-
