@@ -1461,3 +1461,69 @@ html.light .nav-dropdown-menu { background: rgba(255, 255, 255, 0.96); }
 /* Prevent stray horizontal scroll on mobile (fixed buttons / decorative layers) */
 html { overflow-x: hidden; }
 html, body { max-width: 100%; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIXES — nav sound toggle visibility, icon states, downloader pill
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Nav variant of the sound toggle — sits inline in .nav-actions, always visible */
+.nav-actions .sound-toggle {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  width: 38px; height: 38px;
+  bottom: auto; right: auto;
+  box-shadow: none;
+}
+.nav-actions .sound-toggle.muted::after { display: none; }
+
+/* Icon swap: show speaker-on when enabled, speaker-off when disabled */
+.sound-toggle .icon.sound-on  { display: none; }
+.sound-toggle .icon.sound-off { display: block; }
+.sound-toggle.on .icon.sound-on  { display: block; }
+.sound-toggle.on .icon.sound-off { display: none; }
+@media (max-width: 767px) {
+  .nav-actions .sound-toggle { width: 34px; height: 34px; }
+}
+
+/* ─── DOWNLOADER NAV PILL + FOOTER LINK ────────────────────────── */
+.zdm-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(76, 175, 120, 0.45);
+  background: rgba(76, 175, 120, 0.08);
+  color: #4caf78 !important;
+  font-weight: 600;
+  font-size: 13.5px;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+.zdm-nav-pill:hover {
+  background: rgba(76, 175, 120, 0.16);
+  border-color: #4caf78;
+}
+.zdm-nav-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #4caf78;
+  animation: zdm-dot-pulse 1.6s ease infinite;
+}
+@keyframes zdm-dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 120, 0.6); }
+  50%      { box-shadow: 0 0 0 4px rgba(76, 175, 120, 0); }
+}
+.zdm-nav-free {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #4caf78;
+  color: #fff;
+}
+.zdm-foot-link { color: #4caf78 !important; font-weight: 600; }
