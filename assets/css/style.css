@@ -84,6 +84,7 @@ body {
   background: var(--bg-main);
   color: var(--text-primary);
   overflow-x: hidden;
+  overflow-x: clip;
   transition: background-color 0.6s var(--ease), color 0.6s var(--ease);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1459,7 +1460,7 @@ html.light .nav-dropdown-menu { background: rgba(255, 255, 255, 0.96); }
 .page-content { max-width: var(--container); margin: 0 auto; padding: 0 24px 100px; position: relative; z-index: 1; }
 
 /* Prevent stray horizontal scroll on mobile (fixed buttons / decorative layers) */
-html { overflow-x: hidden; }
+html { overflow-x: hidden; overflow-x: clip; }
 html, body { max-width: 100%; }
 
 /* ═══════════════════════════════════════════════════════════════════
