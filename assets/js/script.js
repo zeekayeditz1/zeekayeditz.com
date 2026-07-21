@@ -118,6 +118,11 @@
             e.preventDefault();
             const top = target.getBoundingClientRect().top + window.scrollY - 90;
             window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+            // Resilience: if programmatic scroll is blocked, fall back to native anchor jump
+            const y0 = window.scrollY;
+            setTimeout(() => {
+              if (Math.abs(window.scrollY - y0) < 2 && Math.abs(y0 - top) > 2) location.hash = id;
+            }, 250);
             // Close mobile menu if open
             if (navLinks && navLinks.classList.contains('open')) {
               navLinks.classList.remove('open');
