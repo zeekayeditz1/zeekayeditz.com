@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZFlow Privacy Policy — Zeekay Editz</title>
+<meta name="description" content="ZFlow collects no personal data, makes no network requests, and stores nothing off your computer.">
+<meta property="og:title" content="ZFlow Privacy Policy — Zeekay Editz">
+<meta property="og:description" content="ZFlow collects no personal data, makes no network requests, and stores nothing off your computer.">
+<meta property="og:type" content="website">
+<!-- ZFLOW_BUY_URL — replace href="https://www.zeekayeditz.com/" on the CTA with the
+     Adobe Marketplace listing URL once the plugin is published. -->
+<style>
+  :root{
+    --bg:#0B0B0E; --surface:#17171C; --surface2:#1D1D24;
+    --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
+    --text:#F2F2F5; --body:#B4B4C0; --dim:#7C7C88;
+    --accent:#FF6B2C; --accent2:#FF9A5C; --ok:#4ADE80;
+    --radius:14px; color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--body);
+    font:16px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:-30% -10% auto -10%;height:70vh;z-index:-1;
+    background:radial-gradient(60% 60% at 70% 0%,rgba(255,107,44,.16),transparent 70%);
+    pointer-events:none}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+  .nav{position:sticky;top:0;z-index:20;background:rgba(11,11,14,.82);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;gap:22px;max-width:780px;margin:0 auto;padding:13px 22px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:700;letter-spacing:.4px}
+  .brand:hover{text-decoration:none}
+  .nav-links{display:flex;gap:20px;margin-left:auto;font-size:14.5px}
+  .nav-links a{color:var(--dim)}
+  .nav-links a:hover{color:var(--text);text-decoration:none}
+  .nav-links a.is-here{color:var(--text)}
+  .cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#180B04;
+    font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;white-space:nowrap}
+  .cta:hover{text-decoration:none;filter:brightness(1.08)}
+
+  .hero{padding:64px 0 10px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;
+    letter-spacing:.10em;text-transform:uppercase;color:var(--accent);
+    background:rgba(255,107,44,.10);border:1px solid rgba(255,107,44,.24);
+    border-radius:999px;padding:6px 13px;margin-bottom:20px}
+  h1{font-size:clamp(32px,5.5vw,46px);line-height:1.1;letter-spacing:-.025em;
+    color:var(--text);font-weight:800;margin-bottom:12px}
+  h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .meta{color:var(--dim);font-size:14.5px}
+
+  .headline{
+    display:flex;gap:16px;align-items:flex-start;
+    background:linear-gradient(160deg,rgba(74,222,128,.10),rgba(74,222,128,.02));
+    border:1px solid rgba(74,222,128,.28);border-radius:var(--radius);
+    padding:22px 24px;margin:32px 0 6px;
+  }
+  .headline svg{flex:0 0 auto;margin-top:3px}
+  .headline p{font-size:18px;color:var(--text);font-weight:600;margin:0}
+  .headline span{display:block;font-size:15px;color:var(--body);font-weight:400;margin-top:6px}
+
+  section{padding:34px 0 2px}
+  h2{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+  h2::after{content:"";flex:1;height:1px;background:var(--line)}
+  p{margin-bottom:14px}
+  ul{list-style:none;display:grid;gap:10px;margin-bottom:16px}
+  ul li{position:relative;padding:13px 16px 13px 42px;background:var(--surface);
+    border:1px solid var(--line);border-radius:11px}
+  ul li::before{content:"";position:absolute;left:17px;top:21px;width:7px;height:7px;
+    border-radius:50%;background:var(--accent)}
+  strong{color:var(--text)}
+  em{color:var(--text);font-style:normal;font-weight:600}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;color:#FFC7A6}
+
+  .contact-box{background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px 24px;margin-top:8px}
+  .contact-box .mail{font-size:19px;font-weight:700;color:var(--text);word-break:break-all}
+
+  footer{margin-top:60px;border-top:1px solid var(--line);padding:30px 0 60px;
+    color:var(--dim);font-size:14.5px}
+  .foot-in{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;
+    max-width:780px;margin:0 auto;padding:0 22px}
+  .foot-in a{color:var(--dim)}
+  .foot-in a:hover{color:var(--text);text-decoration:none}
+  .foot-sep{margin-left:auto}
+  @media(max-width:640px){.nav-links{display:none}.hero{padding:44px 0 6px}
+    .foot-sep{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/zflow/support">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <rect width="26" height="26" rx="6" fill="#17171C" stroke="rgba(255,107,44,.35)"/>
+        <path d="M7 19.5 C8.6 19.5 8.9 6.9 19 6.5" fill="none" stroke="#FF6B2C"
+              stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <span>ZFlow</span>
+    </a>
+    <div class="nav-links">
+      <a href="/zflow/support">Support</a>
+      <a href="/zflow/privacy" class="is-here">Privacy</a>
+      <a href="/zflow/terms">Terms</a>
+    </div>
+    <a class="cta" href="https://www.zeekayeditz.com/">Get ZFlow</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Privacy</span>
+    <h1>We collect <span class="grad">nothing</span>.</h1>
+    <p class="meta">ZFlow for Adobe Premiere Pro · Zeekay Editz · Last updated 12 August 2026</p>
+  </div>
+
+  <div class="headline">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 6 L9 17 L4 12" stroke="#4ADE80" stroke-width="2.6"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>ZFlow does not collect, transmit, or store any personal data.
+      <span>That is the whole policy. Everything below just explains what it means in
+      practice, because "we collect nothing" deserves to be specific.</span></p>
+  </div>
+
+  <section>
+    <h2>No data leaves your computer</h2>
+    <p>ZFlow runs entirely inside Premiere Pro on your machine. It makes no network
+       requests. There is no analytics, no telemetry, no crash reporting, no licence
+       check, and no account. It works with your internet disconnected and behaves
+       identically either way.</p>
+  </section>
+
+  <section>
+    <h2>What ZFlow stores, and where</h2>
+    <ul>
+      <li><strong>Your settings</strong> — accent colour, graph style, grid size and
+          similar preferences.</li>
+      <li><strong>Curves you save</strong> — the name and the four numbers that define
+          each curve in your library.</li>
+    </ul>
+    <p>Both live in the plugin's own local storage on your computer, under keys beginning
+       <code>zflow.</code> Neither is sent anywhere. Removing the plugin, or using
+       <em>Settings → Reset everything</em>, deletes them.</p>
+    <p>Exporting a curve pack writes a file to a location you choose. Importing one reads
+       a file you choose. Nothing else touches your file system.</p>
+  </section>
+
+  <section>
+    <h2>What ZFlow reads from your project</h2>
+    <p>To do its job, ZFlow reads the keyframes on the clip under your playhead, and
+       writes keyframes back when you press Apply. That happens inside Premiere, on your
+       machine, and only on the clips and properties you selected. No part of your project
+       is copied, uploaded, or retained by the plugin.</p>
+  </section>
+
+  <section>
+    <h2>Purchases</h2>
+    <p>If you bought ZFlow through the Adobe Creative Cloud Marketplace, the purchase is
+       handled by Adobe and its payment provider. We never see your payment details.
+       Adobe's own privacy policy covers that transaction.</p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>ZFlow is a professional editing tool and is not directed at children. Since it
+       collects no data at all, it collects no data from anyone of any age.</p>
+  </section>
+
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>If this policy ever changes, the updated version appears on this page with a new
+       date above. If a future version of ZFlow ever needed to send anything anywhere, it
+       would be stated here plainly and asked for inside the plugin before it happened.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <div class="contact-box">
+      <div class="mail"><a href="mailto:admin@zeekayeditz.com">admin@zeekayeditz.com</a></div>
+      <p style="margin:8px 0 0">Questions about this policy, or about anything ZFlow does
+         with your project. We reply to every message.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="foot-in">
+    <span>© Zeekay Editz</span>
+    <a href="https://www.zeekayeditz.com">zeekayeditz.com</a>
+    <span class="foot-sep"><a href="/zflow/support">Support</a></span>
+    <a href="/zflow/terms">Terms of Service</a>
+    <a href="mailto:admin@zeekayeditz.com">admin@zeekayeditz.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
