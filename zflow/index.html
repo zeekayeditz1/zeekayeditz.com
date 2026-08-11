@@ -64,7 +64,7 @@
   }
   a{color:var(--accent);text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  img{max-width:100%;display:block}
+  img{max-width:100%;height:auto;display:block}
 
   /* ── nav ─────────────────────────────────────────────── */
   .nav{position:sticky;top:0;z-index:40;background:rgba(11,11,14,.85);
@@ -133,10 +133,12 @@
   .shot figcaption{padding:16px 22px;font-size:15px;color:var(--body);
     border-top:1px solid var(--line)}
   .shot figcaption b{color:var(--text);font-weight:600}
+  /* Two equal columns on desktop, one on phone. Nothing spans the full
+     width, so every screenshot is shown at the same scale. */
   @media(min-width:860px){
-    .shots{grid-template-columns:1fr 1fr}
-    .shots .wide{grid-column:1 / -1}
+    .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
+  .shot img{width:100%;height:auto}
 
   /* ── specs ───────────────────────────────────────────── */
   .specs{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
@@ -318,7 +320,7 @@
     </div>
 
     <div class="shots">
-      <figure class="shot wide">
+      <figure class="shot">
         <img src="/zflow/img/screenshot-3.jpg" width="1360" height="800" loading="lazy"
              alt="ZFlow speed graph view with two keyframes and influence handles">
         <figcaption><b>The speed graph.</b> Only your two parent keyframes, with influence
@@ -340,7 +342,7 @@
           curve out as CSS, an expression or code.</figcaption>
       </figure>
 
-      <figure class="shot wide">
+      <figure class="shot">
         <img src="/zflow/img/screenshot-5.jpg" width="1360" height="800" loading="lazy"
              alt="ZFlow docked as a narrow panel beside the timeline">
         <figcaption><b>Docks anywhere.</b> The layout reflows from a floating window down to
