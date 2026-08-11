@@ -107,7 +107,7 @@
     box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 90px -40px rgba(255,107,44,.35)}
 
   /* ── sections ────────────────────────────────────────── */
-  section{padding:78px 0}
+  section{padding:78px 0;scroll-margin-top:78px}
   .sec-head{text-align:center;margin-bottom:44px}
   .sec-head .kicker{font-size:12.5px;font-weight:700;letter-spacing:.13em;
     text-transform:uppercase;color:var(--accent);margin-bottom:12px}
@@ -169,6 +169,83 @@
   .foot-in a:hover{color:var(--text)}
   .foot-r{margin-left:auto;display:flex;gap:20px;flex-wrap:wrap}
 
+  /* ══ Interactive demo + curve grid ══════════════════════════════════
+     Both run on the same bezier solver the plugin uses — the Newton
+     step with a bisection fallback, and the 28 curve definitions copied
+     from the shipping engine. What you drag here is what Premiere gets. */
+  .zd-wrap{display:grid;gap:22px;align-items:stretch}
+  @media(min-width:900px){.zd-wrap{grid-template-columns:minmax(0,420px) minmax(0,1fr)}}
+
+  .zd-panel{background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--r);padding:20px}
+  .zd-graph{width:100%;height:auto;display:block;touch-action:none;cursor:crosshair}
+  .zd-graph .gline{stroke:rgba(255,255,255,.055);stroke-width:1}
+  .zd-graph .gdiag{stroke:rgba(255,255,255,.16);stroke-width:1;stroke-dasharray:3 4}
+  .zd-graph .gbox{fill:none;stroke:rgba(255,255,255,.12);stroke-width:1}
+  .zd-graph .gcurve{fill:none;stroke:var(--accent);stroke-width:2.6;
+    stroke-linecap:round;stroke-linejoin:round}
+  .zd-graph .garm{stroke:rgba(255,255,255,.30);stroke-width:1.4}
+  .zd-graph .gend{fill:var(--bg);stroke:var(--accent);stroke-width:1.8}
+  .zd-graph .ghandle{fill:var(--accent);stroke:#0B0B0E;stroke-width:2;cursor:grab}
+  .zd-graph .ghandle:hover{fill:var(--accent2)}
+  .zd-graph .ghalo{fill:rgba(255,107,44,.14)}
+  .zd-graph .ghandle:focus{outline:none}
+  .zd-graph .ghandle:focus + .zd-ring,.zd-graph .ghandle:focus-visible{stroke:#fff}
+
+  .zd-readout{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+  .zd-code{flex:1 1 240px;min-width:0;font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:13px;color:#FFC7A6;background:var(--bg);border:1px solid var(--line);
+    border-radius:9px;padding:10px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .zd-copy{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--text);
+    background:var(--surface2);border:1px solid var(--line2);border-radius:999px;
+    padding:9px 16px;cursor:pointer;transition:.15s}
+  .zd-copy:hover{border-color:var(--accent);color:var(--accent)}
+
+  .zd-stage{display:flex;flex-direction:column;justify-content:center;gap:22px}
+  .zd-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--dim)}
+  .zd-track{position:relative;height:64px;border-radius:12px;background:var(--bg);
+    border:1px solid var(--line);overflow:hidden}
+  .zd-track::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;
+    background:rgba(255,255,255,.06)}
+  .zd-box{position:absolute;top:50%;left:0;width:38px;height:38px;margin-top:-19px;
+    border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 6px 20px rgba(255,107,44,.35);will-change:transform}
+  .zd-bar{position:relative;height:64px;border-radius:12px;background:var(--bg);
+    border:1px solid var(--line);overflow:hidden}
+  .zd-fill{position:absolute;left:0;bottom:0;width:100%;
+    background:linear-gradient(180deg,var(--accent2),var(--accent));opacity:.85;
+    will-change:height}
+  .zd-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  .zd-chip{font-size:13px;color:var(--body);background:var(--surface2);
+    border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;
+    transition:.15s;white-space:nowrap}
+  .zd-chip:hover{color:var(--text);border-color:var(--line2)}
+  .zd-chip.is-on{color:var(--accent);border-color:rgba(255,107,44,.5);
+    background:rgba(255,107,44,.12)}
+  .zd-hint{font-size:13.5px;color:var(--dim)}
+
+  /* ── curve grid ─────────────────────────────────────────── */
+  .zc-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:26px}
+  .zc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  @media(min-width:560px){.zc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(min-width:820px){.zc-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media(min-width:1000px){.zc-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+  .zc-tile{background:var(--surface);border:1px solid var(--line);border-radius:13px;
+    padding:13px 13px 11px;cursor:pointer;transition:.15s;text-align:center;
+    display:flex;flex-direction:column;gap:9px}
+  .zc-tile:hover{border-color:rgba(255,107,44,.45);background:var(--surface2);
+    transform:translateY(-2px)}
+  .zc-tile.is-on{border-color:var(--accent);background:rgba(255,107,44,.09)}
+  .zc-tile svg{display:block;margin:0 auto}
+  .zc-name{font-size:12.5px;color:var(--body);line-height:1.25}
+  .zc-tile.is-on .zc-name{color:var(--accent)}
+  .zc-run{position:relative;height:5px;border-radius:3px;background:rgba(255,255,255,.07);
+    overflow:hidden}
+  .zc-dot{position:absolute;top:0;left:0;width:5px;height:5px;border-radius:50%;
+    background:var(--accent);opacity:0;will-change:transform}
+  .zc-tile:hover .zc-dot,.zc-tile.is-playing .zc-dot{opacity:1}
+
   @media(max-width:720px){
     .nav-links{display:none}
     .hero{padding:52px 0 10px}
@@ -192,6 +269,7 @@
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
+      <a href="#demo">Try it</a>
       <a href="#gallery">Screenshots</a>
       <a href="#specs">Specs</a>
       <a href="/zflow/support">Support</a>
@@ -311,6 +389,71 @@
   </div>
 </section>
 
+<section id="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Try it</div>
+      <h2>Drag the curve. Watch what it does.</h2>
+      <p>This is the plugin's own easing engine running in the page — the same solver
+         and the same 28 curves. Whatever you shape here is exactly what ZFlow writes
+         into your timeline.</p>
+    </div>
+
+    <div class="zd-wrap">
+      <div class="zd-panel">
+        <svg class="zd-graph" id="zd-graph" viewBox="0 0 300 300"
+             role="img" aria-label="Interactive easing curve editor">
+          <g id="zd-grid"></g>
+          <rect id="zd-box" class="gbox" rx="2"></rect>
+          <line id="zd-diag" class="gdiag"></line>
+          <line id="zd-arm1" class="garm"></line>
+          <line id="zd-arm2" class="garm"></line>
+          <path id="zd-curve" class="gcurve"></path>
+          <circle id="zd-e0" class="gend" r="3.4"></circle>
+          <circle id="zd-e1" class="gend" r="3.4"></circle>
+          <circle id="zd-h1halo" class="ghalo" r="11"></circle>
+          <circle id="zd-h2halo" class="ghalo" r="11"></circle>
+          <circle id="zd-h1" class="ghandle" r="6.5" tabindex="0"
+                  aria-label="First control point — arrow keys to adjust"></circle>
+          <circle id="zd-h2" class="ghandle" r="6.5" tabindex="0"
+                  aria-label="Second control point — arrow keys to adjust"></circle>
+        </svg>
+
+        <div class="zd-readout">
+          <div class="zd-code" id="zd-code">cubic-bezier(0.625, 0, 0.375, 1)</div>
+          <button class="zd-copy" id="zd-copy" type="button">Copy</button>
+        </div>
+      </div>
+
+      <div class="zd-stage">
+        <div>
+          <div class="zd-label" style="margin-bottom:9px">Position</div>
+          <div class="zd-track"><div class="zd-box" id="zd-mover"></div></div>
+        </div>
+        <div>
+          <div class="zd-label" style="margin-bottom:9px">Scale</div>
+          <div class="zd-bar"><div class="zd-fill" id="zd-filler"></div></div>
+        </div>
+        <div class="zd-actions" id="zd-quick"></div>
+        <p class="zd-hint">Drag either handle — including above and below the box, which is
+           where overshoot lives. Premiere's own ease cannot go there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="curves" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">The library</div>
+      <h2>All twenty-eight, in the box</h2>
+      <p>Hover any curve to feel its timing. Click to load it into the editor above.</p>
+    </div>
+    <div class="zc-groups" id="zc-groups"></div>
+    <div class="zc-grid" id="zc-grid"></div>
+  </div>
+</section>
+
 <section id="gallery" style="padding-top:10px">
   <div class="wrap">
     <div class="sec-head">
@@ -410,6 +553,332 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── the engine, lifted from the plugin ─────────────────────────────
+     bezX / bezY / tForX are the shipping implementations: Newton first,
+     returning the moment it converges, with bisection as a genuine
+     fallback for the vertical-tangent case rather than a second guess. */
+  function bezX(t, a, b) { var m = 1 - t; return 3*m*m*t*a + 3*m*t*t*b + t*t*t; }
+  function bezY(t, a, b) { var m = 1 - t; return 3*m*m*t*a + 3*m*t*t*b + t*t*t; }
+  function bezXD(t, a, b) { var m = 1 - t; return 3*m*m*a + 6*m*t*(b-a) + 3*t*t*(1-b); }
+
+  function tForX(x, p1x, p2x) {
+    var t = x, i, err, d, next;
+    for (i = 0; i < 16; i++) {
+      err = bezX(t, p1x, p2x) - x;
+      if (Math.abs(err) < 1e-13) return t;
+      d = bezXD(t, p1x, p2x);
+      if (!isFinite(d) || Math.abs(d) < 1e-10) break;
+      next = t - err / d;
+      if (next < 0) next = 0; else if (next > 1) next = 1;
+      if (next === t) return t;
+      t = next;
+    }
+    var lo = 0, hi = 1, mid;
+    for (i = 0; i < 60; i++) {
+      mid = (lo + hi) * 0.5;
+      if (mid === lo || mid === hi) break;
+      if (bezX(mid, p1x, p2x) < x) lo = mid; else hi = mid;
+    }
+    return (lo + hi) * 0.5;
+  }
+  function ease(c, x) { return bezY(tForX(x, c.p1x, c.p2x), c.p1y, c.p2y); }
+
+  var PRESETS = [
+    ['linear','Linear','Basic',0,0,1,1],
+    ['smooth','Smooth','Basic',0.25,0.1,0.25,1],
+    ['s-curve','S-Curve','Basic',0.625,0,0.375,1],
+    ['snap','Snap','Basic',0.9,0,0.1,1],
+    ['sine-in','Sine In','Sine',0.12,0,0.39,0],
+    ['sine-out','Sine Out','Sine',0.61,1,0.88,1],
+    ['sine-in-out','Sine','Sine',0.37,0,0.63,1],
+    ['quad-in','Quad In','Quad',0.11,0,0.5,0],
+    ['quad-out','Quad Out','Quad',0.5,1,0.89,1],
+    ['quad-in-out','Quad','Quad',0.45,0,0.55,1],
+    ['cubic-in','Cubic In','Cubic',0.32,0,0.67,0],
+    ['cubic-out','Cubic Out','Cubic',0.33,1,0.68,1],
+    ['cubic-in-out','Cubic','Cubic',0.65,0,0.35,1],
+    ['quart-in','Quart In','Quart',0.5,0,0.75,0],
+    ['quart-out','Quart Out','Quart',0.25,1,0.5,1],
+    ['quart-in-out','Quart','Quart',0.76,0,0.24,1],
+    ['quint-in','Quint In','Quint',0.64,0,0.78,0],
+    ['quint-out','Quint Out','Quint',0.22,1,0.36,1],
+    ['quint-in-out','Quint','Quint',0.83,0,0.17,1],
+    ['expo-in','Expo In','Expo',0.7,0,0.84,0],
+    ['expo-out','Expo Out','Expo',0.16,1,0.3,1],
+    ['expo-in-out','Expo','Expo',0.87,0,0.13,1],
+    ['circ-in','Circ In','Circ',0.55,0,1,0.45],
+    ['circ-out','Circ Out','Circ',0,0.55,0.45,1],
+    ['circ-in-out','Circ','Circ',0.85,0,0.15,1],
+    ['back-in','Back In','Back',0.36,0,0.66,-0.56],
+    ['back-out','Back Out','Back',0.34,1.56,0.64,1],
+    ['back-in-out','Back','Back',0.68,-0.6,0.32,1.6]
+  ].map(function (p) {
+    return { id:p[0], name:p[1], group:p[2],
+             curve:{ p1x:p[3], p1y:p[4], p2x:p[5], p2y:p[6] } };
+  });
+
+  var Y_MIN = -1, Y_MAX = 2, PAD = 26, SIZE = 300;
+  var $ = function (id) { return document.getElementById(id); };
+  var graph = $('zd-graph');
+  if (!graph) return;
+
+  var curve = { p1x:0.625, p1y:0, p2x:0.375, p2y:1 };
+  var activeId = 's-curve';
+  var lo = -0.12, hi = 1.12;
+
+  function fit() {
+    var l = Math.min(0, curve.p1y, curve.p2y), h = Math.max(1, curve.p1y, curve.p2y);
+    var pad = (h - l) * 0.10;
+    lo = l - pad; hi = h + pad;
+  }
+  function X(nx) { return PAD + nx * (SIZE - 2*PAD); }
+  function Y(ny) { return PAD + (1 - (ny - lo) / (hi - lo)) * (SIZE - 2*PAD); }
+  function invX(px) { return (px - PAD) / (SIZE - 2*PAD); }
+  function invY(py) { return lo + (1 - (py - PAD) / (SIZE - 2*PAD)) * (hi - lo); }
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function tidy(n) { return String(Math.round(n * 1000) / 1000); }
+
+  var gridG = $('zd-grid');
+  function drawGrid() {
+    var out = '', i, y;
+    for (i = 1; i < 8; i++) {
+      out += '<line class="gline" x1="' + X(i/8) + '" y1="' + Y(0) +
+             '" x2="' + X(i/8) + '" y2="' + Y(1) + '"/>';
+    }
+    for (i = 1; i < 8; i++) {
+      y = Y(i/8);
+      out += '<line class="gline" x1="' + X(0) + '" y1="' + y +
+             '" x2="' + X(1) + '" y2="' + y + '"/>';
+    }
+    gridG.innerHTML = out;
+  }
+
+  function draw() {
+    fit();
+    drawGrid();
+    var a = { x:X(0), y:Y(0) }, b = { x:X(1), y:Y(1) };
+    var h1 = { x:X(curve.p1x), y:Y(curve.p1y) }, h2 = { x:X(curve.p2x), y:Y(curve.p2y) };
+
+    $('zd-box').setAttribute('x', a.x);
+    $('zd-box').setAttribute('y', b.y);
+    $('zd-box').setAttribute('width', b.x - a.x);
+    $('zd-box').setAttribute('height', a.y - b.y);
+    set($('zd-diag'), a.x, a.y, b.x, b.y);
+    set($('zd-arm1'), a.x, a.y, h1.x, h1.y);
+    set($('zd-arm2'), b.x, b.y, h2.x, h2.y);
+    $('zd-curve').setAttribute('d',
+      'M' + a.x + ',' + a.y + ' C' + h1.x + ',' + h1.y + ' ' +
+      h2.x + ',' + h2.y + ' ' + b.x + ',' + b.y);
+    pos($('zd-e0'), a.x, a.y); pos($('zd-e1'), b.x, b.y);
+    pos($('zd-h1'), h1.x, h1.y); pos($('zd-h1halo'), h1.x, h1.y);
+    pos($('zd-h2'), h2.x, h2.y); pos($('zd-h2halo'), h2.x, h2.y);
+
+    $('zd-code').textContent = 'cubic-bezier(' + tidy(curve.p1x) + ', ' + tidy(curve.p1y) +
+      ', ' + tidy(curve.p2x) + ', ' + tidy(curve.p2y) + ')';
+  }
+  function set(n, x1, y1, x2, y2) {
+    n.setAttribute('x1', x1); n.setAttribute('y1', y1);
+    n.setAttribute('x2', x2); n.setAttribute('y2', y2);
+  }
+  function pos(n, x, y) { n.setAttribute('cx', x); n.setAttribute('cy', y); }
+
+  /* ── dragging ───────────────────────────────────────────── */
+  var dragging = null;
+  function localPoint(e) {
+    var r = graph.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * (SIZE / r.width),
+             y: (e.clientY - r.top) * (SIZE / r.height) };
+  }
+  function startDrag(which) {
+    return function (e) {
+      dragging = which;
+      graph.setPointerCapture && graph.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    };
+  }
+  $('zd-h1').addEventListener('pointerdown', startDrag('p1'));
+  $('zd-h2').addEventListener('pointerdown', startDrag('p2'));
+  graph.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var p = localPoint(e);
+    var nx = clamp(invX(p.x), 0, 1), ny = clamp(invY(p.y), Y_MIN, Y_MAX);
+    if (dragging === 'p1') { curve.p1x = nx; curve.p1y = ny; }
+    else { curve.p2x = nx; curve.p2y = ny; }
+    markCustom();
+    draw();
+  });
+  function endDrag() { dragging = null; }
+  graph.addEventListener('pointerup', endDrag);
+  graph.addEventListener('pointercancel', endDrag);
+  graph.addEventListener('pointerleave', endDrag);
+
+  /* Keyboard, so the editor is usable without a pointer. */
+  [['zd-h1','p1'],['zd-h2','p2']].forEach(function (pair) {
+    $(pair[0]).addEventListener('keydown', function (e) {
+      var step = e.shiftKey ? 0.1 : 0.02, k = e.key, moved = true;
+      var xk = pair[1] + 'x', yk = pair[1] + 'y';
+      if (k === 'ArrowLeft') curve[xk] = clamp(curve[xk] - step, 0, 1);
+      else if (k === 'ArrowRight') curve[xk] = clamp(curve[xk] + step, 0, 1);
+      else if (k === 'ArrowUp') curve[yk] = clamp(curve[yk] + step, Y_MIN, Y_MAX);
+      else if (k === 'ArrowDown') curve[yk] = clamp(curve[yk] - step, Y_MIN, Y_MAX);
+      else moved = false;
+      if (moved) { e.preventDefault(); markCustom(); draw(); }
+    });
+  });
+
+  $('zd-copy').addEventListener('click', function () {
+    var btn = this, text = $('zd-code').textContent;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, done);
+    } else { done(); }
+  });
+
+  /* ── the animation ──────────────────────────────────────── */
+  var DUR = 1500, HOLD = 550, mover = $('zd-mover'), filler = $('zd-filler');
+  var startedAt = 0, tileTimer = null, playingTile = null;
+
+  function frame(now) {
+    if (!startedAt) startedAt = now;
+    var elapsed = now - startedAt;
+    var cycle = DUR + HOLD;
+    var raw = elapsed % (cycle * 2);
+    var forward = raw < cycle;
+    var t = clamp((forward ? raw : raw - cycle) / DUR, 0, 1);
+    var v = ease(curve, forward ? t : 1 - t);
+
+    var usable = mover.parentNode.clientWidth - mover.offsetWidth;
+    var inset = usable * 0.09;
+    var travel = usable - inset * 2;
+    var shown = clamp(v, -0.32, 1.32);
+    mover.style.transform = 'translateX(' + (inset + shown * travel) + 'px)';
+    filler.style.height = clamp(v, 0, 1) * 100 + '%';
+
+    if (playingTile) {
+      var pt = clamp((forward ? raw : raw - cycle) / DUR, 0, 1);
+      var pv = ease(playingTile.curve, forward ? pt : 1 - pt);
+      var w = playingTile.run.clientWidth - 5;
+      playingTile.dot.style.transform =
+        'translateX(' + (clamp(pv, 0, 1) * w) + 'px)';
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* ── quick chips ────────────────────────────────────────── */
+  var QUICK = ['s-curve','quad-out','cubic-out','quint-out','expo-out','back-out'];
+  var quickHost = $('zd-quick');
+  QUICK.forEach(function (id) {
+    var p = PRESETS.filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'zd-chip';
+    b.textContent = p.name;
+    b.setAttribute('data-id', p.id);
+    b.addEventListener('click', function () { apply(p); });
+    quickHost.appendChild(b);
+  });
+
+  function markCustom() { activeId = null; syncActive(); }
+  function syncActive() {
+    var i, n, nodes = document.querySelectorAll('.zd-chip,.zc-tile');
+    for (i = 0; i < nodes.length; i++) {
+      n = nodes[i];
+      if (n.getAttribute('data-id') === activeId) n.classList.add('is-on');
+      else n.classList.remove('is-on');
+    }
+  }
+  function apply(p) {
+    curve = { p1x:p.curve.p1x, p1y:p.curve.p1y, p2x:p.curve.p2x, p2y:p.curve.p2y };
+    activeId = p.id;
+    startedAt = 0;
+    syncActive();
+    draw();
+  }
+
+  /* ── the 28-curve grid ──────────────────────────────────── */
+  var W = 62, H = 40, gpad = 5;
+  function glyph(c) {
+    var pts = [], i, x, y, ymin = 0, ymax = 1, N = 30;
+    for (i = 0; i <= N; i++) { x = i / N; y = ease(c, x); pts.push([x, y]);
+      if (y < ymin) ymin = y; if (y > ymax) ymax = y; }
+    var span = (ymax - ymin) || 1;
+    var d = '';
+    for (i = 0; i < pts.length; i++) {
+      var px = gpad + pts[i][0] * (W - 2*gpad);
+      var py = H - gpad - ((pts[i][1] - ymin) / span) * (H - 2*gpad);
+      d += (i ? 'L' : 'M') + px.toFixed(1) + ',' + py.toFixed(1);
+    }
+    return d;
+  }
+
+  var gridHost = $('zc-grid'), groupHost = $('zc-groups');
+  var groups = [], seen = {};
+  PRESETS.forEach(function (p) { if (!seen[p.group]) { seen[p.group] = 1; groups.push(p.group); } });
+
+  var filter = 'All';
+  function renderGroups() {
+    groupHost.innerHTML = '';
+    ['All'].concat(groups).forEach(function (g) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'zd-chip' + (g === filter ? ' is-on' : '');
+      b.textContent = g;
+      b.addEventListener('click', function () { filter = g; renderGroups(); renderTiles(); });
+      groupHost.appendChild(b);
+    });
+  }
+
+  function renderTiles() {
+    gridHost.innerHTML = '';
+    playingTile = null;
+    PRESETS.filter(function (p) { return filter === 'All' || p.group === filter; })
+      .forEach(function (p) {
+        var tile = document.createElement('div');
+        tile.className = 'zc-tile' + (p.id === activeId ? ' is-on' : '');
+        tile.setAttribute('data-id', p.id);
+        tile.setAttribute('role', 'button');
+        tile.setAttribute('tabindex', '0');
+        tile.innerHTML =
+          '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true">' +
+          '<path d="' + glyph(p.curve) + '" fill="none" stroke="#FF6B2C" stroke-width="1.9" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '<div class="zc-name">' + p.name + '</div>' +
+          '<div class="zc-run"><span class="zc-dot"></span></div>';
+
+        var run = tile.querySelector('.zc-run'), dot = tile.querySelector('.zc-dot');
+        function play() { playingTile = { curve:p.curve, run:run, dot:dot }; }
+        function stop() { if (playingTile && playingTile.dot === dot) playingTile = null; }
+        tile.addEventListener('pointerenter', play);
+        tile.addEventListener('pointerleave', stop);
+        tile.addEventListener('focus', play);
+        tile.addEventListener('blur', stop);
+        tile.addEventListener('click', function () {
+          apply(p);
+          play();
+          if (tileTimer) clearTimeout(tileTimer);
+          tileTimer = setTimeout(stop, 4200);
+        });
+        tile.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); apply(p); }
+        });
+        gridHost.appendChild(tile);
+      });
+    syncActive();
+  }
+
+  renderGroups();
+  renderTiles();
+  draw();
+  syncActive();
+})();
+</script>
 
 </body>
 </html>
