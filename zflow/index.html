@@ -125,6 +125,44 @@
   .card h3{font-size:18px;color:var(--text);font-weight:600;margin-bottom:8px}
   .card p{font-size:15px;color:var(--body)}
 
+  /* ── video ───────────────────────────────────────────── */
+  /* Click-to-play facade: nothing is requested from YouTube until the
+     visitor presses play, so the page stays fast and cookie-free. */
+  .zv{max-width:940px;margin:0 auto;border:1px solid var(--line);
+    border-radius:var(--r);overflow:hidden;background:var(--surface);transition:.16s}
+  .zv:hover{border-color:var(--line2)}
+  .zv-stage{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+  @supports not (aspect-ratio:16/9){
+    .zv-stage{height:0;padding-bottom:56.25%}
+  }
+  .zv-stage>*{position:absolute;inset:0;width:100%;height:100%}
+  .zv-frame{display:block;border:0;margin:0;padding:0;background:#000;
+    cursor:pointer;overflow:hidden;-webkit-appearance:none;appearance:none}
+  .zv-frame:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+  .zv-poster{width:100%;height:100%;object-fit:cover;opacity:.9;
+    transition:transform .55s ease,opacity .3s ease}
+  .zv-frame:hover .zv-poster,.zv-frame:focus-visible .zv-poster{
+    transform:scale(1.035);opacity:1}
+  .zv-shade{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(62% 62% at 50% 48%,rgba(0,0,0,.06),rgba(0,0,0,.55))}
+  .zv-btn{position:absolute;left:50%;top:50%;width:74px;height:74px;
+    transform:translate(-50%,-50%);border-radius:50%;display:flex;
+    align-items:center;justify-content:center;padding-left:5px;pointer-events:none;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 12px 34px rgba(255,107,44,.40);transition:transform .18s ease}
+  .zv-frame:hover .zv-btn,.zv-frame:focus-visible .zv-btn{
+    transform:translate(-50%,-50%) scale(1.08)}
+  .zv-tag{position:absolute;left:16px;top:16px;pointer-events:none;
+    font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--text);background:rgba(11,11,14,.60);border:1px solid var(--line2);
+    border-radius:999px;padding:6px 12px;backdrop-filter:blur(8px)}
+  .zv figcaption{padding:16px 22px;font-size:15px;color:var(--body);
+    border-top:1px solid var(--line)}
+  .zv figcaption b{color:var(--text);font-weight:600}
+  .zv-alt{max-width:940px;margin:14px auto 0;text-align:center;
+    font-size:14.5px;color:var(--dim)}
+  @media(max-width:560px){.zv-btn{width:58px;height:58px}}
+
   /* ── gallery ─────────────────────────────────────────── */
   .shots{display:grid;gap:26px}
   .shot{border-radius:var(--r);border:1px solid var(--line);overflow:hidden;
@@ -451,6 +489,40 @@
     </div>
     <div class="zc-groups" id="zc-groups"></div>
     <div class="zc-grid" id="zc-grid"></div>
+  </div>
+</section>
+
+<section id="video" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">See it move</div>
+      <h2>Animated with ZFlow</h2>
+      <p>A finished shot, not a demo reel. The timing you are watching was written
+         by the panel between two keyframes.</p>
+    </div>
+
+    <figure class="zv">
+      <div class="zv-stage" id="zv-stage">
+        <button class="zv-frame" id="zv-play" type="button"
+                aria-label="Play “ZFlow Animation” — opens the video in this page">
+          <img class="zv-poster" src="https://i.ytimg.com/vi/iI3LP0JSJT0/maxresdefault.jpg"
+               width="1280" height="720" loading="lazy" decoding="async" alt=""
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/iI3LP0JSJT0/hqdefault.jpg'">
+          <span class="zv-shade"></span>
+          <span class="zv-tag">Made with ZFlow</span>
+          <span class="zv-btn">
+            <svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true">
+              <path d="M3 2 L21 14 L3 26 Z" fill="#180B04"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <figcaption><b>ZFlow Animation.</b> Every ease in this clip came out of the panel —
+        pick a curve, press Apply, and the span in between is written frame by frame.</figcaption>
+    </figure>
+    <p class="zv-alt">Nothing is loaded from YouTube until you press play.
+      <a href="https://youtu.be/iI3LP0JSJT0" target="_blank" rel="noopener">Watch on
+      YouTube instead →</a></p>
   </div>
 </section>
 
@@ -877,6 +949,34 @@
   renderTiles();
   draw();
   syncActive();
+})();
+
+/* ── video: click-to-play YouTube facade ───────────────── */
+(function () {
+  var VIDEO_ID = 'iI3LP0JSJT0';
+  var stage = document.getElementById('zv-stage');
+  var play  = document.getElementById('zv-play');
+  if (!stage || !play) return;
+
+  var started = false;
+  play.addEventListener('click', function () {
+    if (started) return;
+    started = true;
+
+    var f = document.createElement('iframe');
+    f.title = 'ZFlow Animation';
+    f.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID +
+            '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    f.setAttribute('frameborder', '0');
+    f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    f.setAttribute('allow',
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    f.setAttribute('allowfullscreen', '');
+
+    stage.innerHTML = '';
+    stage.appendChild(f);
+    f.focus();
+  });
 })();
 </script>
 
