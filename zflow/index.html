@@ -520,9 +520,9 @@
       <figcaption><b>ZFlow Animation.</b> Every ease in this clip came out of the panel —
         pick a curve, press Apply, and the span in between is written frame by frame.</figcaption>
     </figure>
-    <p class="zv-alt">Nothing is loaded from YouTube until you press play.
-      <a href="https://youtu.be/iI3LP0JSJT0" target="_blank" rel="noopener">Watch on
-      YouTube instead →</a></p>
+    <p class="zv-alt"><span id="zv-note">Nothing is loaded from YouTube until you press
+      play. </span><a href="https://youtu.be/iI3LP0JSJT0" target="_blank"
+      rel="noopener">Watch on YouTube instead →</a></p>
   </div>
 </section>
 
@@ -976,6 +976,11 @@
     stage.innerHTML = '';
     stage.appendChild(f);
     f.focus();
+
+    // The "nothing is loaded until you press play" line stops being true the
+    // moment it is pressed, so drop it and keep only the YouTube link.
+    var note = document.getElementById('zv-note');
+    if (note && note.parentNode) note.parentNode.removeChild(note);
   });
 })();
 </script>
