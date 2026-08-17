@@ -1,4 +1,83 @@
+# zeekayeditz.com — crawling is welcome.
+#
+# Search engines and AI assistants may both index this site and use its
+# content. Attribution with a link back is appreciated but not required.
+#
+# NOTE: Cloudflare can override this file with a managed robots.txt that
+# blocks AI crawlers. If AI bots are being refused, check the Cloudflare
+# dashboard (Scrape Shield / AI Crawl Control) — not this file.
+
 User-agent: *
+Content-Signal: search=yes,ai-train=yes,ai-input=yes
+Allow: /
+
+# ── Search crawlers ──────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ── AI assistants: live answering and retrieval ──────────────────
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── AI training crawlers ─────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Timpibot
 Allow: /
 
 Sitemap: https://zeekayeditz.com/sitemap.xml
