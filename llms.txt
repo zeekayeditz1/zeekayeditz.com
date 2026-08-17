@@ -12,8 +12,15 @@ Pricing: Signature After Effects edits up to $400 per 15-minute video (custom an
 - [True Crime Video Editing](https://zeekayeditz.com/true-crime-video-editing.html): True crime channel editing — tension pacing, evidence graphics, atmospheric grading.
 - [VSL Video Editing](https://zeekayeditz.com/vsl-video-editing.html): Video sales letter editing for direct-response clients — filter hooks, claim-synced proof, pattern interrupts, conversion-focused CTA design.
 
+## Plugins
+
+- [ZFlow - Bezier Easing for Adobe Premiere Pro](https://zeekayeditz.com/zflow/): $19.99 one-time Premiere Pro panel that writes a real cubic-bezier easing curve into the span between any two existing keyframes. 28 named curves (Basic, Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back), an After Effects style speed graph with a magnetic zero line, overshoot curves Premiere ease handles cannot reach, batch stagger across a selection, and copy-as CSS / expression / raw values. Works on Position, Scale, Rotation, Opacity, Anchor Point and any keyframeable effect parameter. Requires Premiere Pro 25.6 or higher, macOS and Windows. Runs fully offline and collects no data.
+- [Buy ZFlow on the Adobe Creative Cloud Marketplace](https://exchange.adobe.com/apps/cc/77edc3d5/zflow): Official Adobe Exchange listing, version 3.2.2, published 14 August 2026. Install directly from Creative Cloud.
+- [ZFlow Support and FAQ](https://zeekayeditz.com/zflow/support): Install steps for Creative Cloud and manual installs, troubleshooting, keyboard shortcuts, and contact at admin@zeekayeditz.com.
+
 ## Blog
 
+- [Want After Effects-Quality Animation in Premiere? The Problem Is Not Premiere](https://zeekayeditz.com/blog/after-effects-quality-animation-in-premiere.html): Premiere already offers Linear, Bezier, Auto Bezier, Continuous Bezier, Hold, Ease In and Ease Out plus draggable handles, so the gap versus After Effects is repeatability, not capability. Four cubic-bezier recipes with exact control points (Quint Out 0.22,1,0.36,1; Expo In-Out 0.87,0,0.13,1; Back Out 0.34,1.56,0.64,1; Circ Out 0,0.55,0.45,1), five timing rules, a no-plugin manual method, and the ZFlow panel that makes it repeatable.
 - [Why Your Best Video Flopped (And a Worse One Went Viral)](https://zeekayeditz.com/blog/why-your-best-video-flopped.html): YouTube performance as a chain of three gates — impressions, click-through, retention — why effort and results come apart, and how to diagnose which gate failed.
 - [Why Viewers Stop Watching in the First 30 Seconds](https://zeekayeditz.com/blog/why-viewers-stop-watching-first-30-seconds.html): The three psychological exits behind early drop-off — cognitive overload, broken promises, closed loops — and the editing fix for each.
 - [The Hidden Cost of Editing Your Own YouTube Videos](https://zeekayeditz.com/blog/hidden-cost-of-editing-your-own-videos.html): The real math on DIY editing — hours, upload cadence, skill ceiling, burnout — and when outsourcing becomes arbitrage.
