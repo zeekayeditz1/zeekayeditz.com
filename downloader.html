@@ -633,6 +633,7 @@
 const BACKEND_URL = 'https://zeekayeditz1-zdm-backend.hf.space';
 
 let videoInfo = null;
+let fetchedUrl = '';
 let fmtList   = [];
 const dlState = {};
 
@@ -659,19 +660,23 @@ async function doFetch() {
   show('loading');
   const btn = document.getElementById('dl-fetch-btn');
   btn.disabled = true; btn.textContent = 'Fetching…';
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 75000);
   try {
-    const res  = await fetch(`${BACKEND_URL}/api/info?url=${encodeURIComponent(url)}`);
-    const data = await res.json();
+    const res  = await fetch(`${BACKEND_URL}/api/info?url=${encodeURIComponent(url)}`, {signal:controller.signal});
+    const data = await res.json().catch(() => { throw new Error('The download server is temporarily unavailable. Please try again shortly.'); });
     if (!res.ok) throw new Error(data.error || 'Failed to fetch info');
     if (!data.formats?.length) throw new Error('No downloadable formats found');
     videoInfo = data;
+    fetchedUrl = url;
     fmtList   = data.formats.map((f,i)=>({...f, safeKey:`f${i}`}));
     renderResults();
     show('results');
   } catch(e) {
-    document.getElementById('dl-error-msg').textContent = e.message;
+    document.getElementById('dl-error-msg').textContent = e.name==='AbortError' ? 'The server took too long to respond. Please try again in a moment.' : e.message;
     show('error');
   } finally {
+    clearTimeout(timeout);
     btn.disabled = false; btn.textContent = 'Fetch Formats';
   }
 }
@@ -755,7 +760,7 @@ function refreshCard(sk) {
 
 async function startDl(sk) {
   const fmt = fmtList.find(f=>f.safeKey===sk); if(!fmt) return;
-  const url = document.getElementById('dl-url').value.trim();
+  const url = fetchedUrl;
   dlState[sk] = { status:'starting', progress:0 };
   refreshCard(sk);
   try {
