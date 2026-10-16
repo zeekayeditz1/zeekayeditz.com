@@ -33,6 +33,9 @@ Pricing: Signature After Effects edits up to $400 per 15-minute video (custom an
 
 ## Free Tools
 
+- [ZDM — Zeekay Download Manager](https://zeekayeditz.com/zdm/): Free Windows x64 download manager for video editors, Chrome/Edge companion setup, H.264/AAC MP4 and audio presets.
+- [Meet ZDM](https://zeekayeditz.com/blog/zdm-free-download-manager-for-video-editors.html): Launch article and video-editor workflow; download and setup are on the official ZDM app page.
+
 - [ZDM Downloader](https://zeekayeditz.com/downloader.html): Free video downloader tool by ZeeKay Editz.
 - [Apps](https://zeekayeditz.com/apps.html), [Plugins](https://zeekayeditz.com/plugins.html), [Presets](https://zeekayeditz.com/presets.html), [Tutorials](https://zeekayeditz.com/tutorials.html)
 
