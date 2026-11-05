@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=12" />
+  <link rel="stylesheet" href="assets/css/style.css?v=3e085a9caf62" />
 
   <style>
     /* ─────────────────────────────────────────────────────────────
@@ -625,7 +625,7 @@
 
 <button class="to-top" aria-label="Scroll to top">↑</button>
 
-<script src="assets/js/script.js?v=12"></script>
+<script src="assets/js/script.js?v=c0f319bef333"></script>
 
 <script>
 'use strict';
@@ -673,7 +673,11 @@ async function doFetch() {
     renderResults();
     show('results');
   } catch(e) {
-    document.getElementById('dl-error-msg').textContent = e.name==='AbortError' ? 'The server took too long to respond. Please try again in a moment.' : e.message;
+    let message = e.name==='AbortError' ? 'The server took too long to respond. Please try again in a moment.' : e.message;
+    if (/requires login on cloud servers|owner needs|HF Setup guide/i.test(message)) {
+      message = 'YouTube is currently restricting cloud downloads. Please try again later or use the ZDM Windows app linked above.';
+    }
+    document.getElementById('dl-error-msg').textContent = message;
     show('error');
   } finally {
     clearTimeout(timeout);
