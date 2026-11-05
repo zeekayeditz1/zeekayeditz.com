@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=10" />
+  <link rel="stylesheet" href="assets/css/style.css?v=12" />
 
   <style>
     /* ─────────────────────────────────────────────────────────────
@@ -625,12 +625,12 @@
 
 <button class="to-top" aria-label="Scroll to top">↑</button>
 
-<script src="assets/js/script.js?v=8"></script>
+<script src="assets/js/script.js?v=12"></script>
 
 <script>
 'use strict';
 
-const BACKEND_URL = 'https://zeekayeditz1-zdm-backend.hf.space';
+const BACKEND_URL = 'https://zeekayeditzcom-production.up.railway.app';
 
 let videoInfo = null;
 let fetchedUrl = '';
@@ -731,17 +731,22 @@ function buildCard(fmt) {
     h += `<button class="dl-action-btn ${ac}" disabled>Starting…</button>`;
     h += `<div class="dl-card-status">Connecting…</div>`;
   } else if (state.status==='downloading') {
-    const pct = (state.progress||0).toFixed(1);
-    h += `<button class="dl-action-btn ${ac}" disabled>${pct}%</button>`;
-    h += `<div class="dl-prog-bar"><div class="dl-prog-fill" style="width:${pct}%"></div></div>`;
-    h += `<div class="dl-card-status">Server downloading…</div>`;
+    if (fmt.needsMerge) {
+      h += `<button class="dl-action-btn ${ac}" disabled>Preparing…</button>`;
+      h += `<div class="dl-card-status" role="status">Downloading video and audio, then merging…</div>`;
+    } else {
+      const pct = Math.max(0, Math.min(100, Number(state.progress) || 0)).toFixed(1);
+      h += `<button class="dl-action-btn ${ac}" disabled>${pct}%</button>`;
+      h += `<div class="dl-prog-bar"><div class="dl-prog-fill" style="width:${pct}%"></div></div>`;
+      h += `<div class="dl-card-status">Server downloading…</div>`;
+    }
   } else if (state.status==='ready') {
     h += `<button class="dl-action-btn success" onclick="triggerSave('${sk}','${esc(state.jobId)}')">💾 Save File</button>`;
     h += `<div class="dl-prog-bar"><div class="dl-prog-fill" style="width:100%"></div></div>`;
     h += `<div class="dl-card-status ok">Ready — click to save!</div>`;
   } else if (state.status==='done') {
-    h += `<button class="dl-action-btn success" disabled>✓ Saved</button>`;
-    h += `<div class="dl-card-status ok">Download complete</div>`;
+    h += `<button class="dl-action-btn success" onclick="triggerSave('${sk}','${esc(state.jobId)}')">💾 Save Again</button>`;
+    h += `<div class="dl-card-status ok">Save started — check your browser downloads.</div>`;
   } else if (state.status==='error') {
     h += `<button class="dl-action-btn danger" onclick="startDl('${sk}')">↺ Retry</button>`;
     h += `<div class="dl-card-status err">${esc(state.error||'Failed')}</div>`;

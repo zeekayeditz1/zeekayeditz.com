@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # yt-dlp_linux = truly standalone binary, NO Python needed
-ARG YTDLP_VERSION=2026.08.19
+ARG YTDLP_VERSION=2026.10.26
 RUN curl -fL --retry 3 https://github.com/yt-dlp/yt-dlp/releases/download/${YTDLP_VERSION}/yt-dlp_linux \
     -o /usr/local/bin/yt-dlp \
     && chmod a+rx /usr/local/bin/yt-dlp

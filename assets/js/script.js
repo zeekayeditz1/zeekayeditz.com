@@ -100,13 +100,69 @@
     // ─── Mobile Menu ──────────────────────────────────────────────
     const menuToggle = $('.menu-toggle');
     const navLinks = $('.nav-links');
+    const mobileNav = window.matchMedia('(max-width: 991px)');
+    const dropdowns = $$('.nav-dropdown');
+
+    function setDropdown(dropdown, open) {
+      dropdown.classList.toggle('is-open', open);
+      dropdown.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', String(open));
+    }
+    function closeDropdowns() {
+      dropdowns.forEach(dropdown => setDropdown(dropdown, false));
+    }
+    function setMenuOpen(open) {
+      if (!menuToggle || !navLinks) return;
+      navLinks.classList.toggle('open', open);
+      menuToggle.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      if (!open) closeDropdowns();
+    }
+
+    dropdowns.forEach((dropdown, index) => {
+      const button = $('.nav-dropdown-toggle', dropdown);
+      const submenu = $('.nav-dropdown-menu', dropdown);
+      if (!button || !submenu) return;
+      submenu.id = submenu.id || 'nav-dropdown-menu-' + index;
+      button.setAttribute('aria-controls', submenu.id);
+      // This is a disclosure of navigation links, rather than an ARIA menu.
+      button.removeAttribute('aria-haspopup');
+      setDropdown(dropdown, false);
+      button.addEventListener('click', () => {
+        const open = !dropdown.classList.contains('is-open');
+        closeDropdowns();
+        setDropdown(dropdown, open);
+      });
+      dropdown.addEventListener('focusout', event => {
+        if (!dropdown.contains(event.relatedTarget)) setDropdown(dropdown, false);
+      });
+    });
+
     if (menuToggle && navLinks) {
       menuToggle.addEventListener('click', () => {
-        const open = navLinks.classList.toggle('open');
-        menuToggle.classList.toggle('open', open);
-        menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        setMenuOpen(!navLinks.classList.contains('open'));
+      });
+      navLinks.addEventListener('click', event => {
+        if (event.target.closest('a[href]')) setMenuOpen(false);
       });
     }
+    document.addEventListener('click', event => {
+      dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(event.target)) setDropdown(dropdown, false);
+      });
+      if (mobileNav.matches && !event.target.closest('.nav')) setMenuOpen(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const openDropdown = dropdowns.find(dropdown => dropdown.classList.contains('is-open'));
+      if (openDropdown) {
+        setDropdown(openDropdown, false);
+        $('.nav-dropdown-toggle', openDropdown).focus();
+      } else if (navLinks && navLinks.classList.contains('open')) {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+    mobileNav.addEventListener('change', () => setMenuOpen(false));
 
     // ─── Smooth Scroll & Active Link ──────────────────────────────
     $$('a[href^="#"]').forEach(link => {
@@ -123,11 +179,7 @@
             setTimeout(() => {
               if (Math.abs(window.scrollY - y0) < 2 && Math.abs(y0 - top) > 2) location.hash = id;
             }, 250);
-            // Close mobile menu if open
-            if (navLinks && navLinks.classList.contains('open')) {
-              navLinks.classList.remove('open');
-              if (menuToggle) menuToggle.classList.remove('open');
-            }
+            setMenuOpen(false);
           }
         }
       });
@@ -701,10 +753,14 @@
 
       function show(idx) {
         idx = (idx + cards.length) % cards.length;
-        cards.forEach((c, i) => c.classList.toggle('active', i === idx));
+        cards.forEach((c, i) => {
+          c.classList.toggle('active', i === idx);
+          c.setAttribute('aria-hidden', String(i !== idx));
+        });
         dots.forEach((d, i) => {
           d.classList.toggle('active', i === idx);
           d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+          d.tabIndex = i === idx ? 0 : -1;
         });
         current = idx;
       }
@@ -714,6 +770,7 @@
 
       function startAuto() {
         stopAuto();
+        if (reduceMotion) return;
         autoTimer = setInterval(next, AUTO_DELAY);
       }
       function stopAuto() {
@@ -723,7 +780,21 @@
       dots.forEach((d, i) => {
         d.addEventListener('click', () => { show(i); startAuto(); });
         d.setAttribute('role', 'tab');
+        d.id = 'testimonial-tab-' + i;
+        d.setAttribute('aria-controls', 'testimonial-panel-' + i);
+        cards[i].id = 'testimonial-panel-' + i;
+        cards[i].setAttribute('role', 'tabpanel');
+        cards[i].setAttribute('aria-labelledby', d.id);
+        d.addEventListener('keydown', event => {
+          const moves = { ArrowLeft: i - 1, ArrowRight: i + 1, Home: 0, End: cards.length - 1 };
+          if (!(event.key in moves)) return;
+          event.preventDefault();
+          show(moves[event.key]);
+          dots[current].focus();
+          startAuto();
+        });
       });
+      show(0);
       if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
       if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
 
@@ -768,23 +839,20 @@
       const el = document.getElementById('vc-num'); const elB = document.getElementById('visitor-count');
       if (!el) return;
 
-      const STORAGE_KEY = 'zk-visit-count';
-      const SESSION_KEY = 'zk-visit-session';
-      const BASE = 1247; // starting baseline so the number looks alive on day 1
+      const STORAGE_KEY = 'zk-page-view-count';
 
       function format(n) { return n.toLocaleString('en-US'); }
 
       function localFallback() {
-        // Bump once per browser session
-        let stored = parseInt(localStorage.getItem(STORAGE_KEY) || BASE, 10);
-        if (!sessionStorage.getItem(SESSION_KEY)) {
-          stored += 1 + Math.floor(Math.random() * 3);
-          try {
-            localStorage.setItem(STORAGE_KEY, String(stored));
-            sessionStorage.setItem(SESSION_KEY, '1');
-          } catch(e) {}
+        // Keep only a real count returned earlier by the counter service.
+        let stored;
+        try { stored = Number(localStorage.getItem(STORAGE_KEY)); } catch (e) {}
+        if (Number.isSafeInteger(stored) && stored > 0) {
+          animateTo(stored);
+        } else {
+          el.textContent = '—';
+          if (elB) elB.textContent = '—';
         }
-        animateTo(stored);
       }
 
       function animateTo(target) {
