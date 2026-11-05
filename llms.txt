@@ -1,6 +1,6 @@
 # ZeeKay Editz
 
-> ZeeKay Editz is a premium video editing and motion design studio serving YouTube creators and brands in the US, UK, and EU. Founded by Zahid Ali (Zeekay). The studio edits cartoon commentary, sports documentaries, gaming videos and YouTube explainers, and specializes in style-matched editing — replicating and executing recognizable YouTube editing styles (Pexto, Ryan Pictures, iceberg explainers, true crime, VSL/direct-response) with After Effects motion graphics and retention-focused Premiere Pro editing.
+> ZeeKay Editz is a premium video editing and motion design studio serving YouTube creators and brands in the US, UK, and EU. Founded by Zahid Ali (Zeekay). The studio edits cartoon commentary, sports documentaries, gaming videos and YouTube explainers, and specializes in style-matched editing — replicating and executing recognizable YouTube editing styles (Glass-style cartoon commentary, Pexto, SunnyV2-style documentaries, Ryan Pictures, iceberg explainers, true crime, VSL/direct-response) with After Effects motion graphics and retention-focused Premiere Pro editing.
 
 Pricing: Signature After Effects edits are $400 per 15-minute video (custom animations, kinetic typography, cinematic sound design). Growth long-form edits in Premiere Pro from $60 per video up to 10 minutes (volume rate for cashcow and high-upload channels). Every new client receives a free 1-minute sample edit of their own footage before paying anything. Remote-first, worldwide, US/UK/EU friendly hours. Contact: https://zeekayeditz.com/#contact
 
@@ -20,11 +20,15 @@ Contact the studio through https://zeekayeditz.com/#contact or its public Fiverr
 
 ## Editing Style Pages
 
+- [SunnyV2 Style Video Editing](https://zeekayeditz.com/sunnyv2-style-video-editing.html): Turn a researched script into a clear YouTube documentary. Our SunnyV2-style video editing service is for narration-led creator stories, rise-and-fall timelines and commentary that needs source material, context and a strong narrative sequence.
+
+- [Glass Style Cartoon Video Editing](https://zeekayeditz.com/glass-style-video-editing.html): A cartoon commentary edit should follow the argument and land the joke. Our Glass-style video editing service focuses on animated-series commentary, episode rankings and character analysis, using scene selection, reactions and graphics shaped around your voiceover.
+
 - [Pexto Style Video Editing](https://zeekayeditz.com/pexto-style-video-editing.html): How the studio replicates Pexto's fast-paced style — beat-locked cuts, zoom hierarchy, meme timing, SFX layering — with client samples.
 - [Ryan Pictures Style Video Editing](https://zeekayeditz.com/ryan-pictures-style-video-editing.html): Documentary-grade Ryan Pictures style editing with cinematic pacing and motion design, with samples.
 - [Iceberg Style Video Editing](https://zeekayeditz.com/iceberg-style-video-editing.html): Iceberg explainer format editing — tiered reveals, atmospheric sound design, long-form retention structure.
 - [True Crime Video Editing](https://zeekayeditz.com/true-crime-video-editing.html): True crime channel editing — tension pacing, evidence graphics, atmospheric grading.
-- [VSL Video Editing](https://zeekayeditz.com/vsl-video-editing.html): Video sales letter editing for direct-response clients — filter hooks, claim-synced proof, pattern interrupts, conversion-focused CTA design.
+- [VSL Video Editing](https://zeekayeditz.com/vsl-video-editing.html): Hire a VSL video editor for video sales letter editing, approved proof graphics, captions and clear calls to action. Includes two portfolio samples and a briefing guide.
 
 ## Plugins
 
